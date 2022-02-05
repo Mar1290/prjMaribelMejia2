@@ -1,0 +1,32 @@
+﻿@model List<prjMaribelMejia.Models.Pacientes>;
+@{
+    ViewData["Tittle"]= "Inicio";
+}
+
+<h1 class="alert-success">Datos del Producto</h1>
+<br />
+<div>
+    <table class="table table-bordered table-hover table-striped table-responsive-sm">
+        <thead>
+            <tr class="table-danger">
+                <th>Categoria</th>  
+                <th>Producto</th>                                
+                   <th>Precio</th>
+                   <th>Descripción del Producto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr class="table-light">
+                    <td>@item.Nombre</td>
+                     <td>@item.Direccion</td>
+                      <td>@item.Edad</td>
+                       <td>@item.Telefono</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
