@@ -1,0 +1,40 @@
+﻿@model List<prjMaribelMejia.Models.Pacientes>;
+@{
+    ViewData["Tittle"]= "Inicio";
+}
+<h1 class="alert-success">Datos Generales</h1>
+<br />
+<div>
+    <table class="table table-bordered table-hover table-striped table-responsive-sm">
+        <thead>
+            <tr class="table-danger">
+                <th>Nombre y Apellidos</th>
+                 <th>Dirección</th>                  
+                   <th>Edad</th>
+                   <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr class="table-light">
+                    <td>@item.Nombre</td>
+                     <td>@item.Direccion</td>
+                      <td>@item.Edad</td>
+                       <td>@item.Telefono</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <button type="button" class="btn btn-info">Nuevo</button>
+    <a class="btn btn-outline-primary" asp-action="Edit">Edit</a>
+   
+
+
+</div>
+<hr />
+@DateTime.Now.ToShortDateString();
