@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using prjMaribelMejia.Models;
 using System.Diagnostics;
 using prjMaribelMejia.Data;
+using System.Linq;
 
 namespace prjMaribelMejia.Controllers
 {
@@ -34,13 +35,19 @@ namespace prjMaribelMejia.Controllers
            _context.categorias.Add(categorias);
             _context.SaveChanges(); 
 
-            //Retornamos a la pagina prinicpal
-           return RedirectToAction("Categorias");
-            
+            //Retornamos a la pagina principal
+           //return RedirectToAction("Categorias");
+            return RedirectToAction("ListaCategorias");
+
         }
         public IActionResult ListaCategorias()
         {
-            return View();
+            _context.categorias.ToList();//debemos agregar la referencia to linq
+            // List<Categorias> categoria = _context.categorias.ToList();
+            //return View(categoria);
+
+            //mejor usar esta forma:
+            return View(_context.categorias.ToList());
         }
     }
 }
