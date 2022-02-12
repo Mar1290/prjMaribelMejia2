@@ -10,7 +10,7 @@ namespace prjMaribelMejia.Controllers
     public class CategoriasController : Controller
     {
         //1 crear esto
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
         private readonly MyDbContext _context;//MyDbCONTEXT:es ña clase que orquesta conexxion a la bd
 
