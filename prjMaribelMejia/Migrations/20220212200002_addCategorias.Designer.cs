@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using prjMaribelMejia.Data;
 
 namespace prjMaribelMejia.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220212200002_addCategorias")]
+    partial class addCategorias
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,29 +44,6 @@ namespace prjMaribelMejia.Migrations
                     b.ToTable("categorias");
                 });
 
-            modelBuilder.Entity("prjMaribelMejia.Models.Modulos", b =>
-                {
-                    b.Property<int>("IdModulo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("FechaCreacionModulo")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IdPropietario")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Modulo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("IdModulo");
-
-                    b.ToTable("modulos");
-                });
-
             modelBuilder.Entity("prjMaribelMejia.Models.Productos", b =>
                 {
                     b.Property<int>("IdProducto")
@@ -90,35 +69,6 @@ namespace prjMaribelMejia.Migrations
                     b.HasKey("IdProducto");
 
                     b.ToTable("producto");
-                });
-
-            modelBuilder.Entity("prjMaribelMejia.Models.Propietarios", b =>
-                {
-                    b.Property<int>("IdPropietario")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("DireccionPropietario")
-                        .HasColumnType("int")
-                        .HasMaxLength(300);
-
-                    b.Property<string>("IdentificacionPropietario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(14)")
-                        .HasMaxLength(14);
-
-                    b.Property<string>("NombrePropietario")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("TelefonoPropietario")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdPropietario");
-
-                    b.ToTable("propietarios");
                 });
 #pragma warning restore 612, 618
         }

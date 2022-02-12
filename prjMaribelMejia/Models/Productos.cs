@@ -15,11 +15,10 @@ namespace prjMaribelMejia.Models
         [Required(ErrorMessage = "El campo Categoria es requerido")]        
         public int IdCategoria { get; set; }
 
-        [Required(ErrorMessage = "El campo Precio es requerido")]
-        
+        [Required(ErrorMessage = "El campo Precio es requerido")]        
         public decimal Precio { get; set; }
-        [StringLength(500)]
-       
+
+        [StringLength(500)]       
         public string Descripcion { get; set; }
     }
 }

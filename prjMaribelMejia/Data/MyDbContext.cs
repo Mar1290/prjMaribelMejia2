@@ -10,5 +10,8 @@ namespace prjMaribelMejia.Data
 
         }
         public  DbSet<Productos> producto { get; set; }//realizar una propiedad de esta por cada tabla
+        public DbSet<Categorias> categorias { get; set; }   
+        public DbSet<Propietarios> propietarios { get; set;}
+        public DbSet<Modulos> modulos { get; set; }
     }
 }
