@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using prjMaribelMejia.Data;
 
 namespace prjMaribelMejia.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220212204005_relacionPdtoCategoria")]
+    partial class relacionPdtoCategoria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,8 +63,6 @@ namespace prjMaribelMejia.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("IdModulo");
-
-                    b.HasIndex("IdPropietario");
 
                     b.ToTable("modulos");
                 });
@@ -123,15 +123,6 @@ namespace prjMaribelMejia.Migrations
                     b.HasKey("IdPropietario");
 
                     b.ToTable("propietarios");
-                });
-
-            modelBuilder.Entity("prjMaribelMejia.Models.Modulos", b =>
-                {
-                    b.HasOne("prjMaribelMejia.Models.Propietarios", "Propietarios")
-                        .WithMany()
-                        .HasForeignKey("IdPropietario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("prjMaribelMejia.Models.Productos", b =>

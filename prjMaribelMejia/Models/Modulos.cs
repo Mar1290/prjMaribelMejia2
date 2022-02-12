@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace prjMaribelMejia.Models
 {
@@ -8,6 +9,8 @@ namespace prjMaribelMejia.Models
         [Key]
         public int IdModulo { get; set; }
         [Required(ErrorMessage = "El campo propietario es requerido")]
+        [ForeignKey("IdPropietario")]
+        public Propietarios Propietarios { get; set; } 
         public int IdPropietario { get; set; }
         [StringLength(50)]
         [Required(ErrorMessage = "El campo modulo es requerido")]
