@@ -1,0 +1,23 @@
+﻿@model List<prjMaribelMejia.Models.Categorias>
+<div>
+
+    <table>
+        <thead>
+
+            <tr>
+                <th>Categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                //hace referencia a lo que viene como modelo
+                foreach(var categoria in Model)
+                {
+                    <tr>  
+                    <td>@categoria.Categoria</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

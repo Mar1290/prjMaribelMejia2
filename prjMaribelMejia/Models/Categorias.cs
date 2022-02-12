@@ -12,6 +12,9 @@ namespace prjMaribelMejia.Models
         [Required(ErrorMessage = "El campo categoria es requerido")]
         public string Categoria { get; set; }
         public string DescripcionCategoria { get; set; }
+
+        //PARA ENVIAR LA FECHA DEL SERVIDOR
+    
         public  DateTime FechaCreacionCategoria { get; set; }
     }
 }

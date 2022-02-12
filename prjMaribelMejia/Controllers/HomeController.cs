@@ -26,6 +26,10 @@ namespace prjMaribelMejia.Controllers
         {
             return View();
         }
+        public IActionResult Categorias()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
