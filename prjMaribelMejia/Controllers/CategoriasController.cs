@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace prjMaribelMejia.Models
+namespace prjMaribelMejia.Controllers
 {
-    public class HomeController : Controller
+    public class CategoriasController : Controller
     {
         public IActionResult Index()
         {
