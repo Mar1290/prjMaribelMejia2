@@ -32,7 +32,7 @@
                      
                     @*opcion 2 boton editar*@
                       <a class="btn btn-info" href ="@Url.Action("EditarCategoria", new{ id=categoria.IdCategoria})">Editar</a>
-                      <a class="btn btn-danger" asp-action="EliminarCategoria">Eliminar</a>
+                      <a class="btn btn-danger" href ="@Url.Action("EliminarCategoria", new{ id=categoria.IdCategoria})">Eliminar</a>
                     </td>
                     </tr>
                 }
