@@ -29,7 +29,9 @@ namespace prjMaribelMejia.Controllers
         public  IActionResult crearPropietarios(Propietarios propietarios)
         {
           _context.propietarios.Add(propietarios);  
-            return View();
+            _context.SaveChanges(); 
+            //retornamos a la pagina
+            return RedirectToAction("Propietarios");
         }
 
     }

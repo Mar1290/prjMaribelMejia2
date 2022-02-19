@@ -1,1 +1,14 @@
-﻿<h2>Eliminar Categoría</h2>
+﻿@model prjMaribelMejia.Models.Categorias
+
+<h2>Eliminar Categoría</h2>
+
+<form asp-action="EliminarCategoria">
+    <div>
+    <input type="text" class="form-control" name="Categoria" value="@Model.Categoria"/>
+    <input type="text" class="form-control" name="DescripcionCategoria" value="@Model.DescripcionCategoria"/>
+   <input type="hidden" class="form-control" name="IdCategoria" value="@Model.IdCategoria"/>
+    <div class=form-group>
+        <input type="submit" value="Eliminar" class="btn btn-danger"/>
+    </div>
+    </div>
+</form>

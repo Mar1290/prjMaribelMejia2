@@ -78,9 +78,30 @@ namespace prjMaribelMejia.Controllers
             //retornamos a la vista listacategorias
             return View("ListaCategorias", categoria);
         }
-        public IActionResult EliminarCategoria()
+        public IActionResult EliminarCategoria(int id)
         {
-            return View("EliminarCategoria");
+            //en caso de que tengamos relacion con otra tabla
+            List<Productos> productos = _context.producto.Where(a => a.IdCategoria==id).ToList();
+
+            if (productos !=null)
+            {
+                //elimna todos los prorictos asociados
+                _context.RemoveRange(productos);
+            }
+
+            // _context.SaveChanges();//no es recomendable poner el metodos varias veces para evitar ir a la bd constantemente.
+
+            //con entity framework. eliminamos el valor
+            Categorias categorias = _context.categorias.Where(a => a.IdCategoria == id).FirstOrDefault();
+            if (categorias != null)
+            {
+                //elimna categorias
+                _context.Remove(categorias);
+            }     
+          
+            _context.SaveChanges(); 
+            List<Categorias> categoria = _context.categorias.ToList();
+            return View("ListaCategorias", categoria);
         }
     }
 }

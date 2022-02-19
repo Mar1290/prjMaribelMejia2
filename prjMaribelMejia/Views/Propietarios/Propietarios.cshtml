@@ -1,6 +1,41 @@
-﻿@model List<prjMaribelMejia.Models.Pacientes>;
+﻿@*@model List<prjMaribelMejia.Models.Pacientes>;
 @{
     ViewData["Tittle"]= "Inicio";
-}
+}*@
+@model List<prjMaribelMejia.Models.Propietarios>
 <h1 class="text-info bg-light rounded border-bottom">Administración de Propietarios</h1>
 <br />
+    <table class="table table-dark table-striped">
+         <thead>
+        <tr>
+         <th>Propietario</th>
+         <th>Identificación</th>
+         <th>Dirección</th>
+          <th>Teléfono</th>
+        </tr>
+         </thead>
+         <tbody>
+
+                    @{
+                //hace referencia a lo que viene como modelo
+                foreach(var propietario in Model)
+                {
+                    <tr>  
+                    <td>@propietario.NombrePropietario</td>
+                    <td>@propietario.IdentificacionPropietario</td>
+                     <td>@propietario.DireccionPropietario</td>
+                      <td>@propietario.TelefonoPropietario</td>
+                    <td>
+                    @*opcion 1 boton editar*@
+                    @*<a class="btn btn-info" asp-action="EditarCategoria" asp-route="Id">Editar</a>*@
+                     
+                    @*opcion 2 boton editar*@
+                      <a class="btn btn-info" href ="@Url.Action("EditarPropietario", new{ id=propietario.IdPropietario})">Editar</a>
+                      <a class="btn btn-danger" asp-action="EliminarCategoria">Eliminar</a>
+                    </td>
+                    </tr>
+                }
+            }
+         </tbody>
+    </table>
+</div>
