@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using prjMaribelMejia.Data;
 
 namespace prjMaribelMejia.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220218232045_MMejia18222")]
+    partial class MMejia18222
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,9 +38,6 @@ namespace prjMaribelMejia.Migrations
 
                     b.Property<DateTime>("FechaCreacionCategoria")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("IdClasificacion")
-                        .HasColumnType("int");
 
                     b.HasKey("IdCategoria");
 
