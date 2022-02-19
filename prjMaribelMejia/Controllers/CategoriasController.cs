@@ -4,6 +4,7 @@ using prjMaribelMejia.Models;
 using System.Diagnostics;
 using prjMaribelMejia.Data;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace prjMaribelMejia.Controllers
 {
@@ -43,6 +44,7 @@ namespace prjMaribelMejia.Controllers
         }
         public IActionResult ListaCategorias()
         {
+            List<Categorias> categorias = _context.categorias.ToList();
             _context.categorias.ToList();//debemos agregar la referencia to linq
             // List<Categorias> categoria = _context.categorias.ToList();
             //return View(categoria);
@@ -50,24 +52,31 @@ namespace prjMaribelMejia.Controllers
             //mejor usar esta forma:
             return View(_context.categorias.ToList());
         }
-        public IActionResult EditarCategoria()
+        public IActionResult EditarCategoria(int id)
         {
-            return View("EditarCategoria");
+            List<Categorias> categorias = _context.categorias.ToList();
+            //recuperamos los datos y lo pasamos a nuestro modelo
+            Categorias modelo=_context.categorias.Where(c => c.IdCategoria == id).FirstOrDefault(); 
+            //retornamos
+            return View("EditarCategoria", modelo);
         }
         //esta accion recibe el objeto categoria
-        public IActionResult EditarValorCategoria(Categorias categoria)
+        public IActionResult EditarValorCategoria(Categorias categorias)
         {
             //recupero el valor actual en la base de datos
           Categorias categoriaActual=_context.categorias.
-                Where(a => a.IdCategoria==categoria.IdCategoria).FirstOrDefault();
+                Where(a => a.IdCategoria==categorias.IdCategoria).FirstOrDefault();
             //ahora actualizo los datos
-            categoriaActual.Categoria = categoria.Categoria;
-            categoriaActual.DescripcionCategoria=categoria.DescripcionCategoria;    
+            categoriaActual.Categoria = categorias.Categoria;
+            categoriaActual.DescripcionCategoria= categorias.DescripcionCategoria;
 
+
+            List<Categorias> categoria = _context.categorias.ToList();
             //persisto los datos en la bd
             _context.SaveChanges();
+           
             //retornamos a la vista listacategorias
-            return View("ListaCategorias");
+            return View("ListaCategorias", categoria);
         }
         public IActionResult EliminarCategoria()
         {

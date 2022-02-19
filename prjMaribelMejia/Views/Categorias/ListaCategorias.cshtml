@@ -27,11 +27,12 @@
                     <td>@categoria.Categoria</td>
                     <td>@categoria.DescripcionCategoria</td>
                     <td>
-                    <a class="btn btn-info" asp-action="EditarCategoria">Editar</a>
-                     <a class="btn btn-danger" asp-action="EliminarCategoria">Eliminar</a>
-
-                      <a class="btn btn-info" href ="@Url.Action("EditarCategoria")">Editar</a>
-
+                    @*opcion 1 boton editar*@
+                    @*<a class="btn btn-info" asp-action="EditarCategoria" asp-route="Id">Editar</a>*@
+                     
+                    @*opcion 2 boton editar*@
+                      <a class="btn btn-info" href ="@Url.Action("EditarCategoria", new{ id=categoria.IdCategoria})">Editar</a>
+                      <a class="btn btn-danger" asp-action="EliminarCategoria">Eliminar</a>
                     </td>
                     </tr>
                 }
