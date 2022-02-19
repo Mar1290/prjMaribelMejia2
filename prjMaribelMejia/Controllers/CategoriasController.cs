@@ -28,6 +28,7 @@ namespace prjMaribelMejia.Controllers
         {
             return View();
         }
+
         public IActionResult CrearCategoria(Categorias categorias)
         {
             categorias.FechaCreacionCategoria = System.DateTime.Now;
@@ -48,6 +49,29 @@ namespace prjMaribelMejia.Controllers
 
             //mejor usar esta forma:
             return View(_context.categorias.ToList());
+        }
+        public IActionResult EditarCategoria()
+        {
+            return View("EditarCategoria");
+        }
+        //esta accion recibe el objeto categoria
+        public IActionResult EditarValorCategoria(Categorias categoria)
+        {
+            //recupero el valor actual en la base de datos
+          Categorias categoriaActual=_context.categorias.
+                Where(a => a.IdCategoria==categoria.IdCategoria).FirstOrDefault();
+            //ahora actualizo los datos
+            categoriaActual.Categoria = categoria.Categoria;
+            categoriaActual.DescripcionCategoria=categoria.DescripcionCategoria;    
+
+            //persisto los datos en la bd
+            _context.SaveChanges();
+            //retornamos a la vista listacategorias
+            return View("ListaCategorias");
+        }
+        public IActionResult EliminarCategoria()
+        {
+            return View("EliminarCategoria");
         }
     }
 }

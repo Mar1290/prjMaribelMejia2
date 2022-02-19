@@ -1,7 +1,9 @@
 ﻿@model List<prjMaribelMejia.Models.Categorias>
-<div>
-   
-    <h1 class="align-content-center p-1 alert-info bg-white text-dark">Categorias</h1>
+
+
+<div>  
+    <div>
+      <h2 class="alert-success">Administración de Categorias</h2>
     </div>
 
 <br />
@@ -12,7 +14,9 @@
             <tr>
                 <th>Categoria</th>
                 <th>Descripcion</th>
+                <th>Acciones</th>
             </tr>
+    
         </thead>
         <tbody>
             @{
@@ -22,12 +26,20 @@
                     <tr>  
                     <td>@categoria.Categoria</td>
                     <td>@categoria.DescripcionCategoria</td>
+                    <td>
+                    <a class="btn btn-info" asp-action="EditarCategoria">Editar</a>
+                     <a class="btn btn-danger" asp-action="EliminarCategoria">Eliminar</a>
+
+                      <a class="btn btn-info" href ="@Url.Action("EditarCategoria")">Editar</a>
+
+                    </td>
                     </tr>
                 }
             }
         </tbody>
     </table>
     <div class=form-group>      
-        <a class="btn btn-info" asp-action="Categorias">Nuevo</a>
+        <a class="btn btn-success" asp-action="Categorias">Nuevo</a>
+  
     </div>
 </div>
