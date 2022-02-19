@@ -4,6 +4,7 @@ using prjMaribelMejia.Models;
 using System.Diagnostics;
 using prjMaribelMejia.Data;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace prjMaribelMejia.Controllers
 {
@@ -24,8 +25,15 @@ namespace prjMaribelMejia.Controllers
         }
         public  IActionResult Propietarios()
         {
-            return View();
+            List<Propietarios> propietarios = _context.propietarios.ToList();
+            _context.propietarios.ToList();//debemos agregar la referencia to linq
+      
+
+            //mejor usar esta forma:
+            return View(_context.propietarios.ToList());
         }
+
+
         public  IActionResult crearPropietarios(Propietarios propietarios)
         {
           _context.propietarios.Add(propietarios);  
