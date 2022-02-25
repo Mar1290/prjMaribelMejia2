@@ -33,14 +33,20 @@ namespace prjMaribelMejia.Controllers
             return View(_context.propietarios.ToList());
         }
 
+        public IActionResult AgregarPropietario()
+        {
+            return View();
+        }
 
-        public  IActionResult crearPropietarios(Propietarios propietarios)
+        public  IActionResult CrearPropietarios(Propietarios propietarios)
         {
           _context.propietarios.Add(propietarios);  
             _context.SaveChanges(); 
             //retornamos a la pagina
             return RedirectToAction("Propietarios");
         }
+
+ 
 
     }
 }
