@@ -45,8 +45,34 @@ namespace prjMaribelMejia.Controllers
             //retornamos a la pagina
             return RedirectToAction("Propietarios");
         }
+  
 
- 
+        public IActionResult EditarPropietario(int id)
+        {
+            List<Propietarios> propietarios= _context.propietarios.ToList();
+            //1. recupera dato y envia al moelo
+            Propietarios modeloprop = _context.propietarios.Where(p => p.IdPropietario == id).FirstOrDefault();
+            //retorna
+            return View("EditarPropietario",modeloprop);    
+
+        }
+
+
+        public IActionResult EditarRegistroPropietario(Propietarios propietarios)
+        {
+            Propietarios propietarioactual = _context.propietarios.Where(pa => pa.IdPropietario == propietarios.IdPropietario).FirstOrDefault();
+            //actualizamos datos
+            propietarioactual.NombrePropietario = propietarios.NombrePropietario;
+            propietarioactual.IdentificacionPropietario = propietarios.IdentificacionPropietario;
+            propietarioactual.DireccionPropietario = propietarios.DireccionPropietario;
+            propietarioactual.TelefonoPropietario = propietarioactual.TelefonoPropietario;
+
+            List<Propietarios> propietario=_context.propietarios.ToList();
+            _context.SaveChanges();
+
+            //retornamos a la lista propietarios
+            return View("Propietarios", propietarios);
+        }
 
     }
 }
