@@ -12,17 +12,14 @@ namespace prjMaribelMejia.Controllers
     public class PropietariosController : Controller
     {
         private readonly MyDbContext _context;  
-        private readonly ILogger _logger;   
+        private readonly ILogger _logger;
 
         public PropietariosController(ILogger<PropietariosController> logger, MyDbContext context)
         {
             _logger = logger;
             _context = context;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+
         public  IActionResult Propietarios()
         {
             List<Propietarios> propietarios = _context.propietarios.ToList();
@@ -31,6 +28,7 @@ namespace prjMaribelMejia.Controllers
 
             //mejor usar esta forma:
             return View(_context.propietarios.ToList());
+           
         }
 
         public IActionResult AgregarPropietario()
@@ -60,18 +58,23 @@ namespace prjMaribelMejia.Controllers
 
         public IActionResult EditarRegistroPropietario(Propietarios propietarios)
         {
-            Propietarios propietarioactual = _context.propietarios.Where(pa => pa.IdPropietario == propietarios.IdPropietario).FirstOrDefault();
+
+            Propietarios propietarioactual = _context.propietarios.
+             Where(pa => pa.IdPropietario == propietarios.IdPropietario).FirstOrDefault();
             //actualizamos datos
             propietarioactual.NombrePropietario = propietarios.NombrePropietario;
             propietarioactual.IdentificacionPropietario = propietarios.IdentificacionPropietario;
             propietarioactual.DireccionPropietario = propietarios.DireccionPropietario;
             propietarioactual.TelefonoPropietario = propietarioactual.TelefonoPropietario;
 
-            List<Propietarios> propietario=_context.propietarios.ToList();
+      
             _context.SaveChanges();
+            List<Propietarios> propietario = _context.propietarios.ToList();
 
-            //retornamos a la lista propietarios
-            return View("Propietarios", propietarios);
+            ////retornamos a la lista propietarios
+            //return View("Propietarios", propietarios);
+            //retornamos a la pagina
+            return RedirectToAction("Propietarios");
         }
 
     }

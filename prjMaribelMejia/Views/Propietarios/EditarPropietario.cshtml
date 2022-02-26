@@ -3,13 +3,14 @@
 
 <form asp-action="EditarRegistroPropietario">
     <div>
-         <input type="text" class="form-control" name="NombrePropietario" />
-    <input type="text" class="form-control" name="IdentificacionPropietario"/>
-    <input type="text" class="form-control" name="DireccionPropietario" />
-    <input type="text" class="form-control" name="TelefonoPropietario"/>
+        <input type="text" class="form-control" name="NombrePropietario" value="@Model.NombrePropietario"/>
+        <input type="text" class="form-control" name="IdentificacionPropietario" value="@Model.IdentificacionPropietario" />
+        <input type="text" class="form-control" name="DireccionPropietario" value="@Model.DireccionPropietario"/>
+        <input type="text" class="form-control" name="TelefonoPropietario" value="@Model.TelefonoPropietario"/>
+        <input type="hidden" class="form-control" name="IdPropietario" value="@Model.IdPropietario"/>
+        <div class="form-group">
+            <input type="submit" value="Actualizar" class="btn btn-success" />
+        </div>
     </div>
-<div class="form-group">
-      <input type="submit" value="Actualizar" class="btn btn-success"/>
-</div>
-    </form>>
+</form>>
 
