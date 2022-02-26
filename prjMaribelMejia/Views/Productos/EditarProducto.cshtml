@@ -1,0 +1,21 @@
+﻿@model prjMaribelMejia.Models.Productos;
+<h2>Edición de Producto</h2>
+
+<form asp-action="EditarRegistroProducto">
+  <div>
+        <label>Producto:  </label>
+    <input type="text" class="form-control" name="Producto" value="@Model.Producto"/>
+    <label>Seleccione Categoria:</label>
+    <input type="text" class="form-control" name="IdCategoria" value="@Model.IdCategoria"/>
+    <label>Precio Unitario C$:</label>
+    <input type="text" class="form-control" name="Precio" value="@Model.Precio"/>
+    <label>Descripción del Producto:</label>
+    <input type="text" class="form-control" name="Descripcion" value="@Model.Descripcion"/>
+
+     <input type="hidden" class="form-control" name="IdProducto" value="@Model.IdProducto"/>
+   @* <input type="date" class="form-control" />*@
+    <div class=form-group>
+        <input type="submit" value="Actualizar" class="btn btn-success"/>
+    </div>
+    </div>
+</form>

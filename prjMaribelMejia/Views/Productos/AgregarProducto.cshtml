@@ -1,0 +1,18 @@
+﻿<h2 class="alert-success">Crear nuevo Producto</h2>
+
+<form asp-action="CrearProducto">
+    <div>
+        <label>Producto:  </label>
+    <input type="text" class="form-control" name="Producto" />
+    <label>Seleccione Categoria:</label>
+    <input type="text" class="form-control" name="IdCategoria"/>
+    <label>Precio Unitario C$:</label>
+    <input type="text" class="form-control" name="Precio" />
+    <label>Descripción del Producto:</label>
+    <input type="text" class="form-control" name="Descripcion"/>
+   @* <input type="date" class="form-control" />*@
+    <div class=form-group>
+        <input type="submit" value="Guardar" class="btn btn-success"/>
+    </div>
+    </div>
+</form>

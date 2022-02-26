@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace prjMaribelMejia.Models
@@ -23,5 +24,6 @@ namespace prjMaribelMejia.Models
 
         [StringLength(500)]       
         public string Descripcion { get; set; }
+        public DateTime FechaCreacionProducto { get; set; }
     }
 }
