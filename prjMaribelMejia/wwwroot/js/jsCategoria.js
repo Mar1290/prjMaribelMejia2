@@ -61,22 +61,33 @@ $("#btnGuardar").click(function () {
         });
 
         //Mensaje de respuesta
-        xhr.done(function () {
+        xhr.done(function (data) {
 
             //notif({
             //    msg: "Categoría guardada correctamente",
             //    type: "success"
             //});
+            if (data.success) {
 
-            Swal.fire(
-                'Guardado correctamente!',
-                'You clicked the button!',
-                'success'
-            )
+                Swal.fire(
+                    'Guardado correctamente!',
+                    data.message,//'¡Click en el botón!',
+                    'success'
+                )
 
-            $(".pruebajq4").val("");
-            $(".nombre-Categoria").va("");
-           
+                $(".pruebajq4").val("");
+                $(".nombre-Categoria").va("");
+
+            }
+            else
+            {
+                Swal.fire(
+                    '¡Error!',
+                    data.message,//'¡Click en el botón!',
+                    'error'
+                )
+            }             
+            //borrar: console.log(data);
             
         });
 

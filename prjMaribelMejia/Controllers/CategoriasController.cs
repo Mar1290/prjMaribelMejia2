@@ -32,14 +32,37 @@ namespace prjMaribelMejia.Controllers
 
         public IActionResult CrearCategoria(Categorias categorias)
         {
-            categorias.FechaCreacionCategoria = System.DateTime.Now;
-            //generar codigo para crear esa categoria
-           _context.categorias.Add(categorias);
-            _context.SaveChanges(); 
+            if (string.IsNullOrEmpty(categorias.Categoria))
+            {
+                //utilizando formato json para intercambio de datos
+                return Json(new
+                {
+                    Success = false,
+                    Message= "Campo Categoría esta vacío"
+                });
 
-            //Retornamos a la pagina principal
-           //return RedirectToAction("Categorias");
-            return RedirectToAction("ListaCategorias");
+            }
+            else
+            {
+                categorias.FechaCreacionCategoria = System.DateTime.Now;
+                //generar código para crear esa categoria
+                _context.categorias.Add(categorias);
+                _context.SaveChanges();
+
+                //Retornamos a la pagina principal
+                //return RedirectToAction("Categorias");
+                //260222 return RedirectToAction("ListaCategorias");
+
+                return Json(new
+                {
+                    Success = true,
+                    Message = "¡Categoría guardada correctamente!"
+                });
+            }
+
+
+
+
 
         }
         public IActionResult ListaCategorias()
