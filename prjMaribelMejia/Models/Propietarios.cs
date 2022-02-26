@@ -16,6 +16,7 @@ namespace prjMaribelMejia.Models
         [Required(ErrorMessage = "El campo dirección es requerido")]
         public string DireccionPropietario { get; set; }
         public string TelefonoPropietario { get; set; }
+        public bool PropietarioActivo { get; set; }
 
     }
 }

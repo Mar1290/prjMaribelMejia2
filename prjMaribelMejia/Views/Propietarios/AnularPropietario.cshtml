@@ -1,0 +1,16 @@
+﻿@model prjMaribelMejia.Models.Propietarios;
+<h2>Anular Propietario</h2>
+
+<form asp-action="AnularRegistroPropietario">
+    <div>
+         <label class="col-form-label">Nombre:</label>
+        <input type="text" class="form-control" name="NombrePropietario" value="@Model.NombrePropietario"  readonly/>
+         <label for="@Model.PropietarioActivo" >Propietario Activo</label>
+        <input type="checkbox" class="form-control" name="PropietarioActivo" value="@Model.PropietarioActivo"/>
+
+        <input type="hidden" class="form-control" name="IdPropietario" value="@Model.IdPropietario"/>
+        <div class="form-group">
+            <input type="submit" value="Anular" class="btn btn-success" />
+        </div>
+    </div>
+</form>

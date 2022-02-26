@@ -23,8 +23,7 @@ namespace prjMaribelMejia.Controllers
         public  IActionResult Propietarios()
         {
             List<Propietarios> propietarios = _context.propietarios.ToList();
-            _context.propietarios.ToList();//debemos agregar la referencia to linq
-      
+            _context.propietarios.ToList();//debemos agregar la referencia to linq      
 
             //mejor usar esta forma:
             return View(_context.propietarios.ToList());
@@ -38,7 +37,8 @@ namespace prjMaribelMejia.Controllers
 
         public  IActionResult CrearPropietarios(Propietarios propietarios)
         {
-          _context.propietarios.Add(propietarios);  
+            propietarios.PropietarioActivo = true;
+            _context.propietarios.Add(propietarios);  
             _context.SaveChanges(); 
             //retornamos a la pagina
             return RedirectToAction("Propietarios");
@@ -74,6 +74,30 @@ namespace prjMaribelMejia.Controllers
             ////retornamos a la lista propietarios
             //return View("Propietarios", propietarios);
             //retornamos a la pagina
+            return RedirectToAction("Propietarios");
+        }
+
+        public IActionResult AnularPropietario(int id)
+        {
+
+            List<Propietarios> propietarios = _context.propietarios.ToList();
+            //1. recupera dato y envia al modelo
+            Propietarios modeloprop = _context.propietarios.Where(p => p.IdPropietario == id).FirstOrDefault();
+            //retorna
+            return View("AnularPropietario", modeloprop);
+        }
+
+        public IActionResult AnularRegistroPropietario(Propietarios propietarios)
+        {
+            Propietarios propietarioactual = _context.propietarios.
+             Where(pa => pa.IdPropietario == propietarios.IdPropietario).FirstOrDefault();
+            //actualizamos datos
+            propietarioactual.PropietarioActivo = propietarios.PropietarioActivo;
+
+            _context.SaveChanges();
+            List<Propietarios> propietario = _context.propietarios.ToList();
+
+            ////retornamos a la lista propietarios
             return RedirectToAction("Propietarios");
         }
 

@@ -12,6 +12,7 @@
          <th>Identificación</th>
          <th>Dirección</th>
           <th>Teléfono</th>
+          <th>Activo</th>
         </tr>
          </thead>
          <tbody>
@@ -25,6 +26,7 @@
                     <td>@propietario.IdentificacionPropietario</td>
                      <td>@propietario.DireccionPropietario</td>
                       <td>@propietario.TelefonoPropietario</td>
+                       <td>@propietario.PropietarioActivo</td>
                     <td>
                     @*opcion 1 boton editar*@
                     @*<a class="btn btn-info" asp-action="EditarCategoria" asp-route="Id">Editar</a>*@
@@ -32,6 +34,7 @@
                     @*opcion 2 boton editar*@
                       <a class="btn btn-info" href ="@Url.Action("EditarPropietario", new{ id=propietario.IdPropietario})">Editar</a>
                       @*<a class="btn btn-danger" asp-action="EliminarCategoria">Eliminar</a>*@
+                      <a class="btn btn-danger" href ="@Url.Action("AnularPropietario", new{ id=propietario.IdPropietario})">Anular</a>
                     </td>
                     </tr>
                 }
