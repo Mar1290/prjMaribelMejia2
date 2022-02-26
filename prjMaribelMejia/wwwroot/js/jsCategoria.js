@@ -1,12 +1,13 @@
 ﻿/*muestra alerta*/
+/*
 alert("Archivo cargado");
-/*cambia el color a al h1*/
+//cambia el color a al h1
 $('h1').css("color", "green");
-/*para cargar valores en los controles de una vista*/
+//para cargar valores en los controles de una vista
 $('.nombre-categoria').val('Digite Descripción de la Categoría');
 $(".pruebajq4").val("Digite Categoría");
-/*como definir eventos en jquery*/
 
+*/
 //1- definir evento clic para el bootn guardar
 $("#btnGuardar").click(function () {
     //   alert("Este es el evento click");
@@ -26,11 +27,9 @@ $("#btnGuardar").click(function () {
     */
     //sugerencia de validacion 
     if (nombrecategoria == "" || descripcioncat=="")
-    {
-        alert("todos los campos son requeridos")
-   
+    {        
     Swal.fire({
-        title: 'El nombre categoria es requerido',
+        title: 'todos los campos son requeridos',
         showClass: {
             popup: 'animate__animated animate__fadeInDown'
         },
@@ -55,22 +54,31 @@ $("#btnGuardar").click(function () {
             type: "POST",
             //agregamos los parametros de la petición
             data: {
-                "NombreCategoria": nombrecategoria,
+                "Categoria": nombrecategoria,
                 "DescripcionCategoria": descripcioncat
             }
+
         });
 
         //Mensaje de respuesta
         xhr.done(function () {
 
-            notif({
-                msg: "Categoria guardada correctamente",
-                type: "success"
-            });
+            //notif({
+            //    msg: "Categoría guardada correctamente",
+            //    type: "success"
+            //});
 
-            $(".nombre-Categoria").va("");
+            Swal.fire(
+                'Guardado correctamente!',
+                'You clicked the button!',
+                'success'
+            )
+
             $(".pruebajq4").val("");
-
+            $(".nombre-Categoria").va("");
+           
+            
+        });
 
             xhr.fail(function () {
                 notif({
@@ -78,7 +86,7 @@ $("#btnGuardar").click(function () {
                     type: "error"
                 });
 
-            });
+           
         })
 
     }
