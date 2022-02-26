@@ -2,11 +2,20 @@
 
 <form asp-action="CrearCategoria">
     <div>
-    <input type="text" class="form-control" name="Categoria" />
-    <input type="text" class="form-control" name="DescripcionCategoria"/>
+        <label>Categoría:</label>
+    <input type="text" class="form-control pruebajq4" name="Categoria" />
+     <label>Descripción:</label>
+    <input type="text" class="form-control nombre-categoria" name="DescripcionCategoria"/>
    @* <input type="date" class="form-control" />*@
-    <div class=form-group>
+    
+   <br />
+   <div class=form-group>
         <input type="submit" value="Guardar" class="btn btn-success"/>
     </div>
     </div>
 </form>
+@section Scripts
+{
+    <script src="~/js/jsCategoria.js"></script>
+}
+
