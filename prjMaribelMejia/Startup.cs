@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,6 +40,12 @@ namespace prjMaribelMejia
             services.AddControllersWithViews();
             
             services.AddRazorPages();
+
+            //esta opcion es para pedir logearse al sitio de entrada
+            services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy=new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); 
+            });    
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
