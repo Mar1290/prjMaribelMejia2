@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using prjMaribelMejia.Data;
 
 namespace prjMaribelMejia.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220303001748_bd")]
+    partial class bd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,29 +42,6 @@ namespace prjMaribelMejia.Migrations
                     b.HasKey("IdCategoria");
 
                     b.ToTable("categorias");
-                });
-
-            modelBuilder.Entity("prjMaribelMejia.Models.Marcas", b =>
-                {
-                    b.Property<int>("IdMarca")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("FechaCreacionMarca")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("NombreMarca")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<int>("UsuarioRegistraMarca")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdMarca");
-
-                    b.ToTable("marcas");
                 });
 
             modelBuilder.Entity("prjMaribelMejia.Models.Modulos", b =>
@@ -107,9 +86,6 @@ namespace prjMaribelMejia.Migrations
                     b.Property<int>("IdCategoria")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdMarca")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Precio")
                         .HasColumnType("decimal(18,2)");
 
@@ -121,8 +97,6 @@ namespace prjMaribelMejia.Migrations
                     b.HasKey("IdProducto");
 
                     b.HasIndex("IdCategoria");
-
-                    b.HasIndex("IdMarca");
 
                     b.ToTable("producto");
                 });
@@ -141,8 +115,8 @@ namespace prjMaribelMejia.Migrations
 
                     b.Property<string>("IdentificacionPropietario")
                         .IsRequired()
-                        .HasColumnType("nvarchar(16)")
-                        .HasMaxLength(16);
+                        .HasColumnType("nvarchar(14)")
+                        .HasMaxLength(14);
 
                     b.Property<string>("NombrePropietario")
                         .IsRequired()
@@ -174,12 +148,6 @@ namespace prjMaribelMejia.Migrations
                     b.HasOne("prjMaribelMejia.Models.Categorias", "Categorias")
                         .WithMany()
                         .HasForeignKey("IdCategoria")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("prjMaribelMejia.Models.Marcas", "Marcas")
-                        .WithMany()
-                        .HasForeignKey("IdMarca")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

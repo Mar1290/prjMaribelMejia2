@@ -9,7 +9,7 @@ namespace prjMaribelMejia.Models
         [StringLength(50)]
         [Required(ErrorMessage = "El campo nombre es requerido")]
         public string NombrePropietario { get; set; }
-        [StringLength(14)]
+        [StringLength(16)]
         [Required(ErrorMessage = "El campo identificación es requerido")]
         public string IdentificacionPropietario { get; set; }
         [StringLength(300)]

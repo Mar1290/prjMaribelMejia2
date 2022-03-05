@@ -25,5 +25,8 @@ namespace prjMaribelMejia.Models
         [StringLength(500)]       
         public string Descripcion { get; set; }
         public DateTime FechaCreacionProducto { get; set; }
+        public int IdMarca { get; set; }
+        [ForeignKey("IdMarca")]
+        public Marcas Marcas { get; set; }  
     }
 }

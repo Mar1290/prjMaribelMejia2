@@ -13,5 +13,6 @@ namespace prjMaribelMejia.Data
         public DbSet<Categorias> categorias { get; set; }   
         public DbSet<Propietarios> propietarios { get; set;}
         public DbSet<Modulos> modulos { get; set; }
+        public DbSet<Marcas> marcas { get; set; }
     }
 }
