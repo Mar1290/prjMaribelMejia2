@@ -14,7 +14,7 @@
 
             <tr>
                 <th>Categoria</th>
-                <th>Descripcion</th>
+                @*<th>Descripcion</th>*@
                 <th>Acciones</th>
             </tr>
     
@@ -26,12 +26,13 @@
                 {
                     <tr>  
                     <td>@categoria.Categoria</td>
-                    <td>@categoria.DescripcionCategoria</td>
+                    @*<td>@categoria.DescripcionCategoria</td>*@
                     <td>
                     @*opcion 1 boton editar*@
                     @*<a class="btn btn-info" asp-action="EditarCategoria" asp-route="Id">Editar</a>*@
                      
                     @*opcion 2 boton editar*@
+                    <a data-ng-hide="@categoria.IdCategoria"  class="btn btn-success ver-descripcion" href="javascript:void(0); ">Ver Descripción</a>
                       <a class="btn btn-info" href ="@Url.Action("EditarCategoria", new{ id=categoria.IdCategoria})">Editar</a>
                       <a class="btn btn-danger" href ="@Url.Action("EliminarCategoria", new{ id=categoria.IdCategoria})">Eliminar</a>
                     </td>
@@ -44,4 +45,58 @@
         <a class="btn btn-success" asp-action="Categorias">Nuevo</a>
   
     </div>
+
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+     
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Descripción de Categoría</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <span class="valor-descripcion"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+       @* <button type="button" class="btn btn-primary">Save changes</button>*@
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    @section Scripts{
+    <script>
+        //    $(".nombre-categoria").click(function(){
+    $(".ver-descripcion").click(function(){
+        var id=$(this).attr("data-id");
+        //hacer la peticion para rescatar la descripcion de la categoria
+         var xhr = $.ajax({
+
+            //url destino
+            url: "ObtenerDescripcion",
+            type: "POST",
+            //agregamos los parametros de la petición
+            data: {
+                //parametros
+                "IdCategoria":id
+            }
+        });
+
+   xhr.done(function (data) {
+
+         $("#valor-descripcion").text(data.DescripcionCategoria);
+    $("#exampleModal").modal("show");
+   
+   })
+   xhr.fail(function () {})
+
+        //alert("Se ha dado clic")
+       
+
+    })
+</script>
+}

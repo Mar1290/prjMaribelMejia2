@@ -1,11 +1,16 @@
 ﻿<h1 class="alert-success">Crear nueva categoria</h1>
 
-<form asp-action="CrearCategoria">
+<form asp-action="CrearCategoria" autocomplete="off">
     <div>
         <label>Categoría:</label>
-    <input type="text" class="form-control pruebajq4" name="Categoria" />
+    <input type="text" class="form-control pruebajq4" name="Categoria" maxlength="50"/>
      <label>Descripción:</label>
-    <input type="text" class="form-control nombre-categoria" name="DescripcionCategoria"/>
+   @* <input type="text" class="form-control nombre-categoria" placeholder="Ingrese descripción" name="DescripcionCategoria"/>*@
+   <div class="form-group">
+        <textarea class="form-control nombre-categoria" name="DescripcionCategoria" maxlength="500">
+
+        </textarea>
+   </div>
    @* <input type="date" class="form-control" />*@
     
    <br />

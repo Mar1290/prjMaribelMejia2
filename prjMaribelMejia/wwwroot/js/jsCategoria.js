@@ -68,15 +68,20 @@ $("#btnGuardar").click(function () {
             //    type: "success"
             //});
             if (data.success) {
-
+             
+                //mostrar mensaje de guardado satisfactorio
                 Swal.fire(
                     'Guardado correctamente!',
                     data.message,//'¡Click en el botón!',
                     'success'
                 )
-
-                $(".pruebajq4").val("");
-                $(".nombre-Categoria").va("");
+              
+                //luego de 2 segundos redireccioonar a lista categoria
+                setTimeout(function () {
+                    location.href = "../Categorias/ListaCategorias";
+                }, 2000)
+                //$(".pruebajq4").val("");
+                //$(".nombre-Categoria").va("");
 
             }
             else

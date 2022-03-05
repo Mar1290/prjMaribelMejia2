@@ -50,19 +50,16 @@ namespace prjMaribelMejia.Controllers
                 _context.SaveChanges();
 
                 //Retornamos a la pagina principal
-                //return RedirectToAction("Categorias");
-                //260222 return RedirectToAction("ListaCategorias");
+                       //260222 return RedirectToAction("ListaCategorias");
 
                 return Json(new
                 {
                     Success = true,
                     Message = "¡Categoría guardada correctamente!"
+                 
                 });
+             
             }
-
-
-
-
 
         }
         public IActionResult ListaCategorias()
@@ -125,6 +122,20 @@ namespace prjMaribelMejia.Controllers
             _context.SaveChanges(); 
             List<Categorias> categoria = _context.categorias.ToList();
             return View("ListaCategorias", categoria);
+        }
+
+        public IActionResult ObtenerDescripcion(int id)
+        {
+            //string descripcion = _context.categorias.Where(a => a.IdCategoria == id).FirstOrDefault().DescripcionCategoria;
+            //otra manera de programar
+            string descripcion = "Esta categoría no contiene descripción";
+            Categorias categorias = _context.categorias.Where(a => a.IdCategoria == id).FirstOrDefault();
+
+            if (categorias != null && !string.IsNullOrEmpty(categorias.DescripcionCategoria))
+            {
+                descripcion = categorias.DescripcionCategoria;
+            }
+            return Json(new { descripcion });
         }
     }
 }
