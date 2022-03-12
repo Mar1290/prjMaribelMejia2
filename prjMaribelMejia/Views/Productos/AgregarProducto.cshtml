@@ -1,6 +1,6 @@
 ﻿<h2 class="alert-success">Crear nuevo Producto</h2>
 
-<form asp-action="CrearProducto">
+<form asp-action="CrearProducto"  autocomplete="off">
     <div>
         <label>Producto:  </label>
     <input type="text" class="form-control" name="Producto" />
@@ -10,6 +10,14 @@
     <input type="text" class="form-control" name="Precio" />
     <label>Descripción del Producto:</label>
     <input type="text" class="form-control" name="Descripcion"/>
+     <label>Marca:</label>
+    <input type="text" class="form-control" name="IdMarca"/>
+    <select class="form-select" aria-label="Default select example">
+  <option selected>Seleccione</option>
+  <option value="1">Marca1</option>
+  <option value="2">Marca2</option>
+  <option value="3">Marca3</option>
+</select>
    @* <input type="date" class="form-control" />*@
     <div class=form-group>
         <input type="submit" value="Guardar" class="btn btn-success"/>

@@ -1,10 +1,14 @@
 ﻿<h2 class="alert-success">Crear nuevo propietario</h2>
 
-<form asp-action="CrearPropietarios">
+<form asp-action="CrearPropietarios"  autocomplete="off">
     <div>
+         <label>Nombre Propietario:</label>
     <input type="text" class="form-control" name="NombrePropietario" />
+      <label>Nº Identifiación:</label>
     <input type="text" class="form-control" name="IdentificacionPropietario"/>
+    <label>Dirección Propietario:</label>
     <input type="text" class="form-control" name="DireccionPropietario" />
+     <label>Nº Teléfono:</label>
     <input type="text" class="form-control" name="TelefonoPropietario"/>
 
    @* <input type="date" class="form-control" />*@

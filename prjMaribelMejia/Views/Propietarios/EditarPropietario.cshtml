@@ -3,9 +3,13 @@
 
 <form asp-action="EditarRegistroPropietario">
     <div>
+        <label>Nombre Propietario:</label>
         <input type="text" class="form-control" name="NombrePropietario" value="@Model.NombrePropietario"/>
+         <label>Nº Identifiación:</label>
         <input type="text" class="form-control" name="IdentificacionPropietario" value="@Model.IdentificacionPropietario" />
+         <label>Dirección Propietario:</label>
         <input type="text" class="form-control" name="DireccionPropietario" value="@Model.DireccionPropietario"/>
+         <label>Nº Teléfono:</label>
         <input type="text" class="form-control" name="TelefonoPropietario" value="@Model.TelefonoPropietario"/>
         <input type="hidden" class="form-control" name="IdPropietario" value="@Model.IdPropietario"/>
         <div class="form-group">
