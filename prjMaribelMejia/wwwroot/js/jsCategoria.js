@@ -15,16 +15,7 @@ $("#btnGuardar").click(function () {
     var nombrecategoria=$(".pruebajq4").val();
     //obtener el valor del input nombre-categoria
     var descripcioncat = $(".nombre-categoria").val();
-    /*
-    //3.ahora lo pasamos y mostramos los valores al contenedor
-    $(".contenedor").text(nombrecategoria + " - " + descripcioncat);
-    */
-    /*
-    //validar los campos vacios
-    if (nombrecategoria == "") {
-        alert ("El campo Nombre Categoria es requerido")        
-    }
-    */
+
     //sugerencia de validacion 
     if (nombrecategoria == "" || descripcioncat=="")
     {        

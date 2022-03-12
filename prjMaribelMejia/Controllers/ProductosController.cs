@@ -48,7 +48,6 @@ namespace prjMaribelMejia.Controllers
             //Retornamos a la pagina principal
             //return RedirectToAction("Categorias");
             return RedirectToAction("Productos");
-
         }
 
         public IActionResult EditarProducto(int id)
@@ -70,6 +69,7 @@ namespace prjMaribelMejia.Controllers
             pdtoactual.IdCategoria = productos.IdCategoria;
             pdtoactual.Precio = productos.Precio;
             pdtoactual.Descripcion = productos.Descripcion;
+            pdtoactual.IdMarca=productos.IdMarca;   
 
 
             _context.SaveChanges();
