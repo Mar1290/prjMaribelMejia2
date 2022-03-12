@@ -47,6 +47,10 @@ namespace prjMaribelMejia.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
+            [Display(Name = "UserName")]
+            public string UserName { get; set; }
+            [Required]
+            [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
