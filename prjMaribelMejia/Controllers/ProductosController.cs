@@ -5,6 +5,8 @@ using System.Diagnostics;
 using prjMaribelMejia.Data;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 namespace prjMaribelMejia.Controllers
 {
     public class ProductosController : Controller
@@ -22,15 +24,26 @@ namespace prjMaribelMejia.Controllers
         }
 
         public IActionResult Productos()
-        {
-       
+        {       
                 List<Productos> productos = _context.producto.ToList();
                 _context.producto.ToList();//debemos agregar la referencia to linq      
 
                 //mejor usar esta forma:
                 return View(_context.producto.ToList());
-
         }
+
+        /*
+        public IActionResult obtenerProductos()
+        {
+            Productos model = new Productos();
+            model.listaProductos = _context.producto.ToList().Select(productos => new SelectListItem() { Value = model.IdProducto.ToString(), Text = model.Producto.ToString() })
+                .Reverse()
+                .ToList();
+            return View(model);
+        }
+        */
+
+
         //Vista productos
         public IActionResult AgregarProducto()
         {
@@ -79,6 +92,8 @@ namespace prjMaribelMejia.Controllers
             //retornamos a la pagina
             return RedirectToAction("Productos");
         }
+
+ 
 
     }
 }

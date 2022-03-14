@@ -5,6 +5,7 @@ using System.Diagnostics;
 using prjMaribelMejia.Data;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace prjMaribelMejia.Controllers
 {
@@ -28,6 +29,16 @@ namespace prjMaribelMejia.Controllers
         public IActionResult Categorias()
         {
             return View();
+        }
+
+        //para llenar select
+        public IActionResult obtenerCategorias()
+        {
+            Categorias model = new Categorias();
+            model.LisCategoria = _context.categorias.ToList().Select(categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() })
+                .Reverse()
+                .ToList();
+            return View(model);
         }
 
         public IActionResult CrearCategoria(Categorias categorias)

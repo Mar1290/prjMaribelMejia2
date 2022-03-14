@@ -10,7 +10,7 @@ $("#btnGuardar").click(function () {
     var idmarca = $(".idmarca").val();
 
     //sugerencia de validacion 
-    if (nombrepdto == "" || descripcionpdt == "" || idcat == "" || preciopdto == "" || idmarca == ""){
+    if (nombrepdto == "" || descripcionpdt == "" || idcat == "" || preciopdto == "" || idmarca == "") {
         Swal.fire({
             title: 'todos los campos son requeridos',
             showClass: {
@@ -65,7 +65,7 @@ $("#btnGuardar").click(function () {
                 //luego de 2 segundos redireccioonar a lista de productos
                 setTimeout(function () {
                     location.href = "../Productos/Productos";
-                }, 2000)              
+                }, 2000)
 
             }
             else {

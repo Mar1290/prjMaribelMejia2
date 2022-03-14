@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,6 +29,8 @@ namespace prjMaribelMejia.Models
         public DateTime FechaCreacionProducto { get; set; }
         public int IdMarca { get; set; }
         [ForeignKey("IdMarca")]
-        public Marcas Marcas { get; set; }  
+        public Marcas Marcas { get; set; }
+
+        //public List<SelectListItem> listaProductos { get; set; }
     }
 }
