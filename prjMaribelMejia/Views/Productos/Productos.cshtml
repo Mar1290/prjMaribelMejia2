@@ -9,7 +9,7 @@
 <br />
 
   @*  <table class="table table-dark table-striped">*@
-          <table class="table table-bordered table-hover table-striped table-responsive-sm">
+          <table class="table tabla-productos">
         <thead>
 
             <tr>
@@ -30,7 +30,8 @@
                     <td>@producto.Producto</td>
                     <td>@producto.IdCategoria</td>
                      <td>@producto.Precio</td>
-                    <td>@producto.Descripcion</td>
+                     <td>
+              <a data-id="@producto.IdProducto"  class="btn btn-success ver-descripcion" href="javascript:void(0); ">Ver Descripción</a>
                     <td>                               
                     @*agregamos el botón editar y eliminar*@
                       <a class="btn btn-info" href ="@Url.Action("EditarProducto", new{ id=producto.IdProducto})">Editar</a>
@@ -38,6 +39,7 @@
                     </td>
                     </tr>
                 }
+
             }
         </tbody>
     </table>
@@ -46,3 +48,83 @@
   
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+     
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Descripción del producto</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <span class="valor-descripcion"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+       @* <button type="button" class="btn btn-primary">Save changes</button>*@
+      </div>
+    </div>
+  </div>
+</div>
+
+ @section Scripts{
+    <script>
+
+  //$('.tabla-productos').DataTable();  
+
+  $(document).ready(function() {
+   // $('#example').DataTable();
+
+var table =  $('.tabla-productos').DataTable({
+     "oLanguage": {
+            "sLengthMenu": "_MENU_ Filtrar por páginas",
+            "sZeroRecords": "No se encontró registro",
+            "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando 0 ta 0 de 0 entradas",
+             "decimal": ".",
+             "thousands": ",",
+             "loadingRecords": "Cargando...",
+              "paginate": {
+            "first": "Primero",
+            "last": "Último",
+            "next": "Siguiente",
+            "previous": "Anterior"
+        },
+        "search": "Buscar:",
+            "sInfoFiltered": "(filtrado de _MAX_ registros en total)"
+        }
+    });
+    } );
+
+        //    $(".nombre-categoria").click(function(){
+    $(".ver-descripcion").click(function(){
+        var id=$(this).attr("data-id");
+        //hacer la peticion para rescatar la descripcion de la categoria
+         var xhr = $.ajax({
+
+            //url destino
+            url: "ObtenerDescripcion",
+            type: "POST",
+            //agregamos los parametros de la petición
+            data: {
+                //parametros
+                "id":id
+            }
+        });
+
+   xhr.done(function (data) {
+
+    $(".valor-descripcion").text(data.descripcion);
+    $("#exampleModal").modal("show");
+   
+   })
+   xhr.fail(function () {})
+
+        //alert("Se ha dado clic")
+       
+
+    })
+</script>
+}

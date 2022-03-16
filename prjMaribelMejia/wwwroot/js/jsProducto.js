@@ -23,12 +23,6 @@ $("#btnGuardar").click(function () {
     }
     else {
         //hacer la peticion al servidor para crear nueva categoria
-        //utilizar ajax
-        /* //sintaxis
-         var ajax = $.ajax({
- 
-         })
-         */
 
         var xhr = $.ajax({
 
@@ -38,10 +32,10 @@ $("#btnGuardar").click(function () {
             //agregamos los parametros de la petición
             data: {
                 "Producto": nombrepdto,
-                "IdCategoria": nombrepdto,
-                "Precio": nombrepdto,
+                "IdCategoria": idcat,
+                "Precio": preciopdto,
                 "Descripcion": descripcionpdt,
-                 "IdMarca": descripcionpdt
+                "IdMarca": idmarca
             }
 
         });
@@ -49,10 +43,7 @@ $("#btnGuardar").click(function () {
         //Mensaje de respuesta
         xhr.done(function (data) {
 
-            //notif({
-            //    msg: "Categoría guardada correctamente",
-            //    type: "success"
-            //});
+ 
             if (data.success) {
 
                 //mostrar mensaje de guardado satisfactorio

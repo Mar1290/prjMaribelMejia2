@@ -22,9 +22,6 @@ namespace prjMaribelMejia.Controllers
             // _logger= logger;    
             _context = context;
         }
-
-
-
         public IActionResult Productos()
         {       
                 List<Productos> productos = _context.producto.ToList();
@@ -45,39 +42,12 @@ namespace prjMaribelMejia.Controllers
                 .ToList();
             */
 
-            //List<SelectListItem> days = new List<SelectListItem>();
-            // days.Add(new SelectListItem { Value = i.ToString(), Text = i.ToString() });
-            //model.Days = new SelectList(days, "Value", "Text");
             Categorias model = _context.categorias.ToList().FirstOrDefault();
-            ////model.LisCategoria = _context.categorias.ToList().Select(Categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() }).Reverse().ToList();
 
-            //for (int i = 0; i <= _context.categorias.ToList().Count; i++)
-            //{
-            //    model.LisCategoria.Add(new SelectListItem { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() });
-            //}
-           // model.LisCategoria = new SelectList(model.LisCategoria, "Value", "Text");
             model.LisCategoria = _context.categorias.ToList().Select(Categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() }).Reverse().ToList();
 
-            //if (categorias != null && !string.IsNullOrEmpty(categorias.DescripcionCategoria))
-            //{
-            //    descripcion = categorias.DescripcionCategoria;
-            //}
-            //return Json(new { descripcion });
-
             return View(model);
         }
-
-        /*
-        public IActionResult obtenerProductos()
-        {
-            Productos model = new Productos();
-            model.listaProductos = _context.producto.ToList().Select(productos => new SelectListItem() { Value = model.IdProducto.ToString(), Text = model.Producto.ToString() })
-                .Reverse()
-                .ToList();
-            return View(model);
-        }
-        */
-
 
         //Vista productos
         public IActionResult AgregarProducto()
@@ -90,16 +60,48 @@ namespace prjMaribelMejia.Controllers
         //ADD NUEVOS PDTOS
         public IActionResult CrearProducto(Productos productos)
         {
-            productos.FechaCreacionProducto = System.DateTime.Now;
-            //generar codigo para crear esa categoria
-            _context.producto.Add(productos);
-            _context.SaveChanges();
-
-            //Retornamos a la pagina principal
-            //return RedirectToAction("Categorias");
-            return RedirectToAction("Productos");
+            
+            if (string.IsNullOrEmpty(productos.Producto))
+            {
+                //utilizando formato json para intercambio de datos
+                return Json(new
+                {
+                    Success = false,
+                    Message = "Campo producto esta vacío"
+                });
+            }
+            else if (string.IsNullOrEmpty(productos.Descripcion))
+            {
+                //utilizando formato json para intercambio de datos
+                return Json(new
+                {
+                    Success = false,
+                    Message = "Campo Descripción del producto está vacío"
+                });
+            }
+            //else if (!decimal.TryParse(productos.Precio,out decimal precio))//validar tipo de dato entero.
+            //{
+            //    //utilizando formato json para intercambio de datos
+            //    return Json(new
+            //    {
+            //        Success = false,
+            //        Message = "Campo Descripción del producto está vacío"
+            //    });
+            //}
+            else
+            {
+                productos.FechaCreacionProducto = System.DateTime.Now;
+                //generar código para crear esa categoria
+                _context.producto.Add(productos);
+                _context.SaveChanges();
+                //retornar una vez mostrado el mensaje
+                return Json(new
+                {
+                    Success = true,
+                    Message = "¡Producto guardado correctamente!"
+                });
+            }
         }
-
         public IActionResult EditarProducto(int id)
         {
             List<Productos> productos = _context.producto.ToList();
@@ -124,13 +126,26 @@ namespace prjMaribelMejia.Controllers
 
             _context.SaveChanges();
             List<Productos> producto = _context.producto.ToList();
-
               
             //retornamos a la pagina
             return RedirectToAction("Productos");
         }
 
- 
+        public IActionResult ObtenerDescripcion(int id)
+        {
+            //string descripcion = _context.categorias.Where(a => a.IdCategoria == id).FirstOrDefault().DescripcionCategoria;
+            //otra manera de programar
+            string descripcion = "Este producto no contiene descripción";
+            Productos productos = _context.producto.Where(a => a.IdProducto == id).FirstOrDefault();
+
+            if (productos != null && !string.IsNullOrEmpty(productos.Descripcion))
+            {
+                descripcion = productos.Descripcion+"- Marca:"+productos.IdMarca;
+            }
+            return Json(new { descripcion });
+        }
+
+
 
     }
 }

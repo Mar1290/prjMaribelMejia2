@@ -4,7 +4,7 @@
 <form asp-action="CrearProducto"  autocomplete="off">
     <div>
         <label>Producto:  </label>
-    <input type="text" class="form-control" name="Producto" />
+    <input type="text" class="form-control Nombrepdto" name="Producto" />
  @*   <label>Seleccione Categoria:</label>
     <input type="text" class="form-control" name="IdCategoria"/>*@
   
@@ -19,24 +19,31 @@
         *@
 
         <label asp-for="IdCategoria" class="control-label">Seleccione Categoria</label>
-        <select name="IdCategoria" asp-for="IdCategoria" asp-items="@Model.LisCategoria" class="form-control">
+        <select name="IdCategoria" asp-for="IdCategoria" asp-items="@Model.LisCategoria" class="form-control idcat">
             <option value="0">-seleccione-</option>
         </select>
         <span asp-validation-for="IdCategoria" class="text-danger"></span>
         <label>Precio Unitario C$:</label>
-        <input type="text" class="form-control" name="Precio" />
+        <input type="text" class="form-control preciopdto" name="Precio" />
         <label>Descripción del Producto:</label>
-        <input type="text" class="form-control" name="Descripcion" />
+        <input type="text" class="form-control descripcion-pdto" name="Descripcion" />
         <label>Marca:</label>
-        <select class="form-control" name="IdMarca">
+        <select class="form-control idmarca" name="IdMarca">
             <option selected value="0">-Seleccione-</option>
             <option value="4">Calvin Klein</option>
             <option value="5">Toyota</option>
             <option value="6">Guess</option>
         </select>
+        <br />
         @* <input type="date" class="form-control" />*@
         <div class=form-group>
-            <input type="submit" value="Guardar" class="btn btn-success" />
+          
+            <a id="btnGuardar" href="javascrip:void(0);" class="btn btn-success">Guardar</a>
         </div>
     </div>
 </form>
+
+@section Scripts
+{
+    <script src="~/js/jsProducto.js"></script>
+}

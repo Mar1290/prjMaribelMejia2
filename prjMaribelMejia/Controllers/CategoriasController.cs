@@ -69,8 +69,7 @@ namespace prjMaribelMejia.Controllers
                     Success = true,
                     Message = "¡Categoría guardada correctamente!"
                  
-                });
-             
+                });             
             }
 
         }
