@@ -23,13 +23,48 @@ namespace prjMaribelMejia.Controllers
             _context = context;
         }
 
+
+
         public IActionResult Productos()
         {       
                 List<Productos> productos = _context.producto.ToList();
-                _context.producto.ToList();//debemos agregar la referencia to linq      
+                _context.producto.ToList();//debemos agregar la referencia to linq   
+
+          
 
                 //mejor usar esta forma:
                 return View(_context.producto.ToList());
+        }
+        [HttpPost]
+        public IActionResult obtenerCategorias()
+        {
+            /*
+            Categorias model = new Categorias();
+            model.LisCategoria = _context.categorias.ToList().Select(categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() })
+                .Reverse()
+                .ToList();
+            */
+
+            //List<SelectListItem> days = new List<SelectListItem>();
+            // days.Add(new SelectListItem { Value = i.ToString(), Text = i.ToString() });
+            //model.Days = new SelectList(days, "Value", "Text");
+            Categorias model = _context.categorias.ToList().FirstOrDefault();
+            ////model.LisCategoria = _context.categorias.ToList().Select(Categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() }).Reverse().ToList();
+
+            //for (int i = 0; i <= _context.categorias.ToList().Count; i++)
+            //{
+            //    model.LisCategoria.Add(new SelectListItem { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() });
+            //}
+           // model.LisCategoria = new SelectList(model.LisCategoria, "Value", "Text");
+            model.LisCategoria = _context.categorias.ToList().Select(Categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() }).Reverse().ToList();
+
+            //if (categorias != null && !string.IsNullOrEmpty(categorias.DescripcionCategoria))
+            //{
+            //    descripcion = categorias.DescripcionCategoria;
+            //}
+            //return Json(new { descripcion });
+
+            return View(model);
         }
 
         /*
@@ -47,7 +82,9 @@ namespace prjMaribelMejia.Controllers
         //Vista productos
         public IActionResult AgregarProducto()
         {
-            return View();  
+            obtenerCategorias();//15/3/22
+            return View();
+           
         }
 
         //ADD NUEVOS PDTOS

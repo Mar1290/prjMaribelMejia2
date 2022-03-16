@@ -32,6 +32,7 @@ namespace prjMaribelMejia.Controllers
         }
 
         //para llenar select
+        [HttpPost]
         public IActionResult obtenerCategorias()
         {
             Categorias model = new Categorias();

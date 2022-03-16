@@ -30,7 +30,5 @@ namespace prjMaribelMejia.Models
         public int IdMarca { get; set; }
         [ForeignKey("IdMarca")]
         public Marcas Marcas { get; set; }
-
-        //public List<SelectListItem> listaProductos { get; set; }
     }
 }

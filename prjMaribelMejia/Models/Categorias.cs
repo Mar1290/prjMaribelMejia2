@@ -20,7 +20,7 @@ namespace prjMaribelMejia.Models
         //PARA ENVIAR LA FECHA DEL SERVIDOR    
         public DateTime FechaCreacionCategoria { get; set; }
 
-        //[NotMapped]
+        [NotMapped]
         public List<SelectListItem> LisCategoria { get; set; }
     }
 }

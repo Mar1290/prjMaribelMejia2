@@ -5,8 +5,8 @@
     <div>
         <label>Producto:  </label>
     <input type="text" class="form-control" name="Producto" />
-    <label>Seleccione Categoria:</label>
-    <input type="text" class="form-control" name="IdCategoria"/>
+ @*   <label>Seleccione Categoria:</label>
+    <input type="text" class="form-control" name="IdCategoria"/>*@
   
         @*
               <label asp-for="Categoria" class="control-label"></label>
@@ -15,29 +15,28 @@
              
              <label asp-for="Categoria" class="control-label"></label>
     <select asp-for="IdCategoria" class="form-control" asp-items="@(new SelectList(@Model.LisCategoria,"IdCategoria","Categoria"))"></select>
-       
+
         *@
 
-         <label asp-for="IdCategoria" class="control-label"></label>
-            <select asp-for="IdCategoria" asp-items="@Model.LisCategoria" class="form-control"></select>
-             <span asp-validation-for="IdCategoria" class="text-danger"></span>
-
-
-    <label>Precio Unitario C$:</label>
-    <input type="text" class="form-control" name="Precio" />
-    <label>Descripción del Producto:</label>
-    <input type="text" class="form-control" name="Descripcion"/>
-     <label>Marca:</label>
-    <input type="text" class="form-control" name="IdMarca"/>
-    <select class="form-select" aria-label="Default select example">
-  <option selected>Seleccione</option>
-  <option value="1">Marca1</option>
-  <option value="2">Marca2</option>
-  <option value="3">Marca3</option>
-</select>
-   @* <input type="date" class="form-control" />*@
-    <div class=form-group>
-        <input type="submit" value="Guardar" class="btn btn-success"/>
-    </div>
+        <label asp-for="IdCategoria" class="control-label">Seleccione Categoria</label>
+        <select name="IdCategoria" asp-for="IdCategoria" asp-items="@Model.LisCategoria" class="form-control">
+            <option value="0">-seleccione-</option>
+        </select>
+        <span asp-validation-for="IdCategoria" class="text-danger"></span>
+        <label>Precio Unitario C$:</label>
+        <input type="text" class="form-control" name="Precio" />
+        <label>Descripción del Producto:</label>
+        <input type="text" class="form-control" name="Descripcion" />
+        <label>Marca:</label>
+        <select class="form-control" name="IdMarca">
+            <option selected value="0">-Seleccione-</option>
+            <option value="4">Calvin Klein</option>
+            <option value="5">Toyota</option>
+            <option value="6">Guess</option>
+        </select>
+        @* <input type="date" class="form-control" />*@
+        <div class=form-group>
+            <input type="submit" value="Guardar" class="btn btn-success" />
+        </div>
     </div>
 </form>
