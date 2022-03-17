@@ -2,15 +2,12 @@
 $("#btnGuardar").click(function () {
     //   alert("Este es el evento click");
     //2. obtener el valor del input pruebajq4 en una variable
-    var nombrepdto = $(".Nombrepdto").val();
-    //obtener el valor del input nombre-categoria
-    var descripcionpdt = $(".descripcion-pdto").val();
-    var idcat = $(".idcat").val();
-    var preciopdto = $(".preciopdto").val();
-    var idmarca = $(".idmarca").val();
+    var nombremodulo = $(".nombremodulo").val();
+
+    var idpropietario = $(".idprop").val();
 
     //sugerencia de validacion 
-    if (nombrepdto == "" || descripcionpdt == "" || idcat == "" || preciopdto == "" || idmarca == "") {
+    if (nombremodulo == "" || idpropietario == 0 ) {
         Swal.fire({
             title: 'todos los campos son requeridos',
             showClass: {
@@ -22,37 +19,22 @@ $("#btnGuardar").click(function () {
         })
     }
     else {
-        //hacer la peticion al servidor para crear nueva categoria
-        //utilizar ajax
-        /* //sintaxis
-         var ajax = $.ajax({
- 
-         })
-         */
 
         var xhr = $.ajax({
 
             //url destino
-            url: "CrearProducto",
+            url: "CrearModulo",
             type: "POST",
             //agregamos los parametros de la petición
             data: {
-                "Producto": nombrepdto,
-                "IdCategoria": nombrepdto,
-                "Precio": nombrepdto,
-                "Descripcion": descripcionpdt,
-                 "IdMarca": descripcionpdt
+                "Modulo": nombremodulo,
+                "IdPropietario": idpropietario     
             }
-
         });
 
         //Mensaje de respuesta
         xhr.done(function (data) {
 
-            //notif({
-            //    msg: "Categoría guardada correctamente",
-            //    type: "success"
-            //});
             if (data.success) {
 
                 //mostrar mensaje de guardado satisfactorio
@@ -61,12 +43,10 @@ $("#btnGuardar").click(function () {
                     data.message,//'¡Click en el botón!',
                     'success'
                 )
-
                 //luego de 2 segundos redireccioonar a lista de productos
                 setTimeout(function () {
-                    location.href = "../Productos/Productos";
+                    location.href = "../Modulos/Modulos";
                 }, 2000)
-
             }
             else {
                 Swal.fire(
@@ -75,8 +55,7 @@ $("#btnGuardar").click(function () {
                     'error'
                 )
             }
-            //borrar: console.log(data);
-
+      
         });
 
         xhr.fail(function () {

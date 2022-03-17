@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace prjMaribelMejia.Models
 {
@@ -18,5 +21,7 @@ namespace prjMaribelMejia.Models
         public string TelefonoPropietario { get; set; }
         public bool PropietarioActivo { get; set; }
 
+        [NotMapped]
+        public List<SelectListItem> LisPropietarios { get; set; }
     }
 }

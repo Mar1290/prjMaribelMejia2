@@ -5,6 +5,7 @@ using System.Diagnostics;
 using prjMaribelMejia.Data;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace prjMaribelMejia.Controllers
 {
@@ -28,6 +29,17 @@ namespace prjMaribelMejia.Controllers
             //mejor usar esta forma:
             return View(_context.propietarios.ToList());
            
+        }
+
+        //para llenar select
+        [HttpPost]
+        public IActionResult obtenerPropietarios()
+        {
+            Propietarios model = new Propietarios();
+            model.LisPropietarios = _context.propietarios.ToList().Select(Propietarios => new SelectListItem() { Value = model.IdPropietario.ToString(), Text = model.NombrePropietario.ToString() })
+                .Reverse()
+                .ToList();
+            return View(model);
         }
 
         public IActionResult AgregarPropietario()

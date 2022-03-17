@@ -83,8 +83,7 @@ $("#btnGuardar").click(function () {
                     'error'
                 )
             }             
-            //borrar: console.log(data);
-            
+              
         });
 
             xhr.fail(function () {

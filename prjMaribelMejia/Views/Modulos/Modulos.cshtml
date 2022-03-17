@@ -1,1 +1,76 @@
-﻿<h1>Modulos</h1>
+﻿@model List<prjMaribelMejia.Models.Modulos>
+
+<div>  
+    <div>
+      <h2 class="alert-success">Administración de Modulos</h2>
+    </div>
+
+<br />
+
+    <table class="table tabla-modulos">
+        <thead>
+
+            <tr>
+                <th>Modulo</th>
+                 <th>Propietario</th>
+                <th>Acciones</th>
+            </tr>
+    
+        </thead>
+        <tbody>
+            @{
+                //hace referencia a lo que viene como modelo
+                foreach(var modulos in Model)
+                {
+                    <tr>  
+                    <td>@modulos.IdPropietario</td>
+                       <td>@modulos.Modulo</td>
+          
+                    <td>
+
+                      <a class="btn btn-info" href ="@Url.Action("EditarModulo", new{ id=modulos.IdModulo})">Editar</a>
+                      <a class="btn btn-danger" href ="@Url.Action("EliminarModulo", new{ id=modulos.IdModulo})">Eliminar</a>
+                    </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class=form-group>      
+        <a class="btn btn-success" asp-action="AgregarModulos">Nuevo</a>
+  
+    </div>
+
+</div>
+
+    @section Scripts{
+    <script>
+  $(document).ready(function() {
+
+    $('.tabla-modulos').DataTable(
+    
+        {
+    // "oLanguage": 
+     
+language:{
+            "sLengthMenu": "_MENU_ Filtrar por páginas",
+            "sZeroRecords": "No se encontró registro",
+            "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando 0 ta 0 de 0 entradas",
+             "decimal": ".",
+             "thousands": ",",
+             "loadingRecords": "Cargando...",
+             "search": "Buscar:",
+              "paginate": {
+            "first": "Primero",
+            "last": "Último",
+            "next": "Siguiente",            
+            "previous": "Anterior"
+        },
+            "sInfoFiltered": "(filtrado de _MAX_ registros en total)"
+        }
+    });
+    );
+
+</script>
+}

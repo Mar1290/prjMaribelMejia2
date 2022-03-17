@@ -1,18 +1,19 @@
-﻿<h1 class="alert-success">Crear nuevo Modulo</h1>
+﻿@model prjMaribelMejia.Models.Propietarios
+
+<h1 class="alert-success">Crear nuevo Modulo</h1>
 
 <form asp-action="CrearModulo" autocomplete="off">
     <div>
         <label>Propietario:</label>
-        <select name="select">
-
+ <label asp-for="IdPropietario" class="control-label">Seleccione Categoria</label>
+        <select name="IdPropietario" asp-for="IdPropietario" asp-items="@Model.LisPropietarios" class="form-control idprop">
+            <option value="0">-seleccione-</option>
         </select>
-    <input type="text" class="form-control pruebajq4" name="Categoria" maxlength="50"/>
+        <span asp-validation-for="IdPropietario" class="text-danger"></span>
 
      <label>Modulo:</label>
-   @* <input type="text" class="form-control nombre-categoria" placeholder="Ingrese descripción" name="DescripcionCategoria"/>*@
    <div class="form-group">
-        <textarea class="form-control nombre-modulo" name="Modulo" maxlength="500">
-
+        <textarea class="form-control nombremodulo" name="Modulo" maxlength="500">
         </textarea>
    </div>
 
