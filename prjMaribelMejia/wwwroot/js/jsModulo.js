@@ -70,3 +70,77 @@ $("#btnGuardar").click(function () {
     }
 
 });
+
+$("#btnEliminar").click(function ()
+{
+    var idModulo = $(".idmod").val();
+    if (idModulo == 0) {
+        Swal.fire({
+            title: 'No se encontró modulo',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
+
+    }
+    else {
+
+        var xhr2 = $.ajax({
+
+            //url destino
+            url: "EliminarModulo",
+            type: "POST",
+            //agregamos los parametros de la petición
+            data: {
+                "IdModulo": IdModulo
+            }
+        });
+
+
+        //Mensaje de respuesta
+        xhr2.done(function (data) {
+
+            if (data.success) {
+
+                //mostrar mensaje de guardado satisfactorio
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+                //luego de 2 segundos redireccioonar a lista de modulos
+                setTimeout(function () {
+                    location.href = "../Modulos/Modulos";
+                }, 2000)
+            }
+            else {
+                Swal.fire(
+                    '¡Error!',
+                    data.message,//'¡Click en el botón!',
+                    'error'
+                )
+            }
+
+        });
+
+
+    }
+    
+
+
+});

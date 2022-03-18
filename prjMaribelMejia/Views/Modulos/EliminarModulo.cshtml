@@ -5,11 +5,17 @@
 <form asp-action="EliminarModulo">
     <div>
     
-    <input type="text" class="form-control idprop" name="IdPropietario" value="@Model.IdPropietario"/>
-    <input type="text" class="form-control nombremodulo" name="Modulo" value="@Model.Modulo"/>
+    <input type="text" class="form-control" name="IdPropietario" value="@Model.IdPropietario"/>
+    <input type="text" class="form-control" name="Modulo" value="@Model.Modulo"/>
    <input type="hidden" class="form-control" name="IdModulo" value="@Model.IdModulo"/>
     <div class=form-group>
-        <input type="submit" value="Eliminar" class="btn btn-danger"/>
+        @*<input  id="btnEliminar" type="submit" value="Eliminar" class="btn btn-danger"/>*@
+           <a id="btnEliminar" href="javascrip:void(0);" class="btn btn-danger">Eliminar</a>
+             <a id="btnEliminar" href="javascrip:void(0);" class="btn btn-success">Guardar</a>
     </div>
     </div>
 </form>
+@section Scripts
+{
+    <script src="~/js/jsModulo.js"></script>
+}

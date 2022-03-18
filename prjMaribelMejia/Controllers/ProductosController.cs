@@ -25,9 +25,7 @@ namespace prjMaribelMejia.Controllers
         public IActionResult Productos()
         {       
                 List<Productos> productos = _context.producto.ToList();
-                _context.producto.ToList();//debemos agregar la referencia to linq   
-
-          
+                _context.producto.ToList();//debemos agregar la referencia to linq         
 
                 //mejor usar esta forma:
                 return View(_context.producto.ToList());
@@ -53,8 +51,7 @@ namespace prjMaribelMejia.Controllers
         public IActionResult AgregarProducto()
         {
             obtenerCategorias();//15/3/22
-            return View();
-           
+            return View();           
         }
 
         //ADD NUEVOS PDTOS

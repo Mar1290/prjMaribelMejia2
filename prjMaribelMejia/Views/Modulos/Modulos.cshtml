@@ -1,8 +1,9 @@
-﻿@model List<prjMaribelMejia.Models.Modulos>
+﻿
+@model List<prjMaribelMejia.Models.Modulos>
 
 <div>  
     <div>
-      <h2 class="alert-success">Administración de Modulos</h2>
+      <h2 class="alert-success box-shadow">Administración de Módulos</h2>
     </div>
 
 <br />
@@ -11,8 +12,9 @@
         <thead>
 
             <tr>
-                <th>Modulo</th>
+                
                  <th>Propietario</th>
+                 <th>Modulo</th>
                 <th>Acciones</th>
             </tr>
     
@@ -23,19 +25,21 @@
                 foreach(var modulos in Model)
                 {
                     <tr>  
-                    <td>@modulos.IdPropietario</td>
-                       <td>@modulos.Modulo</td>
-          
-                    <td>
+                            <td>@modulos.IdPropietario</td>
+                               <td>@modulos.Modulo</td>
 
-                      <a class="btn btn-info" href ="@Url.Action("EditarModulo", new{ id=modulos.IdModulo})">Editar</a>
-                      <a class="btn btn-danger" href ="@Url.Action("EliminarModulo", new{ id=modulos.IdModulo})">Eliminar</a>
-                    </td>
+                            <td>
+                              <a class="btn btn-info" href ="@Url.Action("EditarModulo", new{ id=modulos.IdModulo})">Editar</a>
+                              @*<a class="btn btn-danger" href ="@Url.Action("EliminarModulo", new{ id=modulos.IdModulo})">Eliminar</a>*@
+                                @*<a id="btnEliminar" href="javascrip:void(0);" class="btn btn-success">Guardar</a>*@
+                               <a id="btnEliminar" href="javascrip:void(0);"  class="btn btn-danger">Eliminar</a>
+                            </td>
                     </tr>
                 }
             }
         </tbody>
     </table>
+
     <div class=form-group>      
         <a class="btn btn-success" asp-action="AgregarModulos">Nuevo</a>
   

@@ -16,17 +16,16 @@ namespace prjMaribelMejia.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+
         public IActionResult Modulos()
-        {           
+        {
+          
             List<Modulos> modulos = _context.modulos.ToList();
             _context.modulos.ToList();
             //mejor usar esta forma:
             return View(_context.modulos.ToList());
         }
+
 
         [HttpPost]
         public IActionResult obtenerPropietarios()
@@ -64,6 +63,7 @@ namespace prjMaribelMejia.Controllers
                     Success = true,
                     Message = "¡Modulo guardado correctamente!"
                 });
+
             }
         }
         public IActionResult EditarModulo(int id)
@@ -84,9 +84,6 @@ namespace prjMaribelMejia.Controllers
            
             moduloactual.IdPropietario = modulos.IdPropietario;
             moduloactual.Modulo = modulos.Modulo;
-
-
-
             _context.SaveChanges();
             List<Modulos> lismodulos = _context.modulos.ToList();
 
@@ -95,26 +92,28 @@ namespace prjMaribelMejia.Controllers
         }
         public IActionResult EliminarModulo(int id)
         {
-            ////en caso de que tengamos relacion con otra tabla
-            //List<Propietarios> propietario = _context.propietarios.Where(a => a.IdPropietario == id).ToList();
-
-            //if (productos != null)
-            //{
-            //    //elimna todos los prorictos asociados
-            //    _context.RemoveRange(productos);
-            //}
-
+            List<Modulos> modulos = _context.modulos.ToList();
             //con entity framework. eliminamos el valor
-            Modulos modulos = _context.modulos.Where(a => a.IdPropietario == id).FirstOrDefault();
-            if (modulos != null)
+            Modulos mod = _context.modulos.Where(a => a.IdModulo == id).FirstOrDefault();
+            if (mod != null)
             {
                 //elimna categorias
-                _context.Remove(modulos);
+                _context.Remove(mod);
             }
-
             _context.SaveChanges();
+            obtenerPropietarios();
             List<Modulos> modulo = _context.modulos.ToList();
-            return View("Modulos", modulos);
+           // return RedirectToAction("Modulos",modulo);
+
+                //retornar una vez mostrado el mensaje
+                return Json(new
+                {
+                    Success = true,
+                    Message = "¡Modulo guardado correctamente!"
+                });
+
+          
+
         }
     }
 }
