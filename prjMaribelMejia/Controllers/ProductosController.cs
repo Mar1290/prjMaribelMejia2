@@ -26,10 +26,13 @@ namespace prjMaribelMejia.Controllers
         public IActionResult Productos()
         {       
                 List<Productos> productos = _context.producto.ToList();
-                _context.producto.ToList();//debemos agregar la referencia to linq         
 
-                //mejor usar esta forma:
-                return View(_context.producto.ToList());
+            var listacategoria = _context.categorias.ToList();
+
+            ViewBag.ListaCategorias = listacategoria;
+
+            //mejor usar esta forma:
+            return View(productos);
         }
         [HttpPost]
         public IActionResult obtenerCategorias()
@@ -49,7 +52,7 @@ namespace prjMaribelMejia.Controllers
             */
             Productos model = new Productos();
             var listacategoria = _context.categorias.Select(c => new { c.IdCategoria, c.Categoria }).ToList();
-            model.LisCategoria = new SelectList(listacategoria, "IdCategoria", "Categoria");
+            //model.LisCategoria = new SelectList(listacategoria, "IdCategoria", "Categoria");
             return View();
 
         }
@@ -57,12 +60,14 @@ namespace prjMaribelMejia.Controllers
         //Vista productos
         public IActionResult AgregarProducto()
         {
-            //CategoriasController Cat = new CategoriasController();
-            //Cat.obtenerCategorias();
-            //Cat    //15/3/22
-            Productos model = new Productos();
-            var listacategoria = _context.categorias.Select(c => new { c.IdCategoria, c.Categoria }).ToList();
-            model.LisCategoria = new SelectList(listacategoria, "IdCategoria", "Categoria");
+           
+            //Productos model = new Productos();
+            var listacategoria = _context.categorias.ToList();
+
+            ViewBag.ListaCategorias = listacategoria;
+
+            //model.LisCategoria = 
+                //ew SelectList(listacategoria, "IdCategoria", "Categoria");
             return View();
             ///return View();
         }
@@ -89,15 +94,7 @@ namespace prjMaribelMejia.Controllers
                     Message = "Campo Descripción del producto está vacío"
                 });
             }
-            //else if (!decimal.TryParse(productos.Precio,out decimal precio))//validar tipo de dato entero.
-            //{
-            //    //utilizando formato json para intercambio de datos
-            //    return Json(new
-            //    {
-            //        Success = false,
-            //        Message = "Campo Descripción del producto está vacío"
-            //    });
-            //}
+
             else
             {
                 productos.FechaCreacionProducto = System.DateTime.Now;

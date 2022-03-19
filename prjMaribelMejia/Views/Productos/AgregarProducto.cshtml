@@ -1,4 +1,9 @@
 ﻿@model prjMaribelMejia.Models.Productos
+
+@{
+    List<prjMaribelMejia.Models.Categorias> categorias = ViewBag.ListaCategorias;
+}
+
 <h2 class="alert-success">Crear nuevo Producto</h2>
 
 <form asp-action="CrearProducto"  autocomplete="off">
@@ -22,11 +27,17 @@
             <option value="0">-seleccione-</option>
         </select>
         <span asp-validation-for="IdCategoria" class="text-danger"></span>*@
+        <label>Seleccione Categoria</label>
+        <select class="form-control" name="IdCategoria">
+            @{
+                foreach(var cat in categorias)
+                {
+                    <option value="@cat.IdCategoria">@cat.Categoria</option>
+                }
+            }
+        </select>
 
-        <select asp-for="IdCategoria" asp-items="@Model.LisCategoria" class="form-control">
-   <option value="">Select Role</option>
-</select>
-
+        <br />
 
         <label>Precio Unitario C$:</label>
         <input type="text" class="form-control preciopdto" name="Precio" />

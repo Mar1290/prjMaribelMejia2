@@ -43,7 +43,7 @@ namespace prjMaribelMejia.Controllers
 
             Categorias model = new Categorias();
             var listacategoria = _context.categorias.Select(c => new { c.IdCategoria, c.Categoria }).ToList();
-            model.LisCategoria = new SelectList(listacategoria, "Id", "Name");
+            //model.LisCategoria = new SelectList(listacategoria, "Id", "Name");
             return View();
         }
 
