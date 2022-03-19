@@ -3,9 +3,9 @@
 @model List<prjMaribelMejia.Models.Propietarios>
 
 <h1 class="text-info bg-light rounded border-bottom">Administración de Propietarios</h1>
-<div>
+<div class="table-responsive">
 <br />
-    <table class="table table-dark table-striped">
+    <table class="table  tabla-propietarios table-dark table-striped">
          <thead>
         <tr>
          <th>Propietario</th>
@@ -43,3 +43,67 @@
   
     </div>
 </div>
+@section Scripts{
+    <script>
+
+  //$('.tabla-productos').DataTable();  
+
+  $(document).ready(function() {
+   // $('#example').DataTable();
+
+//var table = 
+$('.tabla-propietarios').DataTable(
+    
+    {
+    // "oLanguage": 
+     
+language:{
+            "sLengthMenu": "_MENU_ Filtrar por páginas",
+            "sZeroRecords": "No se encontró registro",
+            "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando 0 ta 0 de 0 entradas",
+             "decimal": ".",
+             "thousands": ",",
+             "loadingRecords": "Cargando...",
+             "search": "Buscar:",
+              "paginate": {
+            "first": "Primero",
+            "last": "Último",
+            "next": "Siguiente",            
+            "previous": "Anterior"
+        },
+            "sInfoFiltered": "(filtrado de _MAX_ registros en total)"
+        }
+    });
+    } );
+
+   //     //    $(".nombre-categoria").click(function(){
+   // $(".ver-descripcion").click(function(){
+   //     var id=$(this).attr("data-id");
+   //     //hacer la peticion para rescatar la descripcion de la categoria
+   //      var xhr = $.ajax({
+
+   //         //url destino
+   //         url: "ObtenerDescripcion",
+   //         type: "POST",
+   //         //agregamos los parametros de la petición
+   //         data: {
+   //             //parametros
+   //             "id":id
+   //         }
+   //     });
+
+   //xhr.done(function (data) {
+
+   // $(".valor-descripcion").text(data.descripcion);
+   // $("#exampleModal").modal("show");
+   
+   //})
+   //xhr.fail(function () {})
+
+   //     //alert("Se ha dado clic")
+       
+
+   // })
+</script>
+}

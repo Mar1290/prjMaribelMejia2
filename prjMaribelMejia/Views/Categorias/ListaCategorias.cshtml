@@ -71,7 +71,35 @@
     @section Scripts{
     <script>
 
-    $('.tabla-categorias').DataTable();
+    //$('.tabla-categorias').DataTable();
+          $(document).ready(function() {
+   // $('#example').DataTable();
+
+//var table = 
+$('.tabla-categorias').DataTable(
+    
+    {
+    // "oLanguage": 
+     
+language:{
+            "sLengthMenu": "_MENU_ Filtrar por páginas",
+            "sZeroRecords": "No se encontró registro",
+            "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando 0 ta 0 de 0 entradas",
+             "decimal": ".",
+             "thousands": ",",
+             "loadingRecords": "Cargando...",
+             "search": "Buscar:",
+              "paginate": {
+            "first": "Primero",
+            "last": "Último",
+            "next": "Siguiente",            
+            "previous": "Anterior"
+        },
+            "sInfoFiltered": "(filtrado de _MAX_ registros en total)"
+        }
+    });
+    } );
 
 
         //    $(".nombre-categoria").click(function(){

@@ -76,7 +76,7 @@ $("#btnEliminar").click(function ()
     var idModulo = $(".idmod").val();
     if (idModulo == 0) {
         Swal.fire({
-            title: 'No se encontró modulo',
+            title: 'No se encontró registro para eliminar',
             showClass: {
                 popup: 'animate__animated animate__fadeInDown'
             },
@@ -107,7 +107,7 @@ $("#btnEliminar").click(function ()
 
                 //mostrar mensaje de guardado satisfactorio
                 Swal.fire({
-                    title: 'Are you sure?',
+                    title: 'Esta seguro de eliminar este registro?',
                     text: "You won't be able to revert this!",
                     icon: 'warning',
                     showCancelButton: true,
