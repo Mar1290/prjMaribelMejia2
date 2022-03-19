@@ -25,14 +25,14 @@
                 foreach(var modulos in Model)
                 {
                     <tr>  
-                            <td>@modulos.IdPropietario</td>
+                               <td>@modulos.IdPropietario</td>
                                <td>@modulos.Modulo</td>
-
+                               <td class="form-control idmod">@modulos.IdModulo</td>
                             <td>
                               <a class="btn btn-info" href ="@Url.Action("EditarModulo", new{ id=modulos.IdModulo})">Editar</a>
-                              @*<a class="btn btn-danger" href ="@Url.Action("EliminarModulo", new{ id=modulos.IdModulo})">Eliminar</a>*@
+                              <a class="btn btn-danger" href ="@Url.Action("EliminarModulo", new{ id=modulos.IdModulo})">Eliminar</a>
                                 @*<a id="btnEliminar" href="javascrip:void(0);" class="btn btn-success">Guardar</a>*@
-                               <a id="btnEliminar" href="javascrip:void(0);"  class="btn btn-danger">Eliminar</a>
+                                <a id="btnEliminar" href="javascrip:void(0);"  class="btn btn-danger">Eliminar js</a>
                             </td>
                     </tr>
                 }
@@ -48,6 +48,7 @@
 </div>
 
     @section Scripts{
+        <script src="~/js/jsModulo.js"></script>
     <script>
   $(document).ready(function() {
 

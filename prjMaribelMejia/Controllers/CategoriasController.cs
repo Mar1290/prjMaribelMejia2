@@ -32,14 +32,19 @@ namespace prjMaribelMejia.Controllers
         }
 
         //para llenar select
-        [HttpPost]
+        
         public IActionResult obtenerCategorias()
         {
+            //Categorias model = new Categorias();
+            //model.LisCategoria = _context.categorias.ToList().Select(categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() })
+            //    .Reverse()
+            //    .ToList();
+            //return View(model);
+
             Categorias model = new Categorias();
-            model.LisCategoria = _context.categorias.ToList().Select(categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() })
-                .Reverse()
-                .ToList();
-            return View(model);
+            var listacategoria = _context.categorias.Select(c => new { c.IdCategoria, c.Categoria }).ToList();
+            model.LisCategoria = new SelectList(listacategoria, "Id", "Name");
+            return View();
         }
 
         public IActionResult CrearCategoria(Categorias categorias)

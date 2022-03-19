@@ -22,6 +22,7 @@ namespace prjMaribelMejia.Controllers
             // _logger= logger;    
             _context = context;
         }
+        
         public IActionResult Productos()
         {       
                 List<Productos> productos = _context.producto.ToList();
@@ -39,19 +40,31 @@ namespace prjMaribelMejia.Controllers
                 .Reverse()
                 .ToList();
             */
-
+            /*
             Categorias model = _context.categorias.ToList().FirstOrDefault();
 
-            model.LisCategoria = _context.categorias.ToList().Select(Categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() }).Reverse().ToList();
+            model.LisCategoria = _context.categorias.ToList().Select(Categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() }).ToList();
 
             return View(model);
+            */
+            Productos model = new Productos();
+            var listacategoria = _context.categorias.Select(c => new { c.IdCategoria, c.Categoria }).ToList();
+            model.LisCategoria = new SelectList(listacategoria, "IdCategoria", "Categoria");
+            return View();
+
         }
 
         //Vista productos
         public IActionResult AgregarProducto()
         {
-            obtenerCategorias();//15/3/22
-            return View();           
+            //CategoriasController Cat = new CategoriasController();
+            //Cat.obtenerCategorias();
+            //Cat    //15/3/22
+            Productos model = new Productos();
+            var listacategoria = _context.categorias.Select(c => new { c.IdCategoria, c.Categoria }).ToList();
+            model.LisCategoria = new SelectList(listacategoria, "IdCategoria", "Categoria");
+            return View();
+            ///return View();
         }
 
         //ADD NUEVOS PDTOS

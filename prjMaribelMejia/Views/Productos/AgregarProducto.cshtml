@@ -1,4 +1,4 @@
-﻿@model prjMaribelMejia.Models.Categorias
+﻿@model prjMaribelMejia.Models.Productos
 <h2 class="alert-success">Crear nuevo Producto</h2>
 
 <form asp-action="CrearProducto"  autocomplete="off">
@@ -16,13 +16,18 @@
              <label asp-for="Categoria" class="control-label"></label>
     <select asp-for="IdCategoria" class="form-control" asp-items="@(new SelectList(@Model.LisCategoria,"IdCategoria","Categoria"))"></select>
 
-        *@
-
+       
         <label asp-for="IdCategoria" class="control-label">Seleccione Categoria</label>
         <select name="IdCategoria" asp-for="IdCategoria" asp-items="@Model.LisCategoria" class="form-control idcat">
             <option value="0">-seleccione-</option>
         </select>
-        <span asp-validation-for="IdCategoria" class="text-danger"></span>
+        <span asp-validation-for="IdCategoria" class="text-danger"></span>*@
+
+        <select asp-for="IdCategoria" asp-items="@Model.LisCategoria" class="form-control">
+   <option value="">Select Role</option>
+</select>
+
+
         <label>Precio Unitario C$:</label>
         <input type="text" class="form-control preciopdto" name="Precio" />
         <label>Descripción del Producto:</label>
@@ -30,9 +35,9 @@
         <label>Marca:</label>
         <select class="form-control idmarca" name="IdMarca">
             <option selected value="0">-Seleccione-</option>
-            <option value="4">Calvin Klein</option>
-            <option value="5">Toyota</option>
-            <option value="6">Guess</option>
+            <option value="1">Calvin Klein</option>
+            <option value="2">Toyota</option>
+            <option value="3">Guess</option>
         </select>
         <br />
         @* <input type="date" class="form-control" />*@

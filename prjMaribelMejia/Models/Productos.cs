@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using prjMaribelMejia.Data;
 namespace prjMaribelMejia.Models
 {
     public class Productos
@@ -23,12 +23,15 @@ namespace prjMaribelMejia.Models
 
         [Required(ErrorMessage = "El campo Precio es requerido")]        
         public decimal Precio { get; set; }
-
+        
         [StringLength(500)]       
         public string Descripcion { get; set; }
         public DateTime FechaCreacionProducto { get; set; }
         public int IdMarca { get; set; }
         [ForeignKey("IdMarca")]
         public Marcas Marcas { get; set; }
+        [NotMapped]
+        public SelectList LisCategoria { get; set; }
+      
     }
 }
