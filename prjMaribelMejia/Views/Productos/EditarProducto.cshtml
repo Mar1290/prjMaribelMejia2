@@ -1,4 +1,10 @@
 ﻿@model prjMaribelMejia.Models.Productos;
+@{
+    List<prjMaribelMejia.Models.Categorias> categorias = ViewBag.ListaCategorias;
+}
+@{
+    List<prjMaribelMejia.Models.Marcas> lmarcas = ViewBag.ListaMarcas;
+}
 
 <h2>Edición de Producto</h2>
 
@@ -7,14 +13,32 @@
     <label>Producto:  </label>
     <input type="text" class="form-control" name="Producto" value="@Model.Producto"/>
     <label>Seleccione Categoria:</label>
-    <input type="text" class="form-control" name="IdCategoria" value="@Model.IdCategoria"/>
+   @* <input type="text" class="form-control" name="IdCategoria" value="@Model.IdCategoria"/>*@
+
+    <label>Seleccione Categoria</label>
+        <select class="form-control idcat" name="IdCategoria" value="@Model.IdCategoria">
+            @{
+                foreach(var cat in categorias)
+                {
+                    <option value="@cat.IdCategoria">@cat.Categoria</option>
+                }
+            }
+        </select>
+
     <label>Precio Unitario C$:</label>
     <input type="text" class="form-control" name="Precio" value="@Model.Precio"/>
     <label>Descripción del Producto:</label>
     <input type="text" class="form-control" name="Descripcion" value="@Model.Descripcion"/>
-        <label>Marca:</label>
-    <input type="text" class="form-control" name="IdMarca" value="@Model.IdMarca"/>
-
+        <label>Seleccione Marca:</label>
+ 
+   <select class="form-control idmarca" name="IdMarca" value="@Model.IdMarca">
+            @{
+                foreach(var marc in lmarcas)
+                {
+                    <option value="@marc.IdMarca">@marc.NombreMarca</option>
+                }
+            }
+        </select>
      <input type="hidden" class="form-control" name="IdProducto" value="@Model.IdProducto"/>
    @* <input type="date" class="form-control" />*@
     <div class=form-group>

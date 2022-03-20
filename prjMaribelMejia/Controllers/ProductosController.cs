@@ -24,14 +24,18 @@ namespace prjMaribelMejia.Controllers
         }
         
         public IActionResult Productos()
-        {       
-                List<Productos> productos = _context.producto.ToList();
+        {
+            List<Productos> productos = _context.producto.ToList();
 
             var listacategoria = _context.categorias.ToList();
 
             ViewBag.ListaCategorias = listacategoria;
 
-            //mejor usar esta forma:
+            //cargamos la lista de marcas
+            var listamarcas = _context.marcas.ToList();
+            ViewBag.ListaMarcas = listamarcas;
+
+            //retornar la vista
             return View(productos);
         }
         [HttpPost]
@@ -97,7 +101,16 @@ namespace prjMaribelMejia.Controllers
         }
         public IActionResult EditarProducto(int id)
         {
+            //cargamos la lista de categorias       
+            var listacategoria = _context.categorias.ToList();
+            ViewBag.ListaCategorias = listacategoria;
+            //cargamos la lista de marcas
+            var listamarcas = _context.marcas.ToList();
+            ViewBag.ListaMarcas = listamarcas;
+
+
             List<Productos> productos = _context.producto.ToList();
+
             //1. recupera dato y envia al modelo
             Productos modelopdto = _context.producto.Where(p => p.IdProducto == id).FirstOrDefault();
             //retorna
