@@ -3,32 +3,19 @@
 @{
     List<prjMaribelMejia.Models.Categorias> categorias = ViewBag.ListaCategorias;
 }
+@{
+    List<prjMaribelMejia.Models.Marcas> marcas = ViewBag.ListaMarcas;
+}
 
 <h2 class="alert-success">Crear nuevo Producto</h2>
 
 <form asp-action="CrearProducto"  autocomplete="off">
-    <div>
+    <div class="table-responsive">
         <label>Producto:  </label>
     <input type="text" class="form-control Nombrepdto" name="Producto" />
- @*   <label>Seleccione Categoria:</label>
-    <input type="text" class="form-control" name="IdCategoria"/>*@
-  
-        @*
-              <label asp-for="Categoria" class="control-label"></label>
-            <select asp-for="Categoria" asp-items="@Model.LisCategoria" class="form-control"></select>
-             <span asp-validation-for="Categoria" class="text-danger"></span>
-             
-             <label asp-for="Categoria" class="control-label"></label>
-    <select asp-for="IdCategoria" class="form-control" asp-items="@(new SelectList(@Model.LisCategoria,"IdCategoria","Categoria"))"></select>
-
-       
-        <label asp-for="IdCategoria" class="control-label">Seleccione Categoria</label>
-        <select name="IdCategoria" asp-for="IdCategoria" asp-items="@Model.LisCategoria" class="form-control idcat">
-            <option value="0">-seleccione-</option>
-        </select>
-        <span asp-validation-for="IdCategoria" class="text-danger"></span>*@
+     
         <label>Seleccione Categoria</label>
-        <select class="form-control" name="IdCategoria">
+        <select class="form-control idcat" name="IdCategoria">
             @{
                 foreach(var cat in categorias)
                 {
@@ -43,13 +30,19 @@
         <input type="text" class="form-control preciopdto" name="Precio" />
         <label>Descripción del Producto:</label>
         <input type="text" class="form-control descripcion-pdto" name="Descripcion" />
-        <label>Marca:</label>
-        <select class="form-control idmarca" name="IdMarca">
-            <option selected value="0">-Seleccione-</option>
-            <option value="1">Calvin Klein</option>
-            <option value="2">Toyota</option>
-            <option value="3">Guess</option>
+        <label>Seleccione Marca:</label> 
+
+          <select class="form-control idmarca" name="IdMarca">
+            @{
+                foreach(var marc in marcas)
+                {
+                    <option value="">@marc.NombreMarca</option>
+                }
+            }
         </select>
+
+        <br />
+
         <br />
         @* <input type="date" class="form-control" />*@
         <div class=form-group>

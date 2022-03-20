@@ -28,20 +28,22 @@
         </thead>
         <tbody>
             @{
+  
                 //hace referencia a lo que viene como modelo
                 foreach(var producto in Model)
                 {
                     <tr>  
                     <td>@producto.Producto</td>
-                    <td>@producto.IdCategoria</td>
+              
+                    <td>@producto.Categorias.Categoria</td>
                      <td>@producto.Precio</td>
                      <td>
-                     @*a//<button class="btn"><i class="fa fa-bars"></i> Menu</button>*@
+                 
               <a data-id="@producto.IdProducto"  class="btn btn-success fa fa-eye ver-descripcion" href="javascript:void(0); "> Ver Descripción</a>
                     <td>                               
                     @*agregamos el botón editar y eliminar*@
-                      <a class="btn btn-info" href ="@Url.Action("EditarProducto", new{ id=producto.IdProducto})">Editar</a>
-                      <a class="btn btn-danger" href ="@Url.Action("EliminarCategoria", new{ id=producto.IdProducto})">Eliminar</a>
+                      <a class="btn btn-info" style="width: 80px;" href ="@Url.Action("EditarProducto", new{ id=producto.IdProducto})">Editar</a>
+                      <a class="btn btn-danger" style="width: 80px;" href ="@Url.Action("EliminarCategoria", new{ id=producto.IdProducto})">Anular</a>
                     </td>
                     </tr>
                 }

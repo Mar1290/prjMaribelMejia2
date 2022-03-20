@@ -37,39 +37,25 @@ namespace prjMaribelMejia.Controllers
         [HttpPost]
         public IActionResult obtenerCategorias()
         {
-            /*
-            Categorias model = new Categorias();
-            model.LisCategoria = _context.categorias.ToList().Select(categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() })
-                .Reverse()
-                .ToList();
-            */
-            /*
-            Categorias model = _context.categorias.ToList().FirstOrDefault();
-
-            model.LisCategoria = _context.categorias.ToList().Select(Categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() }).ToList();
-
-            return View(model);
-            */
+      
             Productos model = new Productos();
             var listacategoria = _context.categorias.Select(c => new { c.IdCategoria, c.Categoria }).ToList();
-            //model.LisCategoria = new SelectList(listacategoria, "IdCategoria", "Categoria");
+       
             return View();
 
         }
 
         //Vista productos
         public IActionResult AgregarProducto()
-        {
-           
-            //Productos model = new Productos();
+        {    //cargamos la lista de categorias       
             var listacategoria = _context.categorias.ToList();
-
             ViewBag.ListaCategorias = listacategoria;
+            //cargamos la lista de marcas
+            var listamarcas = _context.marcas.ToList();
+            ViewBag.ListaMarcas=listamarcas;    
 
-            //model.LisCategoria = 
-                //ew SelectList(listacategoria, "IdCategoria", "Categoria");
             return View();
-            ///return View();
+          
         }
 
         //ADD NUEVOS PDTOS
@@ -112,7 +98,7 @@ namespace prjMaribelMejia.Controllers
         public IActionResult EditarProducto(int id)
         {
             List<Productos> productos = _context.producto.ToList();
-            //1. recupera dato y envia al moelo
+            //1. recupera dato y envia al modelo
             Productos modelopdto = _context.producto.Where(p => p.IdProducto == id).FirstOrDefault();
             //retorna
             return View("EditarProducto", modelopdto);
@@ -129,14 +115,11 @@ namespace prjMaribelMejia.Controllers
             pdtoactual.Precio = productos.Precio;
             pdtoactual.Descripcion = productos.Descripcion;
             pdtoactual.IdMarca=productos.IdMarca;   
-
-
             _context.SaveChanges();
             List<Productos> producto = _context.producto.ToList();
               
             //retornamos a la pagina
-            return RedirectToAction("Productos");
-        }
+            return RedirectToAction("Productos");       }
 
         public IActionResult ObtenerDescripcion(int id)
         {
