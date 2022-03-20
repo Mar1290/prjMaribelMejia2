@@ -4,7 +4,7 @@
     List<prjMaribelMejia.Models.Categorias> categorias = ViewBag.ListaCategorias;
 }
 @{
-    List<prjMaribelMejia.Models.Marcas> marcas = ViewBag.ListaMarcas;
+    List<prjMaribelMejia.Models.Marcas> lmarcas = ViewBag.ListaMarcas;
 }
 
 <h2 class="alert-success">Crear nuevo Producto</h2>
@@ -34,9 +34,9 @@
 
           <select class="form-control idmarca" name="IdMarca">
             @{
-                foreach(var marc in marcas)
+                foreach(var marc in lmarcas)
                 {
-                    <option value="">@marc.NombreMarca</option>
+                    <option value="@marc.IdMarca">@marc.NombreMarca</option>
                 }
             }
         </select>
