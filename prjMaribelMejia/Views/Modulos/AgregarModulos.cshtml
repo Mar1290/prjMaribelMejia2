@@ -1,4 +1,9 @@
-﻿@model prjMaribelMejia.Models.Propietarios
+﻿@model prjMaribelMejia.Models.Modulos
+
+
+@{
+    List<prjMaribelMejia.Models.Propietarios> propietarios = ViewBag.listapropietarios;
+}
 
 <h1 class="alert-success">Crear nuevo Modulo</h1>
 
@@ -6,9 +11,16 @@
     <div>
         <label>Propietario:</label>
  <label asp-for="IdPropietario" class="control-label">Seleccione Categoria</label>
-        <select name="IdPropietario" asp-for="IdPropietario" asp-items="@Model.LisPropietarios" class="form-control idprop">
-            <option value="0">-seleccione-</option>
+         <select class="form-control idprop" name="IdPropietario">
+            @{
+                foreach(var prop in propietarios)
+                {
+                    <option value="@prop.IdPropietario">@prop.NombrePropietario</option>
+                }
+            }
         </select>
+
+        <br />
         <span asp-validation-for="IdPropietario" class="text-danger"></span>
 
      <label>Modulo:</label>

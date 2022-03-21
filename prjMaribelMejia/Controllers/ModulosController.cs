@@ -26,18 +26,14 @@ namespace prjMaribelMejia.Controllers
             return View(_context.modulos.ToList());
         }
 
-
-        [HttpPost]
-        public IActionResult obtenerPropietarios()
-        {
-            Propietarios model = _context.propietarios.ToList().FirstOrDefault();
-            model.LisPropietarios = _context.propietarios.ToList().Select(Propietarios => new SelectListItem() { Value = model.IdPropietario.ToString(), Text = model.NombrePropietario.ToString() }).Reverse().ToList();
-            return View(model);
-        }
         //Vista productos
         public IActionResult AgregarModulos()
         {
-           obtenerPropietarios();//15/3/22
+           
+            //cargamos la lista de categorias       
+            var listapropietarios= _context.propietarios.ToList();
+            ViewBag.ListaCategorias = listapropietarios;
+
             return View();
         }
         public IActionResult CrearModulo(Modulos modulos)
@@ -101,7 +97,7 @@ namespace prjMaribelMejia.Controllers
                 _context.Remove(mod);
             }
             _context.SaveChanges();
-            obtenerPropietarios();
+       
             List<Modulos> modulo = _context.modulos.ToList();
            // return RedirectToAction("Modulos",modulo);
 
