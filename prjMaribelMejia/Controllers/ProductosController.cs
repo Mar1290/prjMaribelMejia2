@@ -136,16 +136,34 @@ namespace prjMaribelMejia.Controllers
 
         public IActionResult ObtenerDescripcion(int id)
         {
-            //string descripcion = _context.categorias.Where(a => a.IdCategoria == id).FirstOrDefault().DescripcionCategoria;
+           
             //otra manera de programar
             string descripcion = "Este producto no contiene descripción";
             Productos productos = _context.producto.Where(a => a.IdProducto == id).FirstOrDefault();
 
+
+            //Productos productos = _context.producto.Join
+            //    (_context.marcas,
+            //    product => product.IdMarca,
+            //    marc => marc.IdMarca,                 
+            //    (product, marc) => new {product,marc }).Select(p => p.product).Where(product => product.IdProducto == id).FirstOrDefault();
+
+            //var _marproductos = from Productos in _context.marcas
+            //                    join Marcas in _context.marcas on Productos.IdMarca equals Marcas.IdMarca 
+            //                    select new
+            //                    {                                    
+            //                        Productos,
+            //                        Marcas.NombreMarca
+            //                    };
+          
+
             if (productos != null && !string.IsNullOrEmpty(productos.Descripcion))
             {
-                descripcion = productos.Descripcion+"- Marca:"+productos.IdMarca;
+                descripcion = productos.Descripcion + "- Marca: " ;
             }
             return Json(new { descripcion });
+
+
         }
 
 

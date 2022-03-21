@@ -8,6 +8,7 @@ $("#btnGuardar").click(function () {
     var idcat = $(".idcat").val();
     var preciopdto = $(".preciopdto").val();
     var idmarca = $(".idmarca").val();
+    var marca = $(".nmarca").val();
 
     //sugerencia de validacion 
     if (nombrepdto == "" || descripcionpdt == "" || idcat == "" || preciopdto == "" || idmarca == ""){
