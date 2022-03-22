@@ -60,7 +60,7 @@ namespace prjMaribelMejia.Controllers
                 return Json(new
                 {
                     Success = true,
-                    Message = "¡Modulo guardado correctamente!"
+                    Message = "¡Módulo guardado correctamente!"
                 });
 
             }

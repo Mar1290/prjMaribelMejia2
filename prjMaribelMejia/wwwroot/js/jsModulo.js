@@ -5,7 +5,7 @@ $("#btnGuardar").click(function () {
     var nombremodulo = $(".nombremodulo").val();
 
     var idpropietario = $(".idprop").val();
-    var descripcionmodulo=$(".descmodulo")
+    var descripcionmodulo = $(".descmodulo").val();
 
     //sugerencia de validacion 
     if (nombremodulo == "" || idpropietario == 0 ) {
@@ -100,8 +100,6 @@ $("#btnEliminar").click(function ()
                 "IdModulo": IdModulo
             }
         });
-
-
         //Mensaje de respuesta
         xhr2.done(function (data) {
 
@@ -137,12 +135,7 @@ $("#btnEliminar").click(function ()
                     'error'
                 )
             }
-
         });
-
-
-    }
-    
-
+    } 
 
 });

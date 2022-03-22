@@ -7,11 +7,11 @@
 
 <h1 class="alert-success">Crear nuevo Modulo</h1>
 
-<form asp-action="CrearModulo" autocomplete="off">
-    <div>
-        <label>Propietario:</label>
- <label asp-for="IdPropietario" class="control-label">Seleccione Categoria</label>
-         <select class="form-control idprop" name="IdPropietario">
+<form asp-action="CrearProducto"  autocomplete="off">
+    <div class="table-responsive">
+     
+        <label>Seleccione Propietario:</label>
+        <select class="form-control idprop dropdown-item alert-dark" name="IdPropietario">
             @{
                 foreach(var prop in propietarios)
                 {
@@ -20,33 +20,20 @@
             }
         </select>
 
+        <label>Modulo:</label>
+        <input type="text" class="form-control nombremodulo" name="Modulo" />
+      
+        <label>Descripción del Módulo:</label>
+        <input type="text" class="form-control descmodulo" name="DescripcionModulo" />        
         <br />
-        <span asp-validation-for="IdPropietario" class="text-danger"></span>
 
-     <label>Modulo:</label>
-   <div class="form-group">
-        <textarea class="form-control nombremodulo" name="Modulo" maxlength="500">
-        </textarea>
-   </div>
-      <div class="form-group">
-        <textarea class="form-control descmodulo" name="DescripcionModulo" maxlength="1000">
-        </textarea>
-   </div>
-
-   <br />
-
-       <div class=form-group>
-
-        @*lo ponemos neutral como enlñace sin apuntar a ningun lado*@
-        <a id="btnGuardar" href="javascrip:void(0);" class="btn btn-success">Guardar</a>
-
-         
-    </div>
+        @* <input type="date" class="form-control" />*@
+        <div class=form-group>          
+            <a id="btnGuardar" href="javascrip:void(0);" class="btn btn-success">Guardar</a>
+        </div>
     </div>
 </form>
-<div class="contenedor">
 
-</div>
 @section Scripts
 {
     <script src="~/js/jsModulo.js"></script>
