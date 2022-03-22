@@ -16,7 +16,6 @@ namespace prjMaribelMejia.Controllers
         {
             _context = context;
         }
-
         public IActionResult Modulos()
         {
           
@@ -36,7 +35,7 @@ namespace prjMaribelMejia.Controllers
            
             //cargamos la lista de de propietarios      
             var listapropietarios= _context.propietarios.ToList();
-            ViewBag.ListaCategorias = listapropietarios;
+            ViewBag.ListaPropietario = listapropietarios;
 
             return View();
         }
@@ -69,7 +68,7 @@ namespace prjMaribelMejia.Controllers
         public IActionResult EditarModulo(int id)
         {
             List<Modulos> modulos = _context.modulos.ToList();
-            //1. recupera dato y envia al moelo
+            //1. recupera dato y envia al modelo
             Modulos modeloModulo = _context.modulos.Where(p => p.IdModulo == id).FirstOrDefault();
             //retorna
             return View("EditarModulo", modeloModulo);

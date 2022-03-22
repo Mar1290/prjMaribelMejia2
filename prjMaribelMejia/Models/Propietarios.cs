@@ -18,10 +18,11 @@ namespace prjMaribelMejia.Models
         [StringLength(300)]
         [Required(ErrorMessage = "El campo dirección es requerido")]
         public string DireccionPropietario { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\\(?(\[0-9\]{3})\\)?\[-.●\]?(\[0-9\]{3})\[-.●\]?(\[0-9\]{4})$", ErrorMessage = "The PhoneNumber field is not a valid phone number")]
         public string TelefonoPropietario { get; set; }
         public bool PropietarioActivo { get; set; }
 
-        [NotMapped]
-        public List<SelectListItem> LisPropietarios { get; set; }
+    
     }
 }

@@ -5,6 +5,7 @@ $("#btnGuardar").click(function () {
     var nombremodulo = $(".nombremodulo").val();
 
     var idpropietario = $(".idprop").val();
+    var descripcionmodulo=$(".descmodulo")
 
     //sugerencia de validacion 
     if (nombremodulo == "" || idpropietario == 0 ) {
@@ -28,7 +29,8 @@ $("#btnGuardar").click(function () {
             //agregamos los parametros de la petición
             data: {
                 "Modulo": nombremodulo,
-                "IdPropietario": idpropietario     
+                "IdPropietario": idpropietario,
+                "DescripcionModulo": descripcionmodulo
             }
         });
 

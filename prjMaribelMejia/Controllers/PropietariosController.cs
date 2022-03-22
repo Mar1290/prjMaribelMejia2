@@ -30,18 +30,7 @@ namespace prjMaribelMejia.Controllers
             return View(_context.propietarios.ToList());
            
         }
-
-        //para llenar select
-        [HttpPost]
-        public IActionResult obtenerPropietarios()
-        {
-            Propietarios model = new Propietarios();
-            model.LisPropietarios = _context.propietarios.ToList().Select(Propietarios => new SelectListItem() { Value = model.IdPropietario.ToString(), Text = model.NombrePropietario.ToString() })
-                .Reverse()
-                .ToList();
-            return View(model);
-        }
-
+              
         public IActionResult AgregarPropietario()
         {
             return View();

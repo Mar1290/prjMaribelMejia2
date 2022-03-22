@@ -14,7 +14,10 @@ namespace prjMaribelMejia.Models
         public int IdPropietario { get; set; }
         [StringLength(50)]
         [Required(ErrorMessage = "El campo modulo es requerido")]
-        public string Modulo { get; set; }       
+        public string Modulo { get; set; }
+        [StringLength(1000)]
+        [Required(ErrorMessage = "El campo modulo es requerido")]
+        public string DescripcionModulo { get; set; }
         public DateTime FechaCreacionModulo { get; set; }
     }
 }
