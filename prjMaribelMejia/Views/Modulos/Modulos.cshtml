@@ -1,14 +1,17 @@
 ﻿
 @model List<prjMaribelMejia.Models.Modulos>
+@{
+    List<prjMaribelMejia.Models.Propietarios> propietario = ViewBag.listapropietarios;
+}
+
 
 <h2 class="text-info bg-light rounded border-bottom">Administración de Modulos</h2>
 <div class="table-responsive">
 <br />
 
- @*   <table class="table tabla-modulos table-striped table-bordered table-light">
-        <thead>*@
 
-               <table class="table  tabla-modulos table-striped table-bordered table-light">
+
+               <table class="table  tabla-modulos hover display table-striped table-bordered table-light">
          <thead>
 
             <tr>                
@@ -24,7 +27,9 @@
                 foreach(var modulos in Model)
                 {
                     <tr>  
-                               <td>@modulos.IdPropietario</td>
+                               <td>@modulos.Propietarios.NombrePropietario -Teléfono: @modulos.Propietarios.TelefonoPropietario
+                               
+                               </td>
                                <td>@modulos.Modulo</td>
                                @*<td class="form-control idmod">@modulos.IdModulo</td>*@
                             <td>

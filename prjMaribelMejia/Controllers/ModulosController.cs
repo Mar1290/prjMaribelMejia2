@@ -21,6 +21,10 @@ namespace prjMaribelMejia.Controllers
         {
           
             List<Modulos> modulos = _context.modulos.ToList();
+
+            var listapropietarios = _context.propietarios.ToList();
+            ViewBag.ListaCategorias = listapropietarios;
+
             _context.modulos.ToList();
             //mejor usar esta forma:
             return View(_context.modulos.ToList());
@@ -30,7 +34,7 @@ namespace prjMaribelMejia.Controllers
         public IActionResult AgregarModulos()
         {
            
-            //cargamos la lista de categorias       
+            //cargamos la lista de de propietarios      
             var listapropietarios= _context.propietarios.ToList();
             ViewBag.ListaCategorias = listapropietarios;
 
