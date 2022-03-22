@@ -5,20 +5,21 @@
     List<prjMaribelMejia.Models.Propietarios> propietarios = ViewBag.ListaPropietario;
 }
 
-<h1 class="alert-success">Crear nuevo Modulo</h1>
+<h2 class="alert-info">Crear nuevo Modulo</h2>
 
 <form asp-action="CrearProducto"  autocomplete="off">
-    <div class="table-responsive">
-     
+    <div class="table-responsive">           
+
         <label>Seleccione Propietario:</label>
-        <select class="form-control idprop dropdown-item alert-dark" name="IdPropietario">
+        <select class="form-control idprop dropdown active alert-dark" name="IdPropietario" style="background: #F2FAFA;color:#3B404F;">
             @{
                 foreach(var prop in propietarios)
                 {
-                    <option value="@prop.IdPropietario">@prop.NombrePropietario</option>
+                    <option class="option alert-light"  value="@prop.IdPropietario">@prop.NombrePropietario</option>
                 }
             }
-        </select>
+        </select>    
+
 
         <label>Modulo:</label>
         <input type="text" class="form-control nombremodulo" name="Modulo" />
