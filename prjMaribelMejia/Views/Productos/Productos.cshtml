@@ -1,9 +1,10 @@
 ﻿@*Aquii es donde se encapsulan los datos*@
 @model List<prjMaribelMejia.Models.Productos>
-
-
     @{
     List<prjMaribelMejia.Models.Categorias> categorias = ViewBag.ListaCategorias;
+}
+    @{
+    List<prjMaribelMejia.Models.Marcas> marcas = ViewBag.ListaMarcas;
 }
 <div class="table-responsive">
     <div>  
@@ -39,7 +40,7 @@
                      <td>@producto.Precio</td>
                      <td>
                  
-              <a data-id="@producto.IdProducto"  class="btn btn-success fa fa-eye ver-descripcion" href="javascript:void(0); "> Ver Descripción</a>
+              <a data-id="@producto.IdProducto"  class="btn btn-success fa fa-eye ver-descripcion" href="javascript:void(0); "> Descripción</a>
                     <td>                               
                     @*agregamos el botón editar y eliminar*@
                       <a class="btn btn-info" style="width: 80px;" href ="@Url.Action("EditarProducto", new{ id=producto.IdProducto})">Editar</a>

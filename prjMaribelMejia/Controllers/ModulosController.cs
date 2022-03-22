@@ -83,6 +83,8 @@ namespace prjMaribelMejia.Controllers
            
             moduloactual.IdPropietario = modulos.IdPropietario;
             moduloactual.Modulo = modulos.Modulo;
+            moduloactual.DescripcionModulo = modulos.DescripcionModulo; 
+
             _context.SaveChanges();
             List<Modulos> lismodulos = _context.modulos.ToList();
 

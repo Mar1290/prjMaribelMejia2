@@ -12,9 +12,6 @@
   <div>
     <label>Producto:  </label>
     <input type="text" class="form-control" name="Producto" value="@Model.Producto"/>
-    <label>Seleccione Categoria:</label>
-   @* <input type="text" class="form-control" name="IdCategoria" value="@Model.IdCategoria"/>*@
-
     <label>Seleccione Categoria</label>
         <select class="form-control idcat" name="IdCategoria" value="@Model.IdCategoria">
             @{
@@ -29,8 +26,7 @@
     <input type="text" class="form-control" name="Precio" value="@Model.Precio"/>
     <label>Descripción del Producto:</label>
     <input type="text" class="form-control" name="Descripcion" value="@Model.Descripcion"/>
-        <label>Seleccione Marca:</label>
- 
+        <label>Seleccione Marca:</label> 
    <select class="form-control idmarca" name="IdMarca" value="@Model.IdMarca">
             @{
                 foreach(var marc in lmarcas)
@@ -39,10 +35,12 @@
                 }
             }
         </select>
-     <input type="hidden" class="form-control" name="IdProducto" value="@Model.IdProducto"/>
+     <input type="hidden" class="form-control idpdto" name="IdProducto" value="@Model.IdProducto"/>
+     <br />
    @* <input type="date" class="form-control" />*@
     <div class=form-group>
         <input type="submit" value="Actualizar" class="btn btn-success"/>
+        <a id="btnActualizar" href="javascrip:void(0);" class="btn btn-success">Actualizar</a>
     </div>
     </div>
 </form>
