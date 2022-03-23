@@ -11,7 +11,8 @@
 <form asp-action="EditarRegistroProducto">
   <div>
     <label>Producto:  </label>
-    <input type="text" class="form-control" name="Producto" value="@Model.Producto"/>
+   
+    <input type="text" class="form-control Nombrepdto" name="Producto" value="@Model.Producto"/>
     <label>Seleccione Categoria</label>
         <select class="form-control idcat" name="IdCategoria" value="@Model.IdCategoria">
             @{

@@ -99,8 +99,7 @@ namespace prjMaribelMejia.Controllers
             }
         }
         public IActionResult EditarProducto(int id)
-        {
-           
+        {         
 
 
             List<Productos> productos = _context.producto.ToList();
