@@ -39,25 +39,18 @@
             }
          </tbody>
     </table>
-        <div class=form-group>      
-        <a class="btn btn-success" asp-action="AgregarPropietario">Nuevo</a>
-  
+        <div class=form-group>     
+          <a class="btn btn-success" asp-action="AgregarPropietario">Nuevo</a>  
     </div>
 </div>
 @section Scripts{
     <script>
 
-  //$('.tabla-productos').DataTable();  
-
   $(document).ready(function() {
-   // $('#example').DataTable();
 
 //var table = 
-$('.tabla-propietarios').DataTable(
-    
+$('.tabla-propietarios').DataTable(    
     {
-    // "oLanguage": 
-     
 language:{
             "sLengthMenu": "_MENU_ Filtrar por páginas",
             "sZeroRecords": "No se encontró registro",

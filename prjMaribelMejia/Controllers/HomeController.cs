@@ -20,7 +20,29 @@ namespace prjMaribelMejia.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<mCarousel> carousels = new List<mCarousel>();
+            carousels.Add(new mCarousel()
+            {
+                Id = 1,
+                Title = "Imagen 1",
+                Img="SLIDE1.JPG"
+            });
+         
+            carousels.Add(new mCarousel()
+            {
+                Id = 2,
+                Title = "Imagen 2",
+                Img = "SLIDE2.JPG"
+            });
+         
+            carousels.Add(new mCarousel()
+            {
+                Id = 3,
+                Title = "Imagen 3",
+                Img = "SLIDE3.JPG"
+            });
+            
+            return View(carousels);
         }
         public IActionResult Prueba()
         {

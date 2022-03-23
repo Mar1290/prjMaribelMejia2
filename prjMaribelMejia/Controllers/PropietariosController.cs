@@ -49,7 +49,7 @@ namespace prjMaribelMejia.Controllers
         public IActionResult EditarPropietario(int id)
         {
             List<Propietarios> propietarios= _context.propietarios.ToList();
-            //1. recupera dato y envia al moelo
+            //1. recupera dato y envia al modelo
             Propietarios modeloprop = _context.propietarios.Where(p => p.IdPropietario == id).FirstOrDefault();
             //retorna
             return View("EditarPropietario",modeloprop);    
@@ -75,7 +75,7 @@ namespace prjMaribelMejia.Controllers
             ////retornamos a la lista propietarios
             //return View("Propietarios", propietarios);
             //retornamos a la pagina
-            return RedirectToAction("Propietarios");
+            return RedirectToAction("Propietarios");//lista de propietarios
         }
 
         public IActionResult AnularPropietario(int id)

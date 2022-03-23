@@ -3,13 +3,13 @@
 <form asp-action="CrearPropietarios"  autocomplete="off">
     <div>
          <label>Nombre Propietario:</label>
-    <input type="text" class="form-control" name="NombrePropietario" maxlength="50" />
+    <input type="text" class="form-control npropietario" name="NombrePropietario" maxlength="50" />
       <label>Nº Identifiación:</label>
-    <input type="text" class="form-control" name="IdentificacionPropietario" maxlength="16"/>
+    <input type="text" class="form-control identificacionp" name="IdentificacionPropietario" maxlength="16" placeholder="000-000000-0000A"/>
     <label>Dirección Propietario:</label>
-    <input type="text" class="form-control" name="DireccionPropietario" maxlength="300"/>
+    <input type="text" class="form-control direccionp" name="DireccionPropietario" maxlength="300"/>
      <label>Nº Teléfono:</label>
-    <input type="text" class="form-control phone"  name="TelefonoPropietario" maxlength="9"/>
+    <input type="text" class="form-control telefonop"  name="TelefonoPropietario" maxlength="9"/>
 
 
    @* <input type="date" class="form-control" />*@
@@ -26,10 +26,13 @@ $(document).ready(function(){
       $('.date').mask('11/11/1111');
       $('.time').mask('00:00:00');
       $('.date_time').mask('99/99/9999 00:00:00');
-      $('.phone').mask('9999-9999');
+      $('.telefonop').mask('9999-9999');
       $('.phone_with_ddd').mask('(99) 99 999 99 99');
       $('.money').mask('000.000.000.000.000,00', {reverse: true});
 });
+
+$('.identificacionp').mask('000000', { placeholder: '000000' }); //placeholder
+
 </script>
 
 }

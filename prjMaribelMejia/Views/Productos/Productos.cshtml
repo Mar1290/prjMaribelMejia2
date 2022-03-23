@@ -44,7 +44,7 @@
                     <td>                               
                     @*agregamos el botón editar y eliminar*@
                       <a class="btn btn-info" style="width: 80px;" href ="@Url.Action("EditarProducto", new{ id=producto.IdProducto})">Editar</a>
-                      <a class="btn btn-danger" style="width: 80px;" href ="@Url.Action("EliminarCategoria", new{ id=producto.IdProducto})">Anular</a>
+                      <a class="btn btn-danger" style="width: 80px;" href ="@Url.Action("AnularProducto", new{ id=producto.IdProducto})">Anular</a>
                     </td>
                     </tr>
                 }
@@ -52,7 +52,7 @@
         </tbody>
     </table>
     <div class=form-group>      
-        <a class="btn btn-success" asp-action="AgregarProducto">Nuevo Producto</a>
+        <a class="btn btn-success" asp-action="AgregarProducto" title="Agregar un nuevo producto">Nuevo Producto</a>
    
     </div>
 </div>

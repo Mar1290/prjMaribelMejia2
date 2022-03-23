@@ -91,30 +91,41 @@ namespace prjMaribelMejia.Controllers
             //retornamos a la pagina
             return RedirectToAction("Modulos");
         }
-        public IActionResult EliminarModulo(int id)
+
+       // public IActionResult EliminarModulo(int id)
+        public IActionResult EliminarModulo(int? IdModulo)
         {
             List<Modulos> modulos = _context.modulos.ToList();
             //con entity framework. eliminamos el valor
-            Modulos mod = _context.modulos.Where(a => a.IdModulo == id).FirstOrDefault();
+            Modulos mod = _context.modulos.Where(a => a.IdModulo == IdModulo).FirstOrDefault();
             if (mod != null)
             {
-                //elimna categorias
+                //elimina modulo
                 _context.Remove(mod);
-            }
-            _context.SaveChanges();
-       
-            List<Modulos> modulo = _context.modulos.ToList();
-           // return RedirectToAction("Modulos",modulo);
+                _context.SaveChanges();
 
-                //retornar una vez mostrado el mensaje
+                List<Modulos> modulo = _context.modulos.ToList();
+
                 return Json(new
                 {
                     Success = true,
-                    Message = "¡Modulo guardado correctamente!"
+                    //mostramos el mensaje
+                    Message = "¡Módulo guardado correctamente!"
                 });
+            }
+            else
+            {
+                List<Modulos> modulo = _context.modulos.ToList();
 
-          
+                return Json(new
+                {
+                    Success = false,
+                    //mostramos el mensaje
+                    Message = "¡No se eliminó el registro!"
+                });
+            }        
 
+            //return RedirectToAction("Modulos","Modulos");
         }
     }
 }

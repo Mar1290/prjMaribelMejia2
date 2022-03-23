@@ -33,10 +33,8 @@
                                <td>@modulos.Modulo</td>
                                @*<td class="form-control idmod">@modulos.IdModulo</td>*@
                             <td>
-                              <a class="btn btn-info" href ="@Url.Action("EditarModulo", new{ id=modulos.IdModulo})">Editar</a>
-                              <a class="btn btn-danger" href ="@Url.Action("EliminarModulo", new{ id=modulos.IdModulo})">Eliminar</a>
-                                @*<a id="btnEliminar" href="javascrip:void(0);" class="btn btn-success">Guardar</a>*@
-                                <a id="btnEliminar" href="javascrip:void(0);"  class="btn btn-danger">Eliminar js</a>
+                              <a class="btn btn-info" href ="@Url.Action("EditarModulo", new{ id=modulos.IdModulo})">Editar</a>                           
+                              <a id="btnEliminar" onclick="Confirmacion(@modulos.IdModulo);" href="javascript:void(0);" class="btn btn-danger">Eliminar</a>
                             </td>
                     </tr>
                 }
@@ -51,10 +49,33 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="exampleModalLabel">Atención!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                @*se hubica la clase donde ingresamos el texto*@
+                <span class="valor-descripcion"></span>
+             
+                <input type="hidden" id="IdModulo"  class="Modulo" name="IdModulo"><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 80px;">Cerrar</button>
+                <button type="button" onclick="Confirmacion2();" href="javascript:void(0);" class="btn btn-danger" style="width: 80px;">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
     @section Scripts{
        <script>
   $(document).ready(function() {
-
+//para mostrar en español
 $('.tabla-modulos').DataTable(
     
     {
@@ -75,8 +96,55 @@ language:{
         },
             "sInfoFiltered": "(filtrado de _MAX_ registros en total)"
         }
-    });
-    } );
+                });
+        });
+
+            function Confirmacion(IdModulo) {
+            $(".valor-descripcion").text("¿Está Seguro de Eliminar el Registro?");//clase donde pasamos el texto que recuperamos del post en el controlador
+            $(".Modulo").val(IdModulo);
+            $('#exampleModal').modal('show');
+        }
+
+        function Confirmacion2() {
+
+            var IdModulo = document.getElementById("IdModulo").value;
+            debugger
+            var xhr = $.ajax({
+
+                url: "EliminarModulo",
+                type: "POST",
+                data: {
+                    "IdModulo": IdModulo
+                }
+            });
+            xhr.done(function (data) {
+
+            $('#exampleModal').modal('hide');
+
+            //mostrar mensaje de guardado satisfactorio
+            if (data.success) {
+                //mostrar mensaje de guardado satisfactorio
+                Swal.fire(
+                    'Módulo ha sido Eliminado!',
+                    data.message,//'¡Click en el botón!',
+                    'success'
+                )
+            }
+            else {
+                Swal.fire(
+                    '¡error!',
+                    data.message,//'¡Click en el botón!',
+                    'error'
+                )
+            }
+                //luego de 2 segundos redireccioonar a lista de productos
+                setTimeout(function () {
+                    location.href = "../Modulos/Modulos";
+                }, 2000)
+
+                });         
+           
+        }
 
 </script>
 }

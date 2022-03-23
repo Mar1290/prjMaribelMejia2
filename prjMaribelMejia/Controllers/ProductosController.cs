@@ -42,8 +42,7 @@ namespace prjMaribelMejia.Controllers
         {
       
             Productos model = new Productos();
-            var listacategoria = _context.categorias.Select(c => new { c.IdCategoria, c.Categoria }).ToList();
-       
+            var listacategoria = _context.categorias.Select(c => new { c.IdCategoria, c.Categoria }).ToList();       
             return View();
 
         }
@@ -99,18 +98,18 @@ namespace prjMaribelMejia.Controllers
             }
         }
         public IActionResult EditarProducto(int id)
-        {         
-
-
+        {      
             List<Productos> productos = _context.producto.ToList();
             //1. recupera dato y envia al modelo
             Productos modelopdto = _context.producto.Where(p => p.IdProducto == id).FirstOrDefault();
+
             //cargamos la lista de categorias       
             var listacategoria = _context.categorias.ToList();
             ViewBag.ListaCategorias = listacategoria;
             //cargamos la lista de marcas
             var listaMarcas = _context.marcas.ToList();
             ViewBag.ListaMarcas = listaMarcas;
+
             //retorna
             return View("EditarProducto", modelopdto);
 
@@ -130,13 +129,13 @@ namespace prjMaribelMejia.Controllers
             List<Productos> producto = _context.producto.ToList();
               
             //retornamos a la pagina
-            //return RedirectToAction("Productos");
+            return RedirectToAction("Productos");
             //retornar una vez mostrado el mensaje
-            return Json(new
-            {
-                Success = true,
-                Message = "¡Producto actualizado correctamente!"
-            });
+            //return Json(new
+            //{
+            //    Success = true,
+            //    Message = "¡Producto actualizado correctamente!"
+            //});
 
         }
 

@@ -56,8 +56,7 @@ $("#btnGuardar").click(function () {
                     data.message,//'¡Click en el botón!',
                     'error'
                 )
-            }
-      
+            }      
         });
 
         xhr.fail(function () {
@@ -65,14 +64,9 @@ $("#btnGuardar").click(function () {
                 msg: "Error al guardar este registro",
                 type: "error"
             });
-
-
         })
-
     }
-
 });
-
 $("#btnEliminar").click(function ()
 {
     var idModulo = $(".idmod").val();
@@ -86,12 +80,10 @@ $("#btnEliminar").click(function ()
                 popup: 'animate__animated animate__fadeOutUp'
             }
         })
-
     }
     else {
 
         var xhr2 = $.ajax({
-
             //url destino
             url: "EliminarModulo",
             type: "POST",
