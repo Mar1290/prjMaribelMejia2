@@ -64,17 +64,25 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidad</a>
-                          <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Categorias" asp-action="ListaCategorias">Categorias</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Productos" asp-action="Productos">Productos</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" asp-area="" asp-controller="Productos" asp-action="Productos" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Productos
+                            </a>
+                            <div class="dropdown-menu alert-danger" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="Productos" asp-action="Productos">Ver Catálogo</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Ofrecer Producto</a>
+                            </div>
                         </li>
-                  
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Propietarios" asp-action="Propietarios">Propietarios</a>
                         </li>
-                            <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Modulos" asp-action="Modulos">Modulos</a>
                         </li>
                         <form class="form-inline my-2 my-lg-0">

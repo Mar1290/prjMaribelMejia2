@@ -41,7 +41,7 @@
                      <td>@producto.Precio</td>
                      <td>
                  
-              <a data-id="@producto.IdProducto"  class="btn btn-success fa fa-eye ver-descripcion" href="javascript:void(0); "> Descripción</a>
+              <a data-id="@producto.IdProducto"  class="btn btn-success fa fa-eye ver-descripcion" href="javascript:void(0);" title="Ver detalle del producto"> Descripción</a>
                     <td>                               
                     @*agregamos el botón editar y eliminar*@
                       <a class="btn btn-info fa fa-pencil-square-o" style="width: 95px;" href ="@Url.Action("EditarProducto", new{ id=producto.IdProducto})" title="Edita registro">Editar</a>
