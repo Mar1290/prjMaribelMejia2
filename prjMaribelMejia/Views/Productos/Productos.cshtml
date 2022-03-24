@@ -9,7 +9,8 @@
 <div class="table-responsive">
     <div>  
     <div>
-      <h2 class="alert-success">Catálogo de Productos</h2>
+  <h2 class="text-info bg-light rounded border-bottom">Catálogo de Productos</h2>
+  
     </div>
     <div class="table-responsive">
 <br />
@@ -45,7 +46,7 @@
                     @*agregamos el botón editar y eliminar*@
                       <a class="btn btn-info fa fa-pencil-square-o" style="width: 95px;" href ="@Url.Action("EditarProducto", new{ id=producto.IdProducto})" title="Edita registro">Editar</a>
                 <a id="btnEliminar" style="width: 95px;" onclick="Confirmacion(@producto.IdProducto);" href="javascript:void(0);" class="btn btn-danger fa fa-trash-o" title="Elimina registro">Eliminar</a>
-                <a class="btn btn-primary fa fa-shopping-cart" id="btnEncontrar" style="width: 90px; " onclick="Confirmacion(@producto.IdProducto);" href="javascript:void(0);" title="Encuentrálo">Comprar</a>
+                <a class="btn btn-primary fa fa-shopping-cart" id="btnEncontrar" style="width: 90px; " href="javascript:void(0);" title="Encuentrálo">Comprar</a>
 
                       </td>
                     </tr>

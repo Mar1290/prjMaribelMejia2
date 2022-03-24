@@ -43,8 +43,7 @@ namespace prjMaribelMejia.Controllers
             _context.SaveChanges(); 
             //retornamos a la pagina
             return RedirectToAction("Propietarios");
-        }
-  
+        } 
 
         public IActionResult EditarPropietario(int id)
         {
@@ -55,8 +54,6 @@ namespace prjMaribelMejia.Controllers
             return View("EditarPropietario",modeloprop);    
 
         }
-
-
         public IActionResult EditarRegistroPropietario(Propietarios propietarios)
         {
 
