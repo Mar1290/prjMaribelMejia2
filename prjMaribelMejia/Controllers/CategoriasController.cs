@@ -35,15 +35,9 @@ namespace prjMaribelMejia.Controllers
         
         public IActionResult obtenerCategorias()
         {
-            //Categorias model = new Categorias();
-            //model.LisCategoria = _context.categorias.ToList().Select(categorias => new SelectListItem() { Value = model.IdCategoria.ToString(), Text = model.Categoria.ToString() })
-            //    .Reverse()
-            //    .ToList();
-            //return View(model);
 
             Categorias model = new Categorias();
             var listacategoria = _context.categorias.Select(c => new { c.IdCategoria, c.Categoria }).ToList();
-            //model.LisCategoria = new SelectList(listacategoria, "Id", "Name");
             return View();
         }
 
@@ -67,7 +61,6 @@ namespace prjMaribelMejia.Controllers
                 _context.SaveChanges();
 
                 //Retornamos a la pagina principal
-                       //260222 return RedirectToAction("ListaCategorias");
 
                 return Json(new
                 {

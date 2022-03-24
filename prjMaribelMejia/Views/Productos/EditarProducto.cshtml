@@ -22,6 +22,7 @@
                 }
             }
         </select>
+        <span asp-validation-for="IdCategoria" class="text-danger"></span>
     <label>Precio Unitario C$:</label>
     <input type="text" class="form-control" name="Precio" value="@Model.Precio"/>
     <label>Descripción del Producto:</label>
@@ -35,12 +36,15 @@
                 }
             }
         </select>
+         
      <input type="hidden" class="form-control idpdto" name="IdProducto" value="@Model.IdProducto"/>
      <br />
    @* <input type="date" class="form-control" />*@
     <div class=form-group>
-        <input type="submit" value="Actualizar" class="btn btn-success"/>
-        @*<a id="btnActualizar" href="javascrip:void(0);" class="btn btn-success">Actualizar</a>*@
+        <input type="submit" style="width: 80px;" value="Actualizar" class="btn btn-success"/>
+
+         <a class="btn btn-info" style="width: 80px;" asp-area="" asp-controller="Productos" asp-action="Productos">Cancelar</a>
+
     </div>
     </div>
 </form>

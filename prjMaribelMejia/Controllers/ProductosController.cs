@@ -35,7 +35,10 @@ namespace prjMaribelMejia.Controllers
             ViewBag.ListaMarcas = listamarcas;
 
             //retornar la vista
-            return View(productos);
+           // return View(productos);
+
+            //mejor usar esta forma:
+            return View(_context.producto.ToList());
         }
         [HttpPost]
         public IActionResult obtenerCategorias()
@@ -97,6 +100,8 @@ namespace prjMaribelMejia.Controllers
                 });
             }
         }
+
+     
         public IActionResult EditarProducto(int id)
         {      
             List<Productos> productos = _context.producto.ToList();
@@ -114,6 +119,7 @@ namespace prjMaribelMejia.Controllers
             return View("EditarProducto", modelopdto);
 
         }
+        [HttpGet]
         public IActionResult EditarRegistroProducto(Productos productos)
         {
 
@@ -137,6 +143,41 @@ namespace prjMaribelMejia.Controllers
             //    Message = "¡Producto actualizado correctamente!"
             //});
 
+        }
+
+        public IActionResult EliminarProducto(int? IdProducto)
+        {
+         
+            List<Productos> productos = _context.producto.ToList();
+            //con entity framework. eliminamos el valor
+            Productos mod = _context.producto.Where(a => a.IdProducto == IdProducto).FirstOrDefault();
+            if (mod != null)
+            {
+                //elimina modulo
+                _context.Remove(mod);
+                _context.SaveChanges();
+
+                List<Productos> producto = _context.producto.ToList();
+
+                return Json(new
+                {
+                    Success = true,
+                    //mostramos el mensaje
+                    Message = "¡Producto eliminado correctamente!"
+                });
+            }
+            else
+            {
+
+                List<Productos> producto = _context.producto.ToList();
+
+                return Json(new
+                {
+                    Success = false,
+                    //mostramos el mensaje
+                    Message = "¡Error: No se eliminó el registro!"
+                });
+            }
         }
 
         public IActionResult ObtenerDescripcion(int id)

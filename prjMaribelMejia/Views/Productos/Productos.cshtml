@@ -44,8 +44,9 @@
                     <td>                               
                     @*agregamos el botón editar y eliminar*@
                       <a class="btn btn-info" style="width: 80px;" href ="@Url.Action("EditarProducto", new{ id=producto.IdProducto})">Editar</a>
-                      <a class="btn btn-danger" style="width: 80px;" href ="@Url.Action("AnularProducto", new{ id=producto.IdProducto})">Anular</a>
-                    </td>
+                <a id="btnEliminar" onclick="Confirmacion(@producto.IdProducto);" href="javascript:void(0);" class="btn btn-danger">Eliminar</a>
+
+                      </td>
                     </tr>
                 }
             }
@@ -78,6 +79,33 @@
 </div>
 </div>
 </div>
+
+<!-- Modal2 -->
+<div class="modal fade" id="ConfirmModal" tabindex="-1" role="dialog" aria-labelledby="ConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="exampleModalLabel">Atención!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                @*se hubica la clase donde ingresamos el texto*@
+                <span class="valor-modalConfirm"></span>
+             
+                <input type="hidden" id="IdProducto"  class="Producto" name="IdProducto"><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 80px;">Cerrar</button>
+                <button type="button" onclick="Confirmacion2();" href="javascript:void(0);" class="btn btn-danger" style="width: 80px;">Eliminar</button>
+
+                </div>
+        </div>
+    </div>
+</div>
+
+
  @section Scripts{
     <script>
   $(document).ready(function() {
@@ -128,5 +156,55 @@ language:{
    xhr.fail(function () {})
 
     })
+
+
+
+    //modal 2
+     function Confirmacion(IdProducto) {
+            $(".valor-modalConfirm").text("¿Está Seguro de Eliminar el Registro?");//clase donde pasamos el texto que recuperamos del post en el controlador
+            $(".Producto").val(IdProducto);
+            $('#ConfirmModal').modal('show');
+        }
+
+        function Confirmacion2() {
+
+            var IdProducto = document.getElementById("IdProducto").value;
+            debugger
+            var xhr = $.ajax({
+
+                url: "EliminarProducto",
+                type: "POST",
+                data: {
+                    "IdProducto": IdProducto
+                }
+            });
+            xhr.done(function (data) {
+
+            $('#ConfirmModal').modal('hide');
+
+            //mostrar mensaje de guardado satisfactorio
+            if (data.success) {
+                //mostrar mensaje de guardado satisfactorio
+                Swal.fire(
+                    'Producto Eliminado!',
+                    data.message,//'¡Click en el botón!',
+                    'success'
+                )
+            }
+            else {
+                Swal.fire(
+                    '¡error!',
+                    data.message,//'¡Click en el botón!',
+                    'error'
+                )
+            }
+                //luego de 2 segundos redireccioonar a lista de productos
+                setTimeout(function () {
+                    location.href = "../Productos/Productos";
+                }, 3000)
+
+                });         
+           
+        }
 </script>
 }
