@@ -5,14 +5,12 @@
          <label>Nombre Propietario:</label>
     <input type="text" class="form-control npropietario" name="NombrePropietario" maxlength="50" />
       <label>Nº Identifiación:</label>
-    <input type="text" class="form-control identificacionp" name="IdentificacionPropietario" maxlength="16" placeholder="000-000000-0000A"/>
+    <input type="text" class="form-control identificacionp" name="IdentificacionPropietario" maxlength="16"/>
     <label>Dirección Propietario:</label>
     <input type="text" class="form-control direccionp" name="DireccionPropietario" maxlength="300"/>
      <label>Nº Teléfono:</label>
-    <input type="text" class="form-control telefonop"  name="TelefonoPropietario" maxlength="9"/>
-
-
-   @* <input type="date" class="form-control" />*@
+    <input type="text" class="form-control telefonop" name="TelefonoPropietario" maxlength="9"/> 
+ 
     <div class=form-group>
         <input type="submit" value="Guardar" class="btn btn-success"/>
     </div>
@@ -20,20 +18,28 @@
 </form>
 @section Scripts
 { 
-   <script>
-
-$(document).ready(function(){
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+  
+    <script>
+        $(function () {
+            
+      $("#CONTACT_PHONE").mask("(999) 999-9999");
       $('.date').mask('11/11/1111');
       $('.time').mask('00:00:00');
       $('.date_time').mask('99/99/9999 00:00:00');
-      $('.telefonop').mask('9999-9999');
+      $('.telefonop').mask('9999-9999',{ placeholder: '0000-0000' });
+      $('.identificacionp').mask("0000-000000-0000A", { placeholder: '0000-000000-0000A' }); //placeholder
       $('.phone_with_ddd').mask('(99) 99 999 99 99');
       $('.money').mask('000.000.000.000.000,00', {reverse: true});
-});
+      $("#CreditCard-2").mask({"mask": "9999 9999 9999 9999", "placeholder" : "**** **** **** ****", "clearMaskOnLostFocus": false});
+      $("#Date-2").mask({"mask" : "99/99/9999", "placeholder": "mm/dd/yyyy", "clearMaskOnLostFocus": false});
+      $("#Money-2").mask({ alias : "currency", prefix: 'C$', "clearMaskOnLostFocus": false});
 
-$('.identificacionp').mask('000000', { placeholder: '000000' }); //placeholder
+        });
 
-</script>
+    </script>
+
 
 }
+
 

@@ -1,12 +1,9 @@
 ﻿@*Aquii es donde se encapsulan los datos*@
 @model List<prjMaribelMejia.Models.Categorias>
-
-
 <div>  
     <div>
       <h2 class="text-info bg-light rounded border-bottom">Administración de Categorías</h2>
     </div>
-
 <br />
 
     <table class="table tabla-categorias hover display">
@@ -31,8 +28,8 @@
                      
                     @*opcion 2 boton editar*@
                     
-                      <a class="btn btn-info" style="width: 80px;"  href ="@Url.Action("EditarCategoria", new{ id=categoria.IdCategoria})">Editar</a>
-                      <a class="btn btn-danger" style="width: 80px;" href ="@Url.Action("EliminarCategoria", new{ id=categoria.IdCategoria})">Eliminar</a>
+                      <a class="btn btn-info" style="width: 80px;"  href ="@Url.Action("EditarCategoria", new{ id=categoria.IdCategoria})" title="Editar registro">Editar</a>                     
+                      <a id="btnEliminar" style="width: 80px;" onclick="Confirmacion(@categoria.IdCategoria);" href="javascript:void(0);" class="btn btn-danger" title="Elimina registro">Eliminar</a>
                     </td>
                     </tr>
                 }
@@ -64,20 +61,40 @@
     </div>
   </div>
 </div>
+<!-- Modal2 elminar categorìa -->
+<div class="modal fade" id="ConfirmModal" tabindex="-1" role="dialog" aria-labelledby="ConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="exampleModalLabel">Atención!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                @*se hubica la clase donde ingresamos el texto*@
+                <span class="valor-modalConfirm"></span>
+             
+                <input type="hidden" id="IdCategoria"  class="Categoria" name="IdCategoria"><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 80px;">Cerrar</button>
+                <button type="button" onclick="Confirmacion2();" href="javascript:void(0);" class="btn btn-danger" style="width: 80px;">Eliminar</button>
 
+                </div>
+        </div>
+    </div>
+</div>
 
     @section Scripts{
     <script>
 
-    //$('.tabla-categorias').DataTable();
           $(document).ready(function() {
-   // $('#example').DataTable();
 
 //var table = 
 $('.tabla-categorias').DataTable(
     
     {
-    // "oLanguage": 
      
 language:{
             "sLengthMenu": "_MENU_ Filtrar por páginas",
@@ -123,10 +140,55 @@ language:{
    
    })
    xhr.fail(function () {})
-
-        //alert("Se ha dado clic")
-       
-
+  
     })
+
+    //modal 2: eliminar
+     function Confirmacion(IdProducto) {
+            $(".valor-modalConfirm").text("¿Está Seguro de Eliminar el Registro?");//clase donde pasamos el texto que recuperamos del post en el controlador
+            $(".Categoria").val(IdProducto);
+            $('#ConfirmModal').modal('show');
+        }
+
+        function Confirmacion2() {
+
+            var IdCategoria = document.getElementById("IdCategoria").value;
+            debugger
+            var xhr = $.ajax({
+
+                url: "EliminarCategoria",
+                type: "POST",
+                data: {
+                    "IdCategoria": IdCategoria
+                }
+            });
+            xhr.done(function (data) {
+
+            $('#ConfirmModal').modal('hide');
+
+            //mostrar mensaje de guardado satisfactorio
+            if (data.success) {
+                //mostrar mensaje de guardado satisfactorio
+                Swal.fire(
+                    'Categoría Eliminada!',
+                    data.message,//'¡Click en el botón!',
+                    'success'
+                )
+            }
+            else {
+                Swal.fire(
+                    '¡error!',
+                    data.message,//'¡Click en el botón!',
+                    'error'
+                )
+            }
+                //luego de 2 segundos redireccioonar a lista de productos
+                setTimeout(function () {
+                    location.href = "../Categorias/ListaCategorias";
+                }, 3000)
+
+                });     
+                }
+
 </script>
 }

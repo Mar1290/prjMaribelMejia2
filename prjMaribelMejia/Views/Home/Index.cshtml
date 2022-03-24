@@ -1,13 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Inicio";
 }
-
 @model IEnumerable<prjMaribelMejia.Models.mCarousel>
 @{
     int i = 0;
 }
 <div class="container table-responsive">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
   <ol class="carousel-indicators alert-danger">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -20,7 +19,7 @@
             var active = i == 1 ? "active" : "";
 
       <div class="carousel-item align-items-xl-center @active">
-         <a class="nav-link text-dark" asp-area="" asp-controller="Productos" asp-action="Productos"><img class="d-block w-100" src="~/images/@item.Img" alt="@item.Title"></a>
+         <a class="nav-link text-dark" asp-area="" asp-controller="Productos" asp-action="Productos"><img class="d-block w-100" src="~/images/@item.Img" alt="@item.Title" style="width: 850px;height: 600px"></a>
       
     </div>
       }

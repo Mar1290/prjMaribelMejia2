@@ -5,7 +5,8 @@
 <h2 class="text-info bg-light rounded border-bottom">Administración de Propietarios</h2>
 
 <br />
-    <table class="table table-striped table-dark tabla-propietarios hover display" style="background: #2D3333;color:#3B404F;"">
+    @*<table class="table table-striped table-dark tabla-propietarios hover display" style="background: #2D3333;color:#3B404F;"">*@
+        <table class="table tabla-propietarios hover display table-striped table-bordered table-light">
          <thead style="color:#F7F9F4;">
         <tr>
          <th>Propietario</th>
@@ -17,7 +18,6 @@
         </tr>
          </thead>
          <tbody>
-
                     @{
                 //hace referencia a lo que viene como modelo
                 foreach(var propietario in Model)
@@ -30,9 +30,9 @@
                        <td>@propietario.PropietarioActivo</td>
                     <td>
        
-                      <a class="btn btn-info" href ="@Url.Action("EditarPropietario", new{ id=propietario.IdPropietario})">Editar</a>
+                      <a class="btn btn-info" href ="@Url.Action("EditarPropietario", new{ id=propietario.IdPropietario})" title="Editar registro">Editar</a>
                       @*<a class="btn btn-danger" asp-action="EliminarCategoria">Eliminar</a>*@
-                      <a class="btn btn-danger" href ="@Url.Action("AnularPropietario", new{ id=propietario.IdPropietario})">Anular</a>
+                      <a class="btn btn-danger" href ="@Url.Action("AnularPropietario", new{ id=propietario.IdPropietario})" title="Anular registro">Anular</a>
                     </td>
                     </tr>
                 }

@@ -107,10 +107,10 @@ namespace prjMaribelMejia.Controllers
             //retornamos a la vista listacategorias
             return View("ListaCategorias", categoria);
         }
-        public IActionResult EliminarCategoria(int id)
+        public IActionResult EliminarCategoria(int? IdCategoria)
         {
             //en caso de que tengamos relacion con otra tabla
-            List<Productos> productos = _context.producto.Where(a => a.IdCategoria==id).ToList();
+            List<Productos> productos = _context.producto.Where(a => a.IdCategoria== IdCategoria).ToList();
 
             if (productos !=null)
             {
@@ -121,16 +121,31 @@ namespace prjMaribelMejia.Controllers
             // _context.SaveChanges();//no es recomendable poner el metodos varias veces para evitar ir a la bd constantemente.
 
             //con entity framework. eliminamos el valor
-            Categorias categorias = _context.categorias.Where(a => a.IdCategoria == id).FirstOrDefault();
+            Categorias categorias = _context.categorias.Where(a => a.IdCategoria == IdCategoria).FirstOrDefault();
             if (categorias != null)
             {
-                //elimna categorias
+                //elimina categorias
                 _context.Remove(categorias);
-            }     
-          
-            _context.SaveChanges(); 
-            List<Categorias> categoria = _context.categorias.ToList();
-            return View("ListaCategorias", categoria);
+                _context.SaveChanges();
+                List<Categorias> categoria = _context.categorias.ToList();
+                return Json(new
+                {
+                    Success = true,
+                    //mostramos el mensaje
+                    Message = "¡Categoría eliminada correctamente!"
+                });
+            }
+            else
+            {
+                List<Categorias> categoria = _context.categorias.ToList();
+                return Json(new
+                {
+                    Success = false,
+                    //mostramos el mensaje
+                    Message = "¡Error: No se eliminó el registro!"
+                });
+            }         
+         
         }
 
         public IActionResult ObtenerDescripcion(int id)

@@ -16,7 +16,7 @@
         <input type="hidden" class="form-control" name="IdPropietario" value="@Model.IdPropietario" />
 
         <div class="form-group">
-            <input type="submit" value="Actualizar" class="btn btn-success" />
+            <input type="submit" value="Actualizar" class="btn btn-success" title="Actualiza registro" />
         </div>
     </div>
 </form>
@@ -24,18 +24,22 @@
 @section Scripts
 { 
    <script>
-
-$(document).ready(function(){
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+  
+    <script>
+        $(function () {            
+      $("#CONTACT_PHONE").mask("(999) 999-9999");
       $('.date').mask('11/11/1111');
       $('.time').mask('00:00:00');
       $('.date_time').mask('99/99/9999 00:00:00');
-      $('.telefonop').mask('9999-9999');
+      $('.telefonop').mask('9999-9999',{ placeholder: '0000-0000' });
+      $('.identificacionp').mask("0000-000000-0000A", { placeholder: '0000-000000-0000A' }); //placeholder
       $('.phone_with_ddd').mask('(99) 99 999 99 99');
       $('.money').mask('000.000.000.000.000,00', {reverse: true});
-});
-
-$('.identificacionp').mask('000000', { placeholder: '000000' }); //placeholder
-
-</script>
+      $("#CreditCard-2").mask({"mask": "9999 9999 9999 9999", "placeholder" : "**** **** **** ****", "clearMaskOnLostFocus": false});
+      $("#Date-2").mask({"mask" : "99/99/9999", "placeholder": "mm/dd/yyyy", "clearMaskOnLostFocus": false});
+      $("#Money-2").mask({ alias : "currency", prefix: 'C$', "clearMaskOnLostFocus": false});
+        });
+    </script>
 
 }
