@@ -47,7 +47,7 @@ namespace prjMaribelMejia.Controllers
 
         public IActionResult CrearNuevaOferta(Ofertas ofertas)
         {
-            if ((ofertas.IdProducto) != 0)
+            if ((ofertas.IdProducto) == 0)
             {
                 //utilizando formato json para intercambio de datos
                 return Json(new
@@ -81,6 +81,8 @@ namespace prjMaribelMejia.Controllers
                     Message = "¡Su oferta ha sido registrada!"
                 });
             }
+
+
         }
 
     }

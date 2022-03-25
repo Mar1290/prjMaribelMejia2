@@ -6,7 +6,7 @@
     var Moduloid = $(".idmod").val();
 
     //sugerencia de validacion
-    if (Productoid == "" || Moduloid == "") {
+    if (Productoid < 0 || Moduloid < 0) {
         Swal.fire({
             title: 'todos los campos son requeridos',
             showClass: {
@@ -21,14 +21,13 @@
         var xhr = $.ajax({
 
             //url destino
-            url: "CrearOferta",
+            url: "CrearNuevaOferta",
             type: "POST",
             //agregamos los parametros de la petición
             data: {
                 "IdProducto": Productoid,
                 "IdModulo": Moduloid
             }
-
         });
 
         //Mensaje de respuesta
@@ -45,8 +44,7 @@
                 //luego de 2 segundos redireccioonar a lista categoria
                 setTimeout(function () {
                     location.href = "../Ofertas/Ofertas";
-                }, 2000)
-
+                }, 3000)
             }
             else {
                 Swal.fire(
@@ -55,7 +53,6 @@
                     'error'
                 )
             }
-
         });
         xhr.fail(function () {
             notif({
@@ -63,7 +60,5 @@
                 type: "error"
             });
         })
-
     }
-
 });
