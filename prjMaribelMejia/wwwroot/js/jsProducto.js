@@ -11,9 +11,9 @@ $("#btnGuardar").click(function () {
     var marca = $(".nmarca").val();
 
     //sugerencia de validacion 
-    if (nombrepdto == "" || descripcionpdt == "" || idcat == "" || preciopdto == "" || idmarca == ""){
+    if (nombrepdto == "" || descripcionpdt == "" || (idcat == "" || idcat==0) || (preciopdto == "" || preciopdto == 0) || (idmarca == "" || idmarca == 0)) {
         Swal.fire({
-            title: 'todos los campos son requeridos',
+            title: 'Todos los campos son requeridos!',
             showClass: {
                 popup: 'animate__animated animate__fadeInDown'
             },
@@ -49,7 +49,7 @@ $("#btnGuardar").click(function () {
 
                 //mostrar mensaje de guardado satisfactorio
                 Swal.fire(
-                    'Guardado correctamente!',
+                    'Producto Guardado correctamente!',
                     data.message,//'¡Click en el botón!',
                     'success'
                 )
@@ -67,8 +67,6 @@ $("#btnGuardar").click(function () {
                     'error'
                 )
             }
-            //borrar: console.log(data);
-
         });
 
         xhr.fail(function () {
@@ -76,8 +74,6 @@ $("#btnGuardar").click(function () {
                 msg: "Error al guardar este registro",
                 type: "error"
             });
-
-
         })
 
     }
@@ -98,9 +94,10 @@ $("#btnActualizar").click(function () {
     var idPdto = $(".idpdto")
 
     //sugerencia de validacion 
-    if (nombrepdto == "" || descripcionpdt == "" || idcat == "" || preciopdto == "" || idmarca == "") {
+    if (idPdto == 0)
+    {
         Swal.fire({
-            title: 'todos los campos son requeridos',
+            title: 'No se pudo obtener el registro ',
             showClass: {
                 popup: 'animate__animated animate__fadeInDown'
             },
@@ -109,7 +106,8 @@ $("#btnActualizar").click(function () {
             }
         })
     }
-    else {
+    else
+    {
         //hacer la peticion al servidor para crear nueva categoria
 
         var xhr = $.ajax({
@@ -125,7 +123,7 @@ $("#btnActualizar").click(function () {
                 "Descripcion": descripcionpdt,
                 "IdMarca": idmarca,
                 "IdProducto": idPdto
-            }
+    }
 
         });
 

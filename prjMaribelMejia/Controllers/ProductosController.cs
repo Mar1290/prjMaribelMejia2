@@ -139,10 +139,9 @@ namespace prjMaribelMejia.Controllers
             return View("EditarProducto", modelopdto);
 
         }
-        [HttpGet]
+        [HttpPost]
         public IActionResult EditarRegistroProducto(Productos productos)
         {
-
             Productos pdtoactual = _context.producto.
              Where(pa => pa.IdProducto == productos.IdProducto).FirstOrDefault();
             //actualizamos datos
