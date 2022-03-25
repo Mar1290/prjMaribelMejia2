@@ -113,7 +113,7 @@ $("#btnActualizar").click(function () {
         var xhr = $.ajax({
 
             //url destino
-            url: "EditarRegistroProducto",
+            url: "EditarProducto",
             type: "POST",
             //agregamos los parametros de la petición
             data: {

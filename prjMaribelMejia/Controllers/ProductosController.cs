@@ -121,13 +121,10 @@ namespace prjMaribelMejia.Controllers
                     Message = "¡Producto guardado correctamente!"
                 });
             }
-        }     
+        }
+        [HttpGet]
         public IActionResult EditarProducto(int id)
-        {      
-            List<Productos> productos = _context.producto.ToList();
-            //1. recupera dato y envia al modelo
-            Productos modelopdto = _context.producto.Where(p => p.IdProducto == id).FirstOrDefault();
-
+        {
             //cargamos la lista de categorias       
             var listacategoria = _context.categorias.ToList();
             ViewBag.ListaCategorias = listacategoria;
@@ -135,11 +132,19 @@ namespace prjMaribelMejia.Controllers
             var listaMarcas = _context.marcas.ToList();
             ViewBag.ListaMarcas = listaMarcas;
 
+            List<Productos> productos = _context.producto.ToList();
+            //1. recupera dato y envia al modelo
+            Productos modelopdto = _context.producto.Where(p => p.IdProducto == id).FirstOrDefault();
+
+            if (modelopdto == null)
+            {
+                return RedirectToAction("Productos");
+            }
             //retorna
-            return View("EditarProducto", modelopdto);
+            return View(modelopdto);
 
         }
-        [HttpPost]
+
         public IActionResult EditarRegistroProducto(Productos productos)
         {
             Productos pdtoactual = _context.producto.
