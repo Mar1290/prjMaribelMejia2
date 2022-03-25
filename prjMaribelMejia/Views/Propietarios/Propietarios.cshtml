@@ -30,8 +30,8 @@
                        <td>@propietario.PropietarioActivo</td>
                     <td>
        
-                      <a class="btn btn-info" href ="@Url.Action("EditarPropietario", new{ id=propietario.IdPropietario})" title="Editar registro">Editar</a>
-                      @*<a class="btn btn-danger" asp-action="EliminarCategoria">Eliminar</a>*@
+                      <a class="btn btn-info" href ="@Url.Action("EditarPropietario", new{ id = propietario.IdPropietario})" title="Editar registro">Editar</a>
+                      <a class="btn btn-danger" asp-route-id="@propietario.IdPropietario" asp-action="EditarPropietario">edit2</a>
                       <a class="btn btn-danger" href ="@Url.Action("AnularPropietario", new{ id=propietario.IdPropietario})" title="Anular registro">Anular</a>
                     </td>
                     </tr>

@@ -1,0 +1,134 @@
+﻿
+@model prjMaribelMejia.Models.Ofertas
+    @{
+    List<prjMaribelMejia.Models.Productos> productos = ViewBag.ListaDeProducto;
+}
+    @{
+    List<prjMaribelMejia.Models.Modulos> modulos = ViewBag.ListaDeModulos;
+}
+
+<h1 class="alert-success">Crear nueva oferta</h1>
+
+<form asp-action="CrearOferta" autocomplete="off">
+<div class="table-responsive">  
+   
+        <label>Seleccione pdto</label>
+         
+        <select class="form-control idpdt" name="IdProducto">
+            @{
+                foreach(var cat in productos)
+                {
+                    <option value="@cat.IdProducto">@cat.Producto</option>
+                }
+            }
+        </select>
+   <br />
+         <label>Seleccione modulo</label>
+         
+        <select class="form-control idmod" name="IdModulo">
+            @{
+                foreach(var cat in modulos)
+                {
+                    <option value="@cat.IdModulo">@cat.Modulo</option>
+                }
+            }
+        </select>
+   <br />
+
+         <div class=form-group>          
+            <a id="btnGuardar" href="javascrip:void(0);" class="btn btn-success" style="width: 80px;">Guardar</a>
+        </div>         
+ 
+    </div>
+</form>
+
+@section Scripts
+{
+     <script>
+      $(document).ready(function() {
+    $("#btnGuardar").click(function () {
+    //   alert("Este es el evento click");
+    //2. obtener el valor del input pruebajq4 en una variable
+    var Productoid = $(".idpdt").val();
+    //obtener el valor del input nombre-categoria
+    var Moduloid = $(".idmod").val();
+
+    //sugerencia de validacion 
+    if (Productoid == "" || Moduloid == "") {
+        Swal.fire({
+            title: 'todos los campos son requeridos',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
+    }
+    else {
+
+
+        var xhr = $.ajax({
+
+            //url destino
+            url: "CrearOferta",
+            type: "POST",
+            //agregamos los parametros de la petición
+            data: {
+                "IdProducto": Productoid,
+                "IdModulo": Moduloid
+            }
+
+        });
+
+        //Mensaje de respuesta
+        xhr.done(function (data) {
+
+            //notif({
+            //    msg: "Categoría guardada correctamente",
+            //    type: "success"
+            //});
+            if (data.success) {
+
+                //mostrar mensaje de guardado satisfactorio
+                Swal.fire(
+                    'Guardado correctamente!',
+                    data.message,//'¡Click en el botón!',
+                    'success'
+                )
+
+                //luego de 2 segundos redireccioonar a lista categoria
+                setTimeout(function () {
+                    location.href = "../Ofertas/Ofertas";
+                }, 2000)
+                //$(".pruebajq4").val("");
+                //$(".nombre-Categoria").va("");
+
+            }
+            else {
+                Swal.fire(
+                    '¡Error!',
+                    data.message,//'¡Click en el botón!',
+                    'error'
+                )
+            }
+
+        });
+
+        xhr.fail(function () {
+            notif({
+                msg: "Error al guardar este registro",
+                type: "error"
+            });
+
+
+        })
+
+    }
+
+});
+
+
+}
+ </script>
+}

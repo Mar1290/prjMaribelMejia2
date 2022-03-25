@@ -44,7 +44,7 @@ namespace prjMaribelMejia.Controllers
             //retornamos a la pagina
             return RedirectToAction("Propietarios");
         } 
-
+     
         public IActionResult EditarPropietario(int id)
         {
             List<Propietarios> propietarios= _context.propietarios.ToList();
@@ -63,7 +63,7 @@ namespace prjMaribelMejia.Controllers
             propietarioactual.NombrePropietario = propietarios.NombrePropietario;
             propietarioactual.IdentificacionPropietario = propietarios.IdentificacionPropietario;
             propietarioactual.DireccionPropietario = propietarios.DireccionPropietario;
-            propietarioactual.TelefonoPropietario = propietarioactual.TelefonoPropietario;
+            propietarioactual.TelefonoPropietario = propietarios.TelefonoPropietario;
 
       
             _context.SaveChanges();

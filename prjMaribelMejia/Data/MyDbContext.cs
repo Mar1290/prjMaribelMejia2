@@ -14,5 +14,6 @@ namespace prjMaribelMejia.Data
         public DbSet<Propietarios> propietarios { get; set;}
         public DbSet<Modulos> modulos { get; set; }
         public DbSet<Marcas> marcas { get; set; }
+        public DbSet<Ofertas> ofertas { get; set; } 
     }
 }
