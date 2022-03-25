@@ -11,7 +11,7 @@ namespace prjMaribelMejia.Controllers
 {
     public class OfertasController : Controller
     {
-        private readonly MyDbContext _context;//MyDbCONTEXT:es ña clase que orquesta conexxion a la bd
+        private readonly MyDbContext _context;
 
         //2. creampos el constructor de la clase
         public OfertasController(ILogger<OfertasController> logger, MyDbContext context)
@@ -20,35 +20,34 @@ namespace prjMaribelMejia.Controllers
         }
         public IActionResult Ofertas()
         {
-            //cargamos la lista de categorias       
+            List<Ofertas> ofertas = _context.ofertas.ToList();
+      
+            //cargamos la lista de pdts    
             var listaproductos = _context.producto.ToList();
             ViewBag.ListaDeProducto = listaproductos;
-            //cargamos la lista de marcas
+            //cargamos la lista de modulos
             var Listamodulos = _context.modulos.ToList();
             ViewBag.ListaDeModulos = Listamodulos;
-
-
-            List<Ofertas> ofertas = _context.ofertas.ToList();
-            _context.ofertas.ToList();//debemos agregar la referencia to linq
+                  
 
             return View(_context.ofertas.ToList());
         }
         public IActionResult AgregarOferta()
-        {    //cargamos la lista de categorias       
+        {   
+            //cargamos la lista de categorias       
             var listaproductos = _context.producto.ToList();
             ViewBag.ListaDeProducto = listaproductos;
+
             //cargamos la lista de marcas
             var Listamodulos = _context.modulos.ToList();
             ViewBag.ListaDeModulos = Listamodulos;
 
             return View();
-
         }
 
-        [HttpGet]
-        public IActionResult CrearOferta(Ofertas ofertas)
+        public IActionResult CrearNuevaOferta(Ofertas ofertas)
         {
-            if ((ofertas.IdProducto)!=0)
+            if ((ofertas.IdProducto) != 0)
             {
                 //utilizando formato json para intercambio de datos
                 return Json(new
@@ -66,7 +65,6 @@ namespace prjMaribelMejia.Controllers
                     Success = false,
                     Message = "No se selecciono producto"
                 });
-
             }
             else
             {
@@ -81,10 +79,9 @@ namespace prjMaribelMejia.Controllers
                 {
                     Success = true,
                     Message = "¡Su oferta ha sido registrada!"
-
                 });
             }
-
         }
+
     }
 }

@@ -14,14 +14,14 @@
     <div class="table-responsive">
         <label>Producto:  </label>
     <input type="text" class="form-control Nombrepdto" name="Producto" />
-     
+
         <label>Seleccione Categoria</label>
-         
+
         <select class="form-control idcat" name="IdCategoria">
             @{
-                foreach(var cat in categorias)
+                foreach (var cat in categorias)
                 {
-                    <option value="@cat.IdCategoria">@cat.Categoria</option>
+                            <option value="@cat.IdCategoria">@cat.Categoria</option>
                 }
             }
         </select>
@@ -33,14 +33,14 @@
 
           <select class="form-control idmarca" name="IdMarca">
             @{
-                foreach(var marc in lmarcas)
+                foreach (var marc in lmarcas)
                 {
-                    <option value="@marc.IdMarca" class="form-control nmarca">@marc.NombreMarca</option>
+                 <option value="@marc.IdMarca" class="form-control nmarca">@marc.NombreMarca</option>
                 }
             }
         </select>
         <br />
-        @* <input type="date" class="form-control" />*@
+
         <div class=form-group>          
             <a id="btnGuardar" href="javascrip:void(0);" class="btn btn-success" style="width: 80px;" >Guardar</a>
         </div>

@@ -34,9 +34,6 @@ namespace prjMaribelMejia.Controllers
             var listamarcas = _context.marcas.ToList();
             ViewBag.ListaMarcas = listamarcas;
 
-            //retornar la vista
-           // return View(productos);
-
             //mejor usar esta forma:
             return View(_context.producto.ToList());
         }
@@ -65,8 +62,7 @@ namespace prjMaribelMejia.Controllers
 
         //ADD NUEVOS PDTOS
         public IActionResult CrearProducto(Productos productos)
-        {
-            
+        {            
             if (string.IsNullOrEmpty(productos.Producto))
             {
                 //utilizando formato json para intercambio de datos
@@ -85,7 +81,6 @@ namespace prjMaribelMejia.Controllers
                     Message = "Campo Descripción del producto está vacío"
                 });
             }
-
             else
             {
                 productos.FechaCreacionProducto = System.DateTime.Now;

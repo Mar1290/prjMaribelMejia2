@@ -33,8 +33,8 @@
                                <td>@modulos.Modulo</td>
                                @*<td class="form-control idmod">@modulos.IdModulo</td>*@
                             <td>
-                              <a class="btn btn-info" href ="@Url.Action("EditarModulo", new{ id=modulos.IdModulo})">Editar</a>                           
-                              <a id="btnEliminar" onclick="Confirmacion(@modulos.IdModulo);" href="javascript:void(0);" class="btn btn-danger">Eliminar</a>
+                              <a class="btn btn-info" href ="@Url.Action("EditarModulo", new{ id=modulos.IdModulo})" style="width: 80px;" title="Edita registro">Editar</a>                           
+                              <a id="btnEliminar" onclick="Confirmacion(@modulos.IdModulo);" href="javascript:void(0);" class="btn btn-danger" style="width: 80px;" title="Elimina registro">Eliminar</a>
                             </td>
                     </tr>
                 }

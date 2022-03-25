@@ -1,12 +1,11 @@
-﻿//1- definir evento clic para el bootn guardar
-$("#btnGuardar").click(function () {
+﻿$("#btnGuardar2").click(function () {
     //   alert("Este es el evento click");
     //2. obtener el valor del input pruebajq4 en una variable
     var Productoid = $(".idpdt").val();
     //obtener el valor del input nombre-categoria
     var Moduloid = $(".idmod").val();
 
-    //sugerencia de validacion 
+    //sugerencia de validacion
     if (Productoid == "" || Moduloid == "") {
         Swal.fire({
             title: 'todos los campos son requeridos',
@@ -19,8 +18,6 @@ $("#btnGuardar").click(function () {
         })
     }
     else {
-
-
         var xhr = $.ajax({
 
             //url destino
@@ -36,11 +33,6 @@ $("#btnGuardar").click(function () {
 
         //Mensaje de respuesta
         xhr.done(function (data) {
-
-            //notif({
-            //    msg: "Categoría guardada correctamente",
-            //    type: "success"
-            //});
             if (data.success) {
 
                 //mostrar mensaje de guardado satisfactorio
@@ -54,8 +46,6 @@ $("#btnGuardar").click(function () {
                 setTimeout(function () {
                     location.href = "../Ofertas/Ofertas";
                 }, 2000)
-                //$(".pruebajq4").val("");
-                //$(".nombre-Categoria").va("");
 
             }
             else {
@@ -67,14 +57,11 @@ $("#btnGuardar").click(function () {
             }
 
         });
-
         xhr.fail(function () {
             notif({
                 msg: "Error al guardar este registro",
                 type: "error"
             });
-
-
         })
 
     }
