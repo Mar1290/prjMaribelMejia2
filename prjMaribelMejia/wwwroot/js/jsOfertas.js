@@ -50,7 +50,7 @@
                 Swal.fire(
                     '¡Error!',
                     data.message,//'¡Click en el botón!',
-                    'error'
+                    'Error no se realizò la transacción'
                 )
             }
         });

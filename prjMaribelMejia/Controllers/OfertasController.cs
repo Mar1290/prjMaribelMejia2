@@ -81,8 +81,37 @@ namespace prjMaribelMejia.Controllers
                     Message = "¡Su oferta ha sido registrada!"
                 });
             }
+        }
 
+        public IActionResult EliminarOferta(int? IdOferta)
+        {
+            List<Ofertas> ofertas = _context.ofertas.ToList();
+            //con entity framework. eliminamos el valor
+            Ofertas ofer = _context.ofertas.Where(a => a.IdOferta == IdOferta).FirstOrDefault();
+            if (ofer != null)
+            {
+                //elimina modulo
+                _context.Remove(ofer);
+                _context.SaveChanges();
+                List<Ofertas> oferta = _context.ofertas.ToList();
+                return Json(new
+                {
+                    Success = true,
+                    //mostramos el mensaje
+                    Message = "Oferta eliminada correctamente"
+                });
+            }
+            else
+            {
+                List<Ofertas> ofera = _context.ofertas.ToList();
 
+                return Json(new
+                {
+                    Success = false,
+                    //mostramos el mensaje
+                    Message = "¡No se eliminó el registro!"
+                });
+            }
         }
 
     }

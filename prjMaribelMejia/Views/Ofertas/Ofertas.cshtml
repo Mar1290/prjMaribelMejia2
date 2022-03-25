@@ -50,17 +50,38 @@
 
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="exampleModalLabel">Atención!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                @*se hubica la clase donde ingresamos el texto*@
+                <span class="valor-descripcion"></span>
+             
+                <input type="hidden" id="IdOferta"  class="Oferta" name="IdOferta"><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 80px;">Cerrar</button>
+                <button type="button" onclick="Confirmacion2();" href="javascript:void(0);" class="btn btn-danger" style="width: 80px;">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     @section Scripts{
     <script>
-
-          $(document).ready(function() {
-
-//var table = 
+  $(document).ready(function() {
+//para mostrar en español
 $('.tabla-ofertas').DataTable(
     
-    {
-     
+    {  
 language:{
             "sLengthMenu": "_MENU_ Filtrar por páginas",
             "sZeroRecords": "No se encontró registro",
@@ -81,50 +102,23 @@ language:{
     });
     } );
 
-
-        //    $(".nombre-categoria").click(function(){
-    $(".ver-descripcion").click(function(){
-        var id=$(this).attr("data-id");
-        //hacer la peticion para rescatar la descripcion de la categoria
-         var xhr = $.ajax({
-
-            //url destino
-            url: "ObtenerDescripcion",
-            type: "POST",
-            //agregamos los parametros de la petición
-            data: {
-                //parametros
-                "id":id
-            }
-        });
-
-   xhr.done(function (data) {
-
-    $(".valor-descripcion").text(data.descripcion);
-    $("#exampleModal").modal("show");
-   
-   })
-   xhr.fail(function () {})
-  
-    })
-
     //modal 2: eliminar
-     function Confirmacion(IdProducto) {
-            $(".valor-modalConfirm").text("¿Está Seguro de Eliminar el Registro?");//clase donde pasamos el texto que recuperamos del post en el controlador
-            $(".Categoria").val(IdProducto);
-            $('#ConfirmModal').modal('show');
+ function Confirmacion(IdOferta) {
+            $(".valor-descripcion").text("¿Está Seguro de Eliminar el Registro?");//clase donde pasamos el texto que recuperamos del post en el controlador
+            $(".Oferta").val(IdOferta);
+            $('#exampleModal').modal('show');
         }
 
         function Confirmacion2() {
 
-            var IdCategoria = document.getElementById("IdCategoria").value;
+            var IdOferta = document.getElementById("IdOferta").value;
             debugger
             var xhr = $.ajax({
 
-                url: "EliminarCategoria",
+                url: "EliminarOferta",
                 type: "POST",
                 data: {
-                    "IdCategoria": IdCategoria
+                    "IdOferta": IdOferta
                 }
             });
             xhr.done(function (data) {
@@ -135,7 +129,7 @@ language:{
             if (data.success) {
                 //mostrar mensaje de guardado satisfactorio
                 Swal.fire(
-                    'Categoría Eliminada!',
+                    'Oferta Eliminada!',
                     data.message,//'¡Click en el botón!',
                     'success'
                 )
@@ -149,7 +143,7 @@ language:{
             }
                 //luego de 2 segundos redireccioonar a lista de productos
                 setTimeout(function () {
-                    location.href = "../Categorias/ListaCategorias";
+                    location.href = "../Ofertas/Ofertas";
                 }, 3000)
 
                 });     

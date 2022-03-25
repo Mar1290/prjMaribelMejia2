@@ -72,6 +72,24 @@ namespace prjMaribelMejia.Controllers
                     Message = "Campo producto esta vacío"
                 });
             }
+            else if ((productos.IdCategoria)==0)
+            {
+                //utilizando formato json para intercambio de datos
+                return Json(new
+                {
+                    Success = false,
+                    Message = "Seleccione categoría"
+                });
+            }
+            else if ((productos.Precio) == 0)
+            {
+                //utilizando formato json para intercambio de datos
+                return Json(new
+                {
+                    Success = false,
+                    Message = "Ingrese precio del producto"
+                });
+            }
             else if (string.IsNullOrEmpty(productos.Descripcion))
             {
                 //utilizando formato json para intercambio de datos
@@ -79,6 +97,15 @@ namespace prjMaribelMejia.Controllers
                 {
                     Success = false,
                     Message = "Campo Descripción del producto está vacío"
+                });
+            }
+            else if ((productos.IdMarca) == 0)
+            {
+                //utilizando formato json para intercambio de datos
+                return Json(new
+                {
+                    Success = false,
+                    Message = "Seleccione marca"
                 });
             }
             else
@@ -94,9 +121,7 @@ namespace prjMaribelMejia.Controllers
                     Message = "¡Producto guardado correctamente!"
                 });
             }
-        }
-
-     
+        }     
         public IActionResult EditarProducto(int id)
         {      
             List<Productos> productos = _context.producto.ToList();

@@ -8,23 +8,13 @@
    @* <input type="text" class="form-control nombre-categoria" placeholder="Ingrese descripción" name="DescripcionCategoria"/>*@
    <div class="form-group">
         <textarea class="form-control nombre-categoria" name="DescripcionCategoria" maxlength="500">
-
         </textarea>
-   </div>
-   @* <input type="date" class="form-control" />*@
-    
-   <br />
-@*   <div class=form-group>
-       <input type="submit" value="Guardar" class="btn btn-success"/>
-         
-    </div>*@
-       <div class=form-group>
-        @*<input type="submit" value="Guardar" class="btn btn-success"/>*@
+   </div>   
 
+       <div class=form-group>     
         @*lo ponemos neutral como enlñace sin apuntar a ningun lado*@
-        <a id="btnGuardar" href="javascrip:void(0);" class="btn btn-success">Guardar</a>
-
-         
+        <a id="btnGuardar" href="javascrip:void(0);" class="btn btn-success" title="Guardar registro" style="width: 80px;">Guardar</a>
+        <a class="btn btn-dark" asp-action="ListaCategorias" title="Retornar" style="width: 80px;">Cancelar</a>         
     </div>
     </div>
 </form>
