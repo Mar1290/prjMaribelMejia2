@@ -28,8 +28,8 @@
                      
                     @*opcion 2 boton editar*@
                     
-                      <a class="btn btn-info" style="width: 80px;"  href ="@Url.Action("EditarCategoria", new{ id=categoria.IdCategoria})" title="Editar registro">Editar</a>                     
-                      <a id="btnEliminar" style="width: 80px;" onclick="Confirmacion(@categoria.IdCategoria);" href="javascript:void(0);" class="btn btn-danger" title="Elimina registro">Eliminar</a>
+                      <a class="btn btn-info fa fa-pencil-square-o" style="width: 85px;"  href ="@Url.Action("EditarCategoria", new{ id=categoria.IdCategoria})" title="Editar registro">Editar</a>                     
+                      <a id="btnEliminar" style="width: 85px;" onclick="Confirmacion(@categoria.IdCategoria);" href="javascript:void(0);" class="btn btn-danger fa fa-trash-o" title="Elimina registro">Eliminar</a>
                     </td>
                     </tr>
                 }

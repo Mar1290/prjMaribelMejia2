@@ -85,9 +85,22 @@ namespace prjMaribelMejia.Controllers
         {
             List<Categorias> categorias = _context.categorias.ToList();
             //recuperamos los datos y lo pasamos a nuestro modelo
-            Categorias modelo=_context.categorias.Where(c => c.IdCategoria == id).FirstOrDefault(); 
-            //retornamos
-            return View("EditarCategoria", modelo);
+            Categorias modelo=_context.categorias.Where(c => c.IdCategoria == id).FirstOrDefault();
+
+
+            if (modelo != null)
+            {
+                //retorna
+                //retornamos
+                return View("EditarCategoria", modelo);
+            
+            }
+            else
+            {
+                return RedirectToAction("Productos");
+            }      
+
+        
         }
         //esta accion recibe el objeto categoria
         public IActionResult EditarValorCategoria(Categorias categorias)

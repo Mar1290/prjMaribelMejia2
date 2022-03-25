@@ -1,4 +1,5 @@
-﻿//1- definir evento clic para el botón guardar
+﻿/// <reference path="jsmodulo.js" />
+//1- definir evento clic para el botón guardar
 $("#btnGuardar").click(function () {
     //   alert("Este es el evento click");
     //2. obtener el valor del input pruebajq4 en una variable
@@ -113,7 +114,7 @@ $("#btnActualizar").click(function () {
         var xhr = $.ajax({
 
             //url destino
-            url: "EditarProducto",
+            url: "EditarRegistroProducto",
             type: "POST",
             //agregamos los parametros de la petición
             data: {

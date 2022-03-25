@@ -11,9 +11,6 @@ namespace prjMaribelMejia.Controllers
 {
     public class ProductosController : Controller
     {
-        //1 crear esto
-        //private readonly ILogger<HomeController> _logger;
-
         private readonly MyDbContext _context;
 
         //2. creampos el constructor de la clase
@@ -34,7 +31,6 @@ namespace prjMaribelMejia.Controllers
             var listamarcas = _context.marcas.ToList();
             ViewBag.ListaMarcas = listamarcas;
 
-            //mejor usar esta forma:
             return View(_context.producto.ToList());
         }
         [HttpPost]

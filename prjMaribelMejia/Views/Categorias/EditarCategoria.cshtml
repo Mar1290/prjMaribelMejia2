@@ -4,16 +4,17 @@
 
 <form asp-action="EditarValorCategoria">
     <div>
-           <label>Categoría:</label>
-    <input type="text" class="form-control pruebajq1" name="Categoria" value="@Model.Categoria"/>
-     <label>Descripción:</label>
-    <input type="text" class="form-control pruebajq2" name="DescripcionCategoria" value="@Model.DescripcionCategoria"/>
+        <label>Categoría:</label>
+        <input type="text" class="form-control pruebajq1" name="Categoria" value="@Model.Categoria" />
+        <label>Descripción:</label>
+        <input type="text" class="form-control pruebajq2" name="DescripcionCategoria" value="@Model.DescripcionCategoria" />
 
 
-   <input type="hidden" class="form-control pruebajq3" name="IdCategoria" value="@Model.IdCategoria"/>
-   <br />
-    <div class=form-group>
-        <input type="submit" value="Actualizar" class="btn btn-success" title="Actualizar registro"/>
-    </div>
+        <input type="hidden" class="form-control pruebajq3" name="IdCategoria" value="@Model.IdCategoria" />
+        <br />
+        <div class=form-group>
+            <input type="submit" value="Actualizar" class="btn btn-success" title="Actualizar registro" style="width: 85px;"/>
+            <a class="btn btn-dark" asp-action="ListaCategorias" title="Retornar" style="width: 85px;">Cancelar</a>
+        </div>
     </div>
 </form>
