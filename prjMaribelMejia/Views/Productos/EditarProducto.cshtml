@@ -5,13 +5,10 @@
 @{
     List<prjMaribelMejia.Models.Marcas> lmarcas = ViewBag.ListaMarcas;
 }
-
 <h2>Edición de Producto</h2>
-
 <form asp-action="EditarRegistroProducto">
   <div>
-    <label>Producto:  </label>
-   
+    <label>Producto:  </label>   
     <input type="text" class="form-control Nombrepdto" name="Producto" value="@Model.Producto"/>
     <label>Seleccione Categoria</label>
         <select class="form-control idcat" name="IdCategoria" value="@Model.IdCategoria">
@@ -42,6 +39,7 @@
    @* <input type="date" class="form-control" />*@
     <div class=form-group>
         <input type="submit" style="width: 80px;" value="Actualizar" class="btn btn-success"/>
+        <a id="btnActualizar" href="javascrip:void(0);" class="btn btn-success" style="width: 80px;" title="Guardar registro" >Guardar act</a>
 
          <a class="btn btn-info" style="width: 80px;" asp-area="" asp-controller="Productos" asp-action="Productos">Cancelar</a>
 

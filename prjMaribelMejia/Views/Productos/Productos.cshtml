@@ -45,7 +45,6 @@
                     <td>                               
                     @*agregamos el botón editar y eliminar*@
                     <a class="btn btn-info fa fa-pencil-square-o" href ="@Url.Action("EditarProducto", new{ id=producto.IdProducto})" style="width: 90px;" title="Edita registro">Editar</a>  
-                     <a id="btnActualizar" style="width: 90px;" href="javascript:void(0);" class="btn btn-danger fa fa-trash-o" title="Edita registro">Editarjs</a>
                 <a id="btnEliminar" style="width: 90px;" onclick="Confirmacion(@producto.IdProducto);" href="javascript:void(0);" class="btn btn-danger fa fa-trash-o" title="Elimina registro">Eliminar</a>
                 <a class="btn btn-primary fa fa-shopping-cart" id="btnEncontrar" style="width: 90px; " href="javascript:void(0);" title="Encuentrálo">Ubicar</a>
 
