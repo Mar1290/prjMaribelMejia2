@@ -11,11 +11,18 @@
     <label>Producto:  </label>   
     <input type="text" class="form-control Nombrepdto" name="Producto" value="@Model.Producto"/>
     <label>Seleccione Categoria</label>
-        <select class="form-control idcat" name="IdCategoria" value="@Model.IdCategoria">
+        <select class="form-control idcat" name="IdCategoria" value="@Model.IdCategoria">          
             @{
                 foreach(var cat in categorias)
                 {
-                    <option value="@cat.IdCategoria">@cat.Categoria</option>
+                    if(cat.IdCategoria==@Model.IdCategoria)
+                    {
+                        <option value="@Model.IdCategoria" selected=@Model.IdCategoria>@cat.Categoria</option>
+                    }
+                    else
+                    {
+                        <option value="@cat.IdCategoria">@cat.Categoria</option>
+                    }                    
                 }
             }
         </select>
