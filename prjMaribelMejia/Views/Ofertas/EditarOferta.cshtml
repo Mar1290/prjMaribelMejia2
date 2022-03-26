@@ -1,0 +1,47 @@
+﻿@model prjMaribelMejia.Models.Ofertas
+
+@{
+    List<prjMaribelMejia.Models.Productos> productos = ViewBag.ListaDeProducto;
+}
+@{
+    List<prjMaribelMejia.Models.Modulos> modulos = ViewBag.ListaDeModulos;
+}
+
+<h2>Edición de Oferta de Productos</h2>
+<form asp-action="EditarRegistroOferta">
+    <div class="table-responsive">
+        
+        <label>Seleccione Categoria</label>
+
+        <select class="form-control idpdt" name="IdProducto">
+            @{
+                foreach (var pdto in productos)
+                {
+                  <option value="@pdto.IdProducto">@pdto.Producto</option>
+                }
+            }
+        </select>
+        
+        <label>Seleccione Marca:</label> 
+
+          <select class="form-control idmod" name="IdModulo">
+            @{
+                foreach (var mod in modulos)
+                {
+                 <option value="@mod.IdModulo" class="form-control nmarca">@mod.Modulo</option>
+                }
+            }
+        </select>
+        <br />
+
+        <div class=form-group>          
+          
+            <input type="submit" value="Actualizar" class="btn btn-success" title="Actualiza registro" />
+             <a class="btn btn-dark" asp-action="Ofertas" title="Retornar" style="width: 80px;">Cancelar</a>
+        </div>
+    </div>
+</form>
+@section Scripts
+{
+    <script src="~/js/jsOfertas.js"></script>
+}

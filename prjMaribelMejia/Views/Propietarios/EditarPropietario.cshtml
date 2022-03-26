@@ -14,9 +14,10 @@
        <input type="text" class="form-control telefonop" name="TelefonoPropietario" maxlength="9" placeholder='0000-0000' value="@Model.TelefonoPropietario" />
 
         <input type="hidden" class="form-control" name="IdPropietario" value="@Model.IdPropietario" />
-
+        <br />
         <div class="form-group">
-            <input type="submit" value="Actualizar" class="btn btn-success" title="Actualiza registro" />
+            <input type="submit" value="Actualizar" class="btn btn-success" title="Actualiza registro" style="width: 85px;"/>
+              <a class="btn btn-dark" asp-action="ListaCategorias" title="Retornar" style="width: 85px;">Cancelar</a>
         </div>
     </div>
 </form>

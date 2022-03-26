@@ -83,6 +83,39 @@ namespace prjMaribelMejia.Controllers
             }
         }
 
+        public IActionResult EditarOferta(int id)
+        {
+            List<Ofertas> listofertas = _context.ofertas.ToList();
+            //1. recupera dato y envia al modelo
+            Ofertas modeloOferta = _context.ofertas.Where(p => p.IdOferta == id).FirstOrDefault();
+            //retorna
+            if (modeloOferta != null)
+            {                //retornamos
+                return View("EditarOferta", modeloOferta);
+            }
+            else
+            {
+                return RedirectToAction("Ofertas");
+            }
+
+        }
+        public IActionResult EditarRegistroOferta(Ofertas ofertas)
+        {
+
+            Ofertas ofertactual = _context.ofertas.
+             Where(pa => pa.IdOferta == ofertas.IdOferta).FirstOrDefault();
+            //actualizamos datos
+
+            ofertactual.IdOferta = ofertas.IdOferta;
+            ofertactual.IdProducto = ofertas.IdProducto;
+            ofertactual.IdModulo = ofertas.IdModulo;
+
+            _context.SaveChanges();
+            List<Ofertas> lisofertas = _context.ofertas.ToList();
+            //retornamos a la pagina
+            return RedirectToAction("Ofertas");
+        }
+
         public IActionResult EliminarOferta(int? IdOferta)
         {
             List<Ofertas> ofertas = _context.ofertas.ToList();

@@ -36,22 +36,67 @@ namespace prjMaribelMejia.Controllers
             return View();
         }
 
-        public  IActionResult CrearPropietarios(Propietarios propietarios)
+        public IActionResult CrearPropietarios(Propietarios propietarios)
         {
-            propietarios.PropietarioActivo = true;
-            _context.propietarios.Add(propietarios);  
-            _context.SaveChanges(); 
-            //retornamos a la pagina
-            return RedirectToAction("Propietarios");
-        } 
-     
-        public IActionResult EditarPropietario(int id)
+         //validamos los datos
+            if (string.IsNullOrEmpty(propietarios.NombrePropietario))
+            {
+                //utilizando formato json para intercambio de datos
+                return Json(new
+                {
+                    Success = false,
+                    Message = "No se ingreso nombre"
+                });
+
+            }
+            else if (string.IsNullOrEmpty(propietarios.TelefonoPropietario))
+            {
+                //utilizando formato json para intercambio de datos
+                return Json(new
+                {
+                    Success = false,
+                    Message = "Ingrese teléfono"
+                });
+            }
+            else if (string.IsNullOrEmpty(propietarios.DireccionPropietario))
+            {
+                return Json(new
+                {
+                    Success = false,
+                    Message = "Debe especificar la dirección del propietario"
+                });
+
+            }
+            else
+            {
+                propietarios.PropietarioActivo = true;
+
+                _context.propietarios.Add(propietarios);
+                _context.SaveChanges();
+                //retornamos a la pagina
+                return Json(new
+                {
+                    Success = true,
+                    Message = "¡Propietari@ registrad@!"
+                });
+
+            }
+        }
+
+            public IActionResult EditarPropietario(int id)
         {
             List<Propietarios> propietarios= _context.propietarios.ToList();
             //1. recupera dato y envia al modelo
             Propietarios modeloprop = _context.propietarios.Where(p => p.IdPropietario == id).FirstOrDefault();
-            //retorna
-            return View("EditarPropietario",modeloprop);    
+            //retorna     
+            if (modeloprop != null)
+            {                //retornamos
+                return View("EditarPropietario", modeloprop);
+            }
+            else
+            {
+                return RedirectToAction("Propietarios");
+            }
 
         }
         public IActionResult EditarRegistroPropietario(Propietarios propietarios)
@@ -75,14 +120,38 @@ namespace prjMaribelMejia.Controllers
             return RedirectToAction("Propietarios");//lista de propietarios
         }
 
-        public IActionResult AnularPropietario(int id)
-        {
-
+        public IActionResult EliminarPropietario(int? IdPropietario)
+        {         
             List<Propietarios> propietarios = _context.propietarios.ToList();
-            //1. recupera dato y envia al modelo
-            Propietarios modeloprop = _context.propietarios.Where(p => p.IdPropietario == id).FirstOrDefault();
-            //retorna
-            return View("AnularPropietario", modeloprop);
+            //con entity framework. eliminamos el valor
+            Propietarios mod = _context.propietarios.Where(a => a.IdPropietario == IdPropietario).FirstOrDefault();
+            if (mod != null)
+            {
+                //elimina modulo
+                _context.Remove(mod);
+                _context.SaveChanges();
+
+                
+                List<Propietarios> propietario = _context.propietarios.ToList();
+
+                return Json(new
+                {
+                    Success = true,
+                    //mostramos el mensaje
+                    Message = "¡Propietario eliminado correctamente!"
+                });
+            }
+            else
+            {
+                List<Propietarios> propietar = _context.propietarios.ToList();
+
+                return Json(new
+                {
+                    Success = false,
+                    //mostramos el mensaje
+                    Message = "¡No se eliminó el propieatrio!"
+                });
+            }
         }
 
         public IActionResult AnularRegistroPropietario(Propietarios propietarios)
@@ -90,7 +159,7 @@ namespace prjMaribelMejia.Controllers
             Propietarios propietarioactual = _context.propietarios.
              Where(pa => pa.IdPropietario == propietarios.IdPropietario).FirstOrDefault();
             //actualizamos datos
-            propietarioactual.PropietarioActivo = propietarios.PropietarioActivo;
+            propietarioactual.PropietarioActivo = false;
 
             _context.SaveChanges();
             List<Propietarios> propietario = _context.propietarios.ToList();

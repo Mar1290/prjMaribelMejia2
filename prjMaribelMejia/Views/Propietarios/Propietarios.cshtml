@@ -30,10 +30,10 @@
                        <td>@propietario.PropietarioActivo</td>
                     <td>
        
-                      <a class="btn btn-info" href ="@Url.Action("EditarPropietario", new{ id = propietario.IdPropietario})" title="Editar registro">Editar</a>
-                      <a class="btn btn-danger" asp-route-id="@propietario.IdPropietario" asp-action="EditarPropietario">edit2</a>
-                      <a class="btn btn-danger" href ="@Url.Action("AnularPropietario", new{ id=propietario.IdPropietario})" title="Anular registro">Anular</a>
-                    </td>
+                      <a class="btn btn-info" href ="@Url.Action("EditarPropietario", new{ id = propietario.IdPropietario})" title="Editar registro" style="width: 85px;">Editar</a>                     
+                      <a id="btnEliminar" style="width: 80px;" onclick="Confirmacion(@propietario.IdPropietario);" href="javascript:void(0);" class="btn btn-danger" title="Eliminar">Eliminar</a>
+
+                      </td>
                     </tr>
                 }
             }
@@ -43,6 +43,31 @@
           <a class="btn btn-success" asp-action="AgregarPropietario" title="Crear nuevo registro">Nuevo</a>  
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="exampleModalLabel">Atención!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                @*se hubica la clase donde ingresamos el texto*@
+                <span class="valor-descripcion"></span>
+             
+                <input type="hidden" id="IdPropietario"  class="Propietario" name="IdPropietario"><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 80px;">Cerrar</button>
+                <button type="button" onclick="Confirmacion2();" href="javascript:void(0);" class="btn btn-danger" style="width: 80px;">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts{
     <script>
 
@@ -70,6 +95,53 @@ language:{
         }
     });
     } );
+
+    //modal 2: eliminar
+ function Confirmacion(IdOferta) {
+            $(".valor-descripcion").text("¿Está Seguro de Anular?");//clase donde pasamos el texto que recuperamos del post en el controlador
+            $(".Propietario").val(IdPropietario);
+            $('#exampleModal').modal('show');
+        }
+
+        function Confirmacion2() {
+
+            var IdPropietario = document.getElementById("IdPropietario").value;
+            debugger
+            var xhr = $.ajax({
+
+                url: "EliminarPropietario",
+                type: "POST",
+                data: {
+                    "IdPropietario": IdPropietario
+                }
+            });
+            xhr.done(function (data) {
+
+            $('#ConfirmModal').modal('hide');
+
+            //mostrar mensaje de guardado satisfactorio
+            if (data.success) {
+                //mostrar mensaje de guardado satisfactorio
+                Swal.fire(
+                    'Propietario Eliminar!',
+                    data.message,//'¡Click en el botón!',
+                    'success'
+                )
+            }
+            else {
+                Swal.fire(
+                    '¡error!',
+                    data.message,//'¡Click en el botón!',
+                    'error'
+                )
+            }
+                //luego de 2 segundos redireccioonar a lista de productos
+                setTimeout(function () {
+                    location.href = "../Propietarios/Propietarios";
+                }, 3000)
+
+                });     
+                }
 
 </script>
 }

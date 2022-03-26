@@ -91,7 +91,7 @@ $("#btnActualizar").click(function () {
     var idcat = $(".idcat").val();
     var preciopdto = $(".preciopdto").val();
     var idmarca = $(".idmarca").val();
-    var marca = $(".nmarca").val();
+ 
     var idPdto = $(".idpdto")
 
     //sugerencia de validacion 
@@ -114,7 +114,7 @@ $("#btnActualizar").click(function () {
         var xhr = $.ajax({
 
             //url destino
-            url: "EditarRegistroProducto",
+            url: "EditarProducto",
             type: "POST",
             //agregamos los parametros de la petición
             data: {

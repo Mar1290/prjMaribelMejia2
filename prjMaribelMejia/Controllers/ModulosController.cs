@@ -71,7 +71,14 @@ namespace prjMaribelMejia.Controllers
             //1. recupera dato y envia al modelo
             Modulos modeloModulo = _context.modulos.Where(p => p.IdModulo == id).FirstOrDefault();
             //retorna
-            return View("EditarModulo", modeloModulo);
+            if (modeloModulo != null)
+            {                //retornamos
+                return View("EditarModulo", modeloModulo);
+            }
+            else
+            {
+                return RedirectToAction("Modelos");
+            }
 
         }
         public IActionResult EditarRegistroModulo(Modulos modulos)
