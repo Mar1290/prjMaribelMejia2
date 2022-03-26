@@ -147,5 +147,28 @@ namespace prjMaribelMejia.Controllers
             }
         }
 
+        public IActionResult UbicacionProducto(int IdProducto)
+        {
+            var ModuloProducto = (from o in _context.ofertas
+                                  join p in _context.producto on o.IdProducto equals p.IdProducto
+                                  join m in _context.modulos on o.IdModulo equals m.IdModulo
+                                  join pr in _context.propietarios on m.IdPropietario equals pr.IdPropietario
+                                  select new
+                                  {
+                                      Producto = p.Producto + " " + p.Descripcion,
+                                      p.Precio,
+                                      m.Modulo,
+                                      m.DescripcionModulo,
+                                      Contacto = pr.NombrePropietario + " " + pr.TelefonoPropietario,
+                                      o.IdProducto
+
+
+                                  }).Where(x => x.IdProducto == IdProducto).ToList();
+            ViewBag.ListaBusqueda = ModuloProducto;
+            return View();
+        }
+
+
+
     }
 }

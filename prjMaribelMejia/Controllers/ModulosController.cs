@@ -67,6 +67,11 @@ namespace prjMaribelMejia.Controllers
         }
         public IActionResult EditarModulo(int id)
         {
+
+            //cargamos la lista de categorias       
+            var listapropietario = _context.propietarios.ToList();
+            ViewBag.ListaPropietarios = listapropietario;
+
             List<Modulos> modulos = _context.modulos.ToList();
             //1. recupera dato y envia al modelo
             Modulos modeloModulo = _context.modulos.Where(p => p.IdModulo == id).FirstOrDefault();

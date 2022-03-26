@@ -1,0 +1,43 @@
+﻿@model prjMaribelMejia.Models.Productos
+
+@{
+    List<prjMaribelMejia.Models.Ofertas> ofertas = ViewBag.ListaBusqueda;
+}
+<form asp-action="UbicacionProducto"  autocomplete="off">
+div>  
+    <div>
+      <h2 class="text-info bg-light rounded border-bottom">Busqueda de Productos</h2>
+    </div>
+<br />
+@*<<input type="text" class="form-control"  value="@Model.Producto+'-'+@Model.Descripcion" />*@
+    @*<table class="table tabla-ofertas hover display">
+        
+        <thead>
+            <tr>
+    
+
+                <th>Modulo</th>
+                <th>Sector modulo</th>
+                <th>Propietario</th>
+                <th>Contacto</th>
+            </tr>
+    
+        </thead>
+        <tbody>
+            @{
+                //hace referencia a lo que viene como modelo
+                foreach(var o in ofertas)
+                {
+                    <tr>  
+                    <td>@o.Modulos.Modulo</td>   
+                      <td>@o.Modulos.DescripcionModulo</td>   
+                    <td>@o.Modulos.Propietarios.NombrePropietario</td>     
+                    <td>@o.Modulos.Propietarios.TelefonoPropietario</td>    
+                   
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>*@
+
+</form>

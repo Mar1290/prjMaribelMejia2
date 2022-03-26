@@ -1,4 +1,7 @@
 ﻿@model prjMaribelMejia.Models.Modulos;
+@{
+    List<prjMaribelMejia.Models.Propietarios> propietarios = ViewBag.ListaPropietarios;
+}
 
 <h2>Edición de Módulo</h2>
     
@@ -6,7 +9,21 @@
 <form asp-action="EditarRegistroModulo">
     <div>
         <label>Seleccione Propietario:</label>
-    <input type="text" class="form-control idprop" name="IdPropietario" value="@Model.IdPropietario"/>
+    <select class="form-control idprop" name="IdPropietario" value="@Model.IdPropietario">          
+            @{
+                foreach(var p in propietarios)
+                {
+                    if(@p.IdPropietario==@Model.IdPropietario)
+                    {
+                        <option value="@Model.IdPropietario" selected>@p.NombrePropietario</option>
+                    }
+                    else
+                    {
+                        <option value="@p.IdPropietario">@p.NombrePropietario</option>
+                    }                    
+                }
+            }
+        </select>
     <label>Modulo:</label>
     <input type="text" class="form-control nombremodulo" name="Modulo" value="@Model.Modulo"/>
     <label>Descripción del Módulo:</label>
@@ -15,7 +32,7 @@
    <br />
     <div class=form-group>
         <input type="submit" style="width: 85px;" title="Actualiza registro" value="Actualizar" class="btn btn-success"/>
-        <a class="btn btn-info" style="width: 85px;" title="Retornar" asp-area="" asp-controller="Productos" asp-action="Productos">Cancelar</a>
+        <a class="btn btn-info" style="width: 85px;" title="Retornar" asp-area="" asp-controller="Modulos" asp-action="Modulos">Cancelar</a>
     </div>
     </div>
 </form>

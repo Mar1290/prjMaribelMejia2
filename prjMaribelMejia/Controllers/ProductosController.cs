@@ -156,12 +156,6 @@ namespace prjMaribelMejia.Controllers
               
             //retornamos a la pagina
             return RedirectToAction("Productos");
-            //retornar una vez mostrado el mensaje
-            //return Json(new
-            //{
-            //    Success = true,
-            //    Message = "¡Producto actualizado correctamente!"
-            //});
 
         }
 
@@ -211,17 +205,17 @@ namespace prjMaribelMejia.Controllers
             //Productos productos = _context.producto.Join
             //    (_context.marcas,
             //    product => product.IdMarca,
-            //    marc => marc.IdMarca,                 
-            //    (product, marc) => new {product,marc }).Select(p => p.product).Where(product => product.IdProducto == id).FirstOrDefault();
+            //    marc => marc.IdMarca,
+            //    (product, marc) => new { product, marc }).Select(p => p.product).Where(product => product.IdProducto == id).FirstOrDefault();
 
             //var _marproductos = from Productos in _context.marcas
-            //                    join Marcas in _context.marcas on Productos.IdMarca equals Marcas.IdMarca 
+            //                    join Marcas in _context.marcas on Productos.IdMarca equals Marcas.IdMarca
             //                    select new
-            //                    {                                    
+            //                    {
             //                        Productos,
             //                        Marcas.NombreMarca
             //                    };
-          
+
 
             if (productos != null && !string.IsNullOrEmpty(productos.Descripcion))
             {
@@ -229,9 +223,43 @@ namespace prjMaribelMejia.Controllers
             }
             return Json(new { descripcion });
 
-
         }
 
+        public IActionResult UbicacionProducto(int IdProducto)
+        {
+            var ModuloProducto = (from o in _context.ofertas
+                                  join p in _context.producto on o.IdProducto equals p.IdProducto
+                                  join m in _context.modulos on o.IdModulo equals m.IdModulo
+                                  join pr in _context.propietarios on m.IdPropietario equals pr.IdPropietario
+                                  select new
+                                  {
+                                      Producto = p.Producto + " " + p.Descripcion,
+
+                                      m.Modulo,
+                                      m.DescripcionModulo,
+                                      Contacto = pr.NombrePropietario + " " + pr.TelefonoPropietario,
+                                      o.IdProducto
+
+
+                                  }).Where(x => x.IdProducto == IdProducto).ToList();
+
+            //Ofertas objOferta = ModuloProducto.ToList();
+
+            ViewBag.ListaBusqueda = ModuloProducto;
+
+            if (ModuloProducto == null || ModuloProducto.Count == 0)
+            {
+                return RedirectToAction("Productos");
+            }
+            //retorna
+            else
+            {
+                return View(ModuloProducto);
+
+            }
+           
+
+        }
 
 
     }
