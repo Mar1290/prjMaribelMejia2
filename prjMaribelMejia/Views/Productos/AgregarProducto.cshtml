@@ -1,6 +1,4 @@
 ﻿@model prjMaribelMejia.Models.Productos
-
-
 @{
     List<prjMaribelMejia.Models.Categorias> categorias = ViewBag.ListaCategorias;
 }
@@ -26,7 +24,7 @@
             }
         </select>
         <label>Precio Unitario C$:</label>
-        <input type="text" class="form-control preciopdto" name="Precio" />
+        <input type="text" class="form-control preciopdto" id="Money-2" name="Precio" />
         <label>Descripción del Producto:</label>
         <input type="text" class="form-control descripcion-pdto" name="Descripcion" />
         <label>Seleccione Marca:</label> 
@@ -51,4 +49,22 @@
 @section Scripts
 {
     <script src="~/js/jsProducto.js"></script>
+        <script>
+        $(function () {
+            
+      $("#CONTACT_PHONE").mask("(999) 999-9999");
+      $('.date').mask('11/11/1111');
+      $('.time').mask('00:00:00');
+      $('.date_time').mask('99/99/9999 00:00:00');
+      $('.telefonop').mask('9999-9999',{ placeholder: '0000-0000' });
+      $('#identificacionp').mask("000-000000-0000A", { placeholder: '000-000000-0000A' }); //placeholder
+      $('.phone_with_ddd').mask('(99) 99 999 99 99');
+      $('.money').mask('000.000.000.000.000,00', {reverse: true});
+      $("#CreditCard-2").mask({"mask": "9999 9999 9999 9999", "placeholder" : "**** **** **** ****", "clearMaskOnLostFocus": false});
+      $("#Date-2").mask({"mask" : "99/99/9999", "placeholder": "mm/dd/yyyy", "clearMaskOnLostFocus": false});
+      $("#Money-2").mask({ alias : "currency", prefix: 'C$', "clearMaskOnLostFocus": false});
+
+        });
+
+    </script>
 }
