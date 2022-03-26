@@ -82,9 +82,17 @@ namespace prjMaribelMejia.Controllers
                 });
             }
         }
-
+        [HttpGet]
         public IActionResult EditarOferta(int id)
         {
+            //cargamos la lista de categorias       
+            var listaproductos = _context.producto.ToList();
+            ViewBag.ListaDeProducto = listaproductos;
+
+            //cargamos la lista de marcas
+            var Listamodulos = _context.modulos.ToList();
+            ViewBag.ListaDeModulos = Listamodulos;
+
             List<Ofertas> listofertas = _context.ofertas.ToList();
             //1. recupera dato y envia al modelo
             Ofertas modeloOferta = _context.ofertas.Where(p => p.IdOferta == id).FirstOrDefault();
@@ -101,7 +109,7 @@ namespace prjMaribelMejia.Controllers
         }
         public IActionResult EditarRegistroOferta(Ofertas ofertas)
         {
-
+           
             Ofertas ofertactual = _context.ofertas.
              Where(pa => pa.IdOferta == ofertas.IdOferta).FirstOrDefault();
             //actualizamos datos

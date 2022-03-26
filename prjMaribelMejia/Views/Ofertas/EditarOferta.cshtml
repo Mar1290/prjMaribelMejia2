@@ -11,32 +11,48 @@
 <form asp-action="EditarRegistroOferta">
     <div class="table-responsive">
         
-        <label>Seleccione Categoria</label>
-
-        <select class="form-control idpdt" name="IdProducto">
+        <label>Seleccione Producto</label>
+        <select class="form-control" name="IdProducto"  value="@Model.IdProducto">    
+    
             @{
                 foreach (var pdto in productos)
                 {
-                  <option value="@pdto.IdProducto">@pdto.Producto</option>
+                  
+                   if(pdto.IdProducto==@Model.IdProducto)
+                    {
+                        <option value="@Model.IdProducto" selected>@pdto.Producto</option>
+                    }
+                    else
+                    {
+                       <option value="@pdto.IdProducto">@pdto.Producto</option>
+                    }    
                 }
             }
         </select>
         
-        <label>Seleccione Marca:</label> 
-
-          <select class="form-control idmod" name="IdModulo">
+        <label>Seleccione Modulos:</label>          
+              <select class="form-control"  name="IdModulo" value="@Model.IdModulo">   
             @{
                 foreach (var mod in modulos)
                 {
+                     if(mod.IdModulo==@Model.IdModulo)
+                    {
+                        <option value="@Model.IdModulo" selected>@mod.Modulo</option>
+                    }
+                    else
+                    {                      
                  <option value="@mod.IdModulo" class="form-control nmarca">@mod.Modulo</option>
+                    }  
+
                 }
             }
         </select>
         <br />
-
+        <input type="hidden" class="form-control idpdto" name="IdOferta" value="@Model.IdOferta"/>
         <div class=form-group>          
           
             <input type="submit" value="Actualizar" class="btn btn-success" title="Actualiza registro" />
+      
              <a class="btn btn-dark" asp-action="Ofertas" title="Retornar" style="width: 80px;">Cancelar</a>
         </div>
     </div>
